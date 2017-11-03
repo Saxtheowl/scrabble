@@ -1,0 +1,10 @@
+*~
+*.o
+*.exe
+test/
+temp
+poker
+other/XPokerEval/linux/HandRanks.dat
+other/XPokerEval/linux/generate_table
+other/XPokerEval/linux/generate_table.exe
+other/XPokerEval/linux/test
