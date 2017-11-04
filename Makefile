@@ -23,6 +23,9 @@ $(NAME)		:	$(OBJS)
 
 all		:	$(NAME)
 
+debug		:	$(OBJS)
+			$(CC) -DDEBUG_FLAG -g -o $(NAME) $(OBJS)
+
 clean		:	
 			$(RM) $(OBJS)
 
