@@ -7,16 +7,22 @@
 char		*read_entry()
 {
   char *buffer = NULL;
-  int read;
   size_t len;
   
-  read = getline(&buffer, &len, stdin);
-  if (-1 != read)
-    puts(buffer);
-  else
-    printf("No line read...\n");
-
-  printf("Size read: %d\n Len: %d\n", read, len);
-  free(buffer);
+  if (getline(&buffer, &len, stdin) == -1)
+    printf("getline error\n");
   return(buffer);
+}
+
+void		xgetline(char **lineptr, FILE *fp, int i)
+{
+  char		*line;
+  size_t	len;
+
+  len = 0;
+  if ((getline(&lineptr[i], &len, fp)) == -1)
+    {
+      printf("getline error\n");
+      exit(0);
+    }
 }
