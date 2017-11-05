@@ -20,7 +20,7 @@ bool		select_skip_menu();
 void		config_skip_menu(t_game);
 int		select_language_to_play();
 int		select_number_of_players();
-int		*select_player_type();
+int		*select_players_type();
 
 /* ../read_entry.c */
 

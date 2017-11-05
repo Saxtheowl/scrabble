@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "../include/my.h"
 
@@ -7,7 +8,7 @@
 #define HUMAN 0
 #define AI 1
 
-int		main(int, char **av);
+int		main(int, char **);
 
 int		main(int ac, char **av)
 {
