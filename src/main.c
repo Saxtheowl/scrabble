@@ -3,6 +3,12 @@
 
 #include "../include/my.h"
 
+#define MAX_PLAYER 4
+#define HUMAN 0
+#define AI 1
+
+int		main(int, char **av);
+
 int		main(int ac, char **av)
 {
 #ifdef DEBUG_FLAG
@@ -11,14 +17,15 @@ int		main(int ac, char **av)
   printf("NO DEBUG_FLAG\n");
 #endif
   
+  t_game		game;
   if (ac > 1)
     {
       // TODO load game with args
-      start_game();
+      start_game(game);
     }
   else
     {
-      menu();
-      start_game();
+      menu_intro(game);
+      start_game(game);
     }
 }

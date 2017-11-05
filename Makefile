@@ -14,19 +14,14 @@ SRCS		=	$(DIR_SRC)main.c \
 			$(DIR_SRC)menu.c \
 			$(DIR_UTIL)read_entry.c 
 
-DEBUG		=	-DDEBUG_FLAG
-
 OBJS		=	$(SRCS:.c=.o)
 
-CPPFLAGS	=	-Wextra -Wall -Wextra -g3 -I include/  -DDEBUG_FLAG #-Werror
+CPPFLAGS	=	-Wextra -Wall -Wextra -g3 -I include/ -DDEBUG_FLAG #-Werror
 
 $(NAME)		:	$(OBJS)
 			$(CC) -o $(NAME) $(OBJS)
 
 all		:	$(NAME)
-
-debug		:	$(OBJS)
-			$(CC) -o $(NAME) $(OBJS)	
 
 clean		:	
 			$(RM) $(OBJS)

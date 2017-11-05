@@ -2,6 +2,8 @@
 
 #include "../include/my.h"
 
+char		*put_prompt();
+
 char		*put_prompt()
 {
   char		*prompt;

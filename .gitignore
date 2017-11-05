@@ -2,4 +2,6 @@
 *.o
 scrabble
 temp
+board
+board_running
 test/
