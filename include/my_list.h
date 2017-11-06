@@ -8,8 +8,9 @@ typedef struct		s_cnfg
 
 typedef struct		s_game
 {
-  bool			auto_menu;
+  bool			is_auto_menu;
   int			language;
+  int			amount_players;
   int			players_type[3];
 }			t_game;
 

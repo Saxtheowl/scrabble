@@ -5,7 +5,7 @@ int		main()
 {
   bool		a = 1;
   bool		b = true;
-
+  boolean	c = 0;
 
   if(a == true)
     printf("ok a = 1");

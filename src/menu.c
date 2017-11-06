@@ -2,10 +2,11 @@
 #include <stdlib.h>
 
 #include "../include/my.h"
+#include "../include/my_list.h"
 
 void		menu_intro(t_game);
 bool		select_skip_menu();
-void		config_skip_menu(t_game game);
+t_game		init_skip_menu(t_game);
 int		select_language_to_play();
 int		select_number_of_players();
 int		*select_players_type();
@@ -13,8 +14,14 @@ int		*select_players_type();
 void		menu_intro(t_game game)
 {
   printf("Welcome to the game of scrabble\n");
+  printf("do you want to skip menu ?\n");
+  if(select_skip_menu() == true)
+    {
+      game = init_skip_menu(game);
+      start_game(game);
+    }
   printf("select in which language the game will be played : \n");
-  game.language = select_language_to_play(game);
+  game.language = select_language_to_play();
   printf("select the type of player : \n");
   game.players_type = select_players_type();
   
@@ -22,9 +29,20 @@ void		menu_intro(t_game game)
 
 bool		select_skip_menu()
 {
+  char		*choice;
+  int		nb = 0;
+
+  while (nb != 1 && nb != 2)
+    {
+      printf("\n1. English\n");
+      printf("\n2. French\n");
+      choice = put_prompt();
+      nb = atoi(choice);
+    }
+  return(nb);
 }
 
-void		config_skip_menu()
+init		init_skip_menu()
 {
 }
 

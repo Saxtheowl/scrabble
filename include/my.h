@@ -17,10 +17,10 @@ void		start_game(t_game);
 
 void		menu_intro(t_game);
 bool		select_skip_menu();
-void		config_skip_menu(t_game);
+t_game		init_skip_menu(t_game);
 int		select_language_to_play();
 int		select_number_of_players();
-int		*select_player_type();
+int		*select_players_type();
 
 /* ../read_entry.c */
 
