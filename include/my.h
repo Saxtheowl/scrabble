@@ -11,13 +11,13 @@ char		*put_prompt();
 
 /* game_core.c */
 
-void		start_game(t_game);
+void		start_game(t_game *);
 
 /* menu.c */
 
-void		menu_intro(t_game);
+void		menu_intro(t_game *);
 bool		select_skip_menu();
-t_game		init_skip_menu(t_game);
+void		init_skip_menu(t_game *);
 int		select_language_to_play();
 int		select_number_of_players();
 int		*select_players_type();

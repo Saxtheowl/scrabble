@@ -16,7 +16,7 @@ SRCS		=	$(DIR_SRC)main.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
-CPPFLAGS	=	-Wextra -Wall -Wextra -g3 -I include/ -DDEBUG_FLAG #-Werror
+CPPFLAGS	=	-Wall -Wextra -g3 -I include/ -DDEBUG_FLAG #-Werror
 
 $(NAME)		:	$(OBJS)
 			$(CC) -o $(NAME) $(OBJS)
