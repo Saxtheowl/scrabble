@@ -10,6 +10,86 @@
 #define HUMAN 0
 #define BOT 1
 
+#define MAX_PLAYERS 4
+
+#define BOARD_SIZE_X 15
+#define BOARD_SIZE_Y 15
+
+#define FILE_BOARD_PATH "board"
+
+enum NUMBER_LETTERS_EN
+  {
+    N_EN_A = 0,
+    N_EN_B = 0,
+    N_EN_C = 0,
+    N_EN_D = 0,
+    N_EN_E = 0,
+    N_EN_F = 0,
+    N_EN_G = 0,
+    N_EN_H = 0,
+    N_EN_I = 0,
+    N_EN_J = 0,
+    N_EN_K = 0,
+    N_EN_L = 0,
+    N_EN_M = 0,
+    N_EN_N = 0,
+    N_EN_O = 0,
+    N_EN_P = 0,
+    N_EN_Q = 0,
+    N_EN_R = 0,
+    N_EN_S = 0,
+    N_EN_T = 0,
+    N_EN_U = 0,
+    N_EN_V = 0,
+    N_EN_W = 0,
+    N_EN_X = 0,
+    N_EN_Y = 0,
+    N_EN_Z = 0,
+    N_EN_JOKER = 0,
+  };
+
+enum POINT_LETTERS_EN
+  {
+    P_EN_A = 0,
+    P_EN_B = 0,
+    P_EN_C = 0,
+    P_EN_D = 0,
+    P_EN_E = 0,
+    P_EN_F = 0,
+    P_EN_G = 0,
+    P_EN_H = 0,
+    P_EN_I = 0,
+    P_EN_J = 0,
+    P_EN_K = 0,
+    P_EN_L = 0,
+    P_EN_M = 0,
+    P_EN_N = 0,
+    P_EN_O = 0,
+    P_EN_P = 0,
+    P_EN_Q = 0,
+    P_EN_R = 0,
+    P_EN_S = 0,
+    P_EN_T = 0,
+    P_EN_U = 0,
+    P_EN_V = 0,
+    P_EN_W = 0,
+    P_EN_X = 0,
+    P_EN_Y = 0,
+    P_EN_Z = 0,
+    P_EN_JOKER = 0
+  };
+
+enum POINT_LETTERS_FR
+  {
+    P_FR_A = 0,
+  };
+
+enum NUMBER_LETTERS_FR
+  {
+    N_FR_A = 0,
+  };
+
+
 //#define BOARD_PATH ../board
 
 /* ask_user.c */

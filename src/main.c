@@ -20,7 +20,7 @@ int		main(int ac, char **av)
   printf("size of struct game: %zu\n", sizeof(game));
 #endif
 
-
+  init_game_data(&game);
   init_board(&game);
   if (ac > 1)
     {
