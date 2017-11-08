@@ -11,6 +11,7 @@ void		start_game(t_game *game)
   printf("type p 1 = %d\n", game->players_type[0]);
   printf("type p 2 = %d\n", game->players_type[1]);
   printf("type p 3  = %d\n", game->players_type[2]);
+  printf("board random =%s\n", game->board[5]);
 #endif
-  return(0);
+  return;
 }

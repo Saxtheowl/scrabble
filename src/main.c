@@ -21,7 +21,7 @@ int		main(int ac, char **av)
 #endif
 
 
-  //  init_game_data(&game);
+  init_board(&game);
   if (ac > 1)
     {
       config_with_av(&game, av);
@@ -29,12 +29,9 @@ int		main(int ac, char **av)
       start_game(&game);
     }
   else
-    {
-      menu_pre_game(&game);
-      start_game(&game);
-    }
+    menu_pre_game(&game);
 #ifdef DEBUG_FLAG
-  printf("return at int main() OK\n", sizeof(game));
+  printf("return at int main() OK\n");
 #endif
   return(0);
 }

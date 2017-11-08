@@ -18,25 +18,15 @@ void		config_with_av(t_game *game, char **cp_av)
 
 void		config_skip_menu(t_game *game)
 {
+  game->language = 0;
+  game->amount_players = 2;
+  game->players_type[0] = HUMAN;
+  game->players_type[1] = BOT;
 }
 
 void		config_with_file(t_game *game, char *path)
 {
-}
-
-
-void		select_number_of_players(t_game *game)
-{
-  char		*choice;
-  int		nb = 0;
-  
-  while (nb < 1 && nb > 4)
-    {
-      printf("choose a number between 1 and 4");
-      choice = put_prompt();
-      nb = atoi(choice);
-    }
-  game->amount_players = nb;
+  config_skip_menu(game);
 }
 
 void		select_skip_menu(t_game *game)
@@ -46,34 +36,12 @@ void		select_skip_menu(t_game *game)
 
   while (nb != 1 && nb != 2)
     {
-      printf("\n1. Yes\n");
-      printf("\n2. No\n");
+      printf("1. Yes\n");
+      printf("2. No\n");
       choice = put_prompt();
       nb = atoi(choice);
     }
-  game->is_skip_menu = nb--;
-  return(nb);
-}
-
-void		select_players_type(t_game *game)
-{
-  int		*a;
-
-  return(a);
-
-  /*
-  int		*players_type[3];
-  int		slot_nb = 0;
-
-  while (slot_nb != 1 && nb != 2)
-    {
-      printf("\n1. English\n");
-      printf("\n2. French\n");
-      choice = put_prompt();
-      nb = atoi(choice);
-    }
-  return(nb);
- */
+  game->is_skip_menu = ((nb == 1) ? 1 : 0);
 }
 
 void		select_language_to_play(t_game *game)
@@ -83,9 +51,44 @@ void		select_language_to_play(t_game *game)
 
   while (nb != 1 && nb != 2)
     {
-      printf("\n1. English\n");
-      printf("\n2. French\n");
+      printf("1. English\n");
+      printf("2. French\n");
       choice = put_prompt();
       nb = atoi(choice);
+    }
+  game->language = nb;
+}
+
+void		select_number_of_players(t_game *game)
+{
+  char		*choice;
+  int		nb = 0;
+
+  while (nb < 2 || nb > 4)
+    {
+      printf("choose a number between 1 and 4\n");
+      choice = put_prompt();
+      nb = atoi(choice);
+    }
+  game->amount_players = nb--;
+}
+
+void		select_players_type(t_game *game)
+{
+  int		nb = 0;
+  char		*choice;
+
+  for(int slot_nb = 0; slot_nb < game->amount_players; slot_nb++)
+    {
+      while (nb != 1 && nb != 2)
+	{
+	  printf("\nFor Player %d, pick:", slot_nb);
+	  printf("\n1. HUMAN\n");
+	  printf("\n2. BOT\n");
+	  choice = put_prompt();
+	  nb = atoi(choice);
+	}
+      game->players_type[slot_nb] = ((nb == 1) ? 1 : 0);
+      nb = 0;
     }
 }

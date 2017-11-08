@@ -7,6 +7,11 @@
 
 #include "my_list.h"
 
+#define HUMAN 0
+#define BOT 1
+
+//#define BOARD_PATH ../board
+
 /* ask_user.c */
 
 char		*put_prompt();

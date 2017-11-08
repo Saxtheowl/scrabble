@@ -10,7 +10,7 @@ char		*put_prompt()
   char		*commands;
 
   prompt = ">";
-  puts(prompt);
+  printf("%s", prompt);
   commands = read_entry();
   return (commands);
 }
