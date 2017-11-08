@@ -4,10 +4,6 @@
 
 #include "../include/my.h"
 
-#define MAX_PLAYER 4
-#define HUMAN 0
-#define AI 1
-
 int		main(int, char **);
 
 int		main(int ac, char **av)
@@ -25,14 +21,20 @@ int		main(int ac, char **av)
 #endif
 
 
+  //  init_game_data(&game);
   if (ac > 1)
     {
+      config_with_av(&game, av);
       // TODO load game with args
       start_game(&game);
     }
   else
     {
-      menu_intro(&game);
+      menu_pre_game(&game);
       start_game(&game);
     }
+#ifdef DEBUG_FLAG
+  printf("return at int main() OK\n", sizeof(game));
+#endif
+  return(0);
 }

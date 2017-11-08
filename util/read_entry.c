@@ -16,7 +16,6 @@ char		*read_entry()
 
 void		xgetline(char **lineptr, FILE *fp, int i)
 {
-  char		*line;
   size_t	len;
 
   len = 0;
