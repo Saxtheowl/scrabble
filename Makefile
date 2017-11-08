@@ -19,7 +19,11 @@ SRCS		=	$(DIR_SRC)main.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
-CPPFLAGS	=	-Wall -Wextra -g3 -I include/ -DDEBUG_FLAG #-Werror
+#SUPER_SCRABBLE	=	-DSUPER_SCRABBLE
+
+#DEBUG		=	-DDEBUG_FLAG
+
+CPPFLAGS	=	-Wall -Wextra -g3 -I include/ $(DEBUG) $(SUPER_SCRABBLE) #-DDEBUG_FLAG #-Werror
 
 $(NAME)		:	$(OBJS)
 			$(CC) -o $(NAME) $(OBJS)

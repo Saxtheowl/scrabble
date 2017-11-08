@@ -4,6 +4,7 @@
 #include "../include/my.h"
 
 void		init_game_data(t_game *);
+void		init_board(t_game *);
 
 void		init_game_data(t_game *game)
 {

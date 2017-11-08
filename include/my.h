@@ -10,12 +10,25 @@
 #define HUMAN 0
 #define BOT 1
 
+#ifndef	SUPER_SCRABBLE
+
 #define MAX_PLAYERS 4
 
 #define BOARD_SIZE_X 15
 #define BOARD_SIZE_Y 15
 
 #define FILE_BOARD_PATH "board"
+
+enum BOARD_SYMBOL_NUMBER
+  {
+    BOARD_CENTER = 0,
+    BOARD_DOUBLE_LETTER = 1,
+    BOARD_TRIPLE_LETTER = 2,
+    BOARD_DOUBLE_WORD = 3,
+    BOARD_TRIPLE_WORD = 4,
+  };
+  
+#define MAX_LETTERS_EN 100
 
 enum NUMBER_LETTERS_EN
   {
@@ -89,6 +102,30 @@ enum NUMBER_LETTERS_FR
     N_FR_A = 0,
   };
 
+#else
+
+#define MAX_PLAYERS 4
+
+#define BOARD_SIZE_X 21
+#define BOARD_SIZE_Y 21
+
+#define FILE_BOARD_PATH "super_board"
+
+#define MAX_LETTERS_EN 200
+
+enum BOARD_SYMBOL_NUMBER
+  {
+    BOARD_CENTER = 0,
+    BOARD_DOUBLE_LETTER = 1,
+    BOARD_TRIPLE_LETTER = 2,
+    BOARD_QUADRUPLE_LETTER = 3,
+    BOARD_DOUBLE_WORD = 4,
+    BOARD_TRIPLE_WORD = 5,
+    BOARD_QUADRUPLE_WORD = 6,
+  };
+
+
+#endif
 
 //#define BOARD_PATH ../board
 
@@ -103,6 +140,7 @@ void		start_game(t_game *);
 /* init.c */
 
 void		init_game_data(t_game *);
+void		init_board(t_game *);
 
 /* menu.c */
 

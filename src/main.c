@@ -8,12 +8,18 @@ int		main(int, char **);
 
 int		main(int ac, char **av)
 {
+#ifdef SUPER_SCRABBLE
+  printf("YES SUPER_SCRABBLE\n\n\n");
+#else
+  printf("NO SUPER_SCRABBLE\n\n\n");
+#endif
+  
 #ifdef DEBUG_FLAG
   printf("YES DEBUG_FLAG\n\n\n");
 #else
   printf("NO DEBUG_FLAG\n\n\n");
 #endif
-  
+
   t_game		game;
 
 #ifdef DEBUG_FLAG
