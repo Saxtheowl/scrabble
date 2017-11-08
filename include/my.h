@@ -89,7 +89,7 @@ enum POINT_LETTERS_EN
     P_EN_X = 0,
     P_EN_Y = 0,
     P_EN_Z = 0,
-    P_EN_JOKER = 0
+    P_EN_JOKER = 0,
   };
 
 enum POINT_LETTERS_FR
