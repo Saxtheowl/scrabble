@@ -10,14 +10,14 @@
 #define HUMAN 0
 #define BOT 1
 
-#ifndef	SUPER_SCRABBLE
+#ifndef	SUPER_SCRABBLE /* STANDARD SCRABBLE */
 
 #define MAX_PLAYERS 4
 
 #define BOARD_SIZE_X 15
 #define BOARD_SIZE_Y 15
 
-#define FILE_BOARD_PATH "board"
+#define FILE_BOARD_PATH "board/standard_board"
 
 enum BOARD_SYMBOL_NUMBER
   {
@@ -32,63 +32,63 @@ enum BOARD_SYMBOL_NUMBER
 
 enum NUMBER_LETTERS_EN
   {
-    N_EN_A = 0,
-    N_EN_B = 0,
-    N_EN_C = 0,
-    N_EN_D = 0,
-    N_EN_E = 0,
-    N_EN_F = 0,
-    N_EN_G = 0,
-    N_EN_H = 0,
-    N_EN_I = 0,
-    N_EN_J = 0,
-    N_EN_K = 0,
-    N_EN_L = 0,
-    N_EN_M = 0,
-    N_EN_N = 0,
-    N_EN_O = 0,
-    N_EN_P = 0,
-    N_EN_Q = 0,
-    N_EN_R = 0,
-    N_EN_S = 0,
-    N_EN_T = 0,
-    N_EN_U = 0,
-    N_EN_V = 0,
-    N_EN_W = 0,
-    N_EN_X = 0,
-    N_EN_Y = 0,
-    N_EN_Z = 0,
-    N_EN_JOKER = 0,
+    N_EN_A = 9,
+    N_EN_B = 2,
+    N_EN_C = 2,
+    N_EN_D = 4,
+    N_EN_E = 12,
+    N_EN_F = 2,
+    N_EN_G = 3,
+    N_EN_H = 2,
+    N_EN_I = 9,
+    N_EN_J = 1,
+    N_EN_K = 1,
+    N_EN_L = 4,
+    N_EN_M = 2,
+    N_EN_N = 6,
+    N_EN_O = 8,
+    N_EN_P = 2,
+    N_EN_Q = 1,
+    N_EN_R = 6,
+    N_EN_S = 4,
+    N_EN_T = 6,
+    N_EN_U = 4,
+    N_EN_V = 2,
+    N_EN_W = 2,
+    N_EN_X = 1,
+    N_EN_Y = 2,
+    N_EN_Z = 1,
+    N_EN_JOKER = 2,
   };
 
 enum POINT_LETTERS_EN
   {
-    P_EN_A = 0,
-    P_EN_B = 0,
-    P_EN_C = 0,
-    P_EN_D = 0,
-    P_EN_E = 0,
-    P_EN_F = 0,
-    P_EN_G = 0,
-    P_EN_H = 0,
-    P_EN_I = 0,
-    P_EN_J = 0,
-    P_EN_K = 0,
-    P_EN_L = 0,
-    P_EN_M = 0,
-    P_EN_N = 0,
-    P_EN_O = 0,
-    P_EN_P = 0,
-    P_EN_Q = 0,
-    P_EN_R = 0,
-    P_EN_S = 0,
-    P_EN_T = 0,
-    P_EN_U = 0,
-    P_EN_V = 0,
-    P_EN_W = 0,
-    P_EN_X = 0,
-    P_EN_Y = 0,
-    P_EN_Z = 0,
+    P_EN_A = 1,
+    P_EN_B = 3,
+    P_EN_C = 3,
+    P_EN_D = 2,
+    P_EN_E = 1,
+    P_EN_F = 4,
+    P_EN_G = 2,
+    P_EN_H = 4,
+    P_EN_I = 1,
+    P_EN_J = 8,
+    P_EN_K = 5,
+    P_EN_L = 1,
+    P_EN_M = 3,
+    P_EN_N = 1,
+    P_EN_O = 1,
+    P_EN_P = 3,
+    P_EN_Q = 10,
+    P_EN_R = 1,
+    P_EN_S = 1,
+    P_EN_T = 1,
+    P_EN_U = 1,
+    P_EN_V = 4,
+    P_EN_W = 2,
+    P_EN_X = 8,
+    P_EN_Y = 4,
+    P_EN_Z = 10,
     P_EN_JOKER = 0,
   };
 
@@ -102,14 +102,14 @@ enum NUMBER_LETTERS_FR
     N_FR_A = 0,
   };
 
-#else
+#else /* SUPER BOARD */
 
 #define MAX_PLAYERS 4
 
 #define BOARD_SIZE_X 21
 #define BOARD_SIZE_Y 21
 
-#define FILE_BOARD_PATH "super_board"
+#define FILE_BOARD_PATH "board/super_board"
 
 #define MAX_LETTERS_EN 200
 

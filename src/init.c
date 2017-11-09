@@ -32,7 +32,7 @@ void		init_board(t_game *game)
     
   i = 0;
   fp = fopen(FILE_BOARD_PATH, "r");
-  board_tmp = xmalloc(sizeof(*board_tmp) * 15);
+  board_tmp = xmalloc(sizeof(*board_tmp) * BOARD_SIZE_X);
   if (fp == NULL)
     {
       printf("error no board file found\n");
@@ -40,7 +40,7 @@ void		init_board(t_game *game)
     }
     while(getline(&board_tmp[i], &len, fp) != -1)
       {
-	strncpy(game->board[i], board_tmp[i], 15);
+	strncpy(game->board[i], board_tmp[i], BOARD_SIZE_Y);
 	i++;
       }
 }

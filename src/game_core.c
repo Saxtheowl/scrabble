@@ -12,7 +12,7 @@ void		start_game(t_game *game)
   printf("type p 2 = %d\n", game->players_type[1]);
   printf("type p 3  = %d\n", game->players_type[2]);
   printf("board is :\n");
-  for(int i = 0; i < 15; i++)
+  for(int i = 0; i < BOARD_SIZE_X; i++)
     printf("%s\n", game->board[i]);
 #endif
   return;
