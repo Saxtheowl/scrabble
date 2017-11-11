@@ -28,7 +28,6 @@ typedef struct		s_game
   int			**nb_ltr_en;
   int			**pt_ltr_en;
   
-  
 }			t_game;
 
 #endif /* __MY_LIST_H__ */

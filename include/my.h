@@ -10,7 +10,7 @@
 #define HUMAN 0
 #define BOT 1
 
-#define NB_LETTER_ALPHABET 26
+#define NB_LETTERS_ALPHABET 26
 
 #ifndef	SUPER_SCRABBLE /* STANDARD SCRABBLE */
 
@@ -171,7 +171,7 @@ enum BOARD_SYMBOL_NUMBER
   {
     BOARD_CENTER = 0,
     BOARD_DOUBLE_LETTER = 1,
-    BOARD_TRIPLE_LETTER = 2,
+    BOARD_TRIPLE_LETTER = 2, 
     BOARD_QUADRUPLE_LETTER = 3,
     BOARD_DOUBLE_WORD = 4,
     BOARD_TRIPLE_WORD = 5,
@@ -197,17 +197,17 @@ void		pre_init_game_data(t_game *);
 
 /* init.c */
 
+void		init_game(t_game *);
 void		init_game_data(t_game *);
-void		init_alphabet_rules(t_game *);
+void		init_game_memory(t_game *);
 void		init_board(t_game *);
+void		init_letters(t_game *);
 
 /* menu.c */
 
 void		menu_pre_game(t_game *);
 
-
 /* config_pre_game.c */
-
 
 void		config_with_av(t_game *, char **);
 void		config_skip_menu(t_game *);

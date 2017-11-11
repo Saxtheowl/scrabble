@@ -31,12 +31,13 @@ int		main(int ac, char **av)
     config_with_av(&game, av);
   else
     menu_pre_game(&game);
-  init_game_data(&game);
+  init_game(&game);
   start_game(&game);
 
 #ifdef DEBUG_FLAG
   printf("return at int main() OK\n");
 #endif
-  //  end_of_the_game(game);
+  //  end_of_the_game(&game);
+  //  free(&game);
   return(0);
 }
