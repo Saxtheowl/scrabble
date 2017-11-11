@@ -11,3 +11,15 @@ void		*xmalloc(int size)
     }
   return (ptr);
 }
+
+void		xgetline(char **lineptr, FILE *fp, int i)
+{
+  size_t	len;
+
+  len = 0;
+  if ((getline(&lineptr[i], &len, fp)) == -1)
+    {
+      printf("getline error\n");
+      exit(0);
+    }
+}

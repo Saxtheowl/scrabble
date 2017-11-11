@@ -3,6 +3,9 @@
 
 #include "../include/my.h"
 
+char		*put_prompt();
+char		*read_entry();
+void		xgetline(char **, FILE *, int);
 
 char		*read_entry()
 {
@@ -14,14 +17,13 @@ char		*read_entry()
   return(buffer);
 }
 
-void		xgetline(char **lineptr, FILE *fp, int i)
+char		*put_prompt()
 {
-  size_t	len;
+  char		*prompt;
+  char		*commands;
 
-  len = 0;
-  if ((getline(&lineptr[i], &len, fp)) == -1)
-    {
-      printf("getline error\n");
-      exit(0);
-    }
+  prompt = ">";
+  printf("%s", prompt);
+  commands = read_entry();
+  return (commands);
 }

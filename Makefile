@@ -11,7 +11,6 @@ RM		=	rm -f
 SRCS		=	$(DIR_SRC)main.c \
 			$(DIR_SRC)pre_init.c \
 			$(DIR_SRC)init.c \
-			$(DIR_SRC)ask_user.c \
 			$(DIR_SRC)game_core.c \
 			$(DIR_SRC)menu.c \
 			$(DIR_SRC)config_pre_game.c \

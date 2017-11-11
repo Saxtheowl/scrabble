@@ -20,12 +20,12 @@ void		init_game_data(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "board/standard_board";
+      game->board_path = "files/standard_board";
       game->size_board = 15;
     }
   else
     {
-      game->board_path = "board/super_board";
+      game->board_path = "files/super_board";
       game->size_board = 21;
     }
   game->alphabet = "abcdefghijklmnopqrstuvwxyz";

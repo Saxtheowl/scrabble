@@ -223,10 +223,11 @@ int		main(int, char **);
 /* ../util/read_entry.c */
 
 char		*read_entry();
-void		xgetline(char **, FILE *, int i);
+char		*put_prompt();
 
 /* xfunc.c */
 
 void		*xmalloc(int);
+void		xgetline(char **, FILE *, int);
 
 #endif /*__MY_H__ */
