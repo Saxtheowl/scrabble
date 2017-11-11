@@ -16,7 +16,7 @@ bool		select_yes_or_no_question(t_game *game, char *question)
 
   while(nb != 1 && nb != 2)
     {
-      printf(question);
+      printf("%s", question);
       printf("1. Yes\n");
       printf("2. No\n");
       choice = put_prompt();
@@ -57,7 +57,7 @@ void		select_language_to_play(t_game *game)
       choice = put_prompt();
       nb = atoi(choice);
     }
-  game->language = nb;
+  game->language = ((nb == 1) ? 1 : 0);
 }
 
 void		select_number_of_players(t_game *game)

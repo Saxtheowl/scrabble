@@ -3,6 +3,8 @@
 
 #include "my.h"
 
+
+
 typedef struct		s_cnfg
 {
   
@@ -23,10 +25,14 @@ typedef struct		s_game
 
   char			*board_path;
   int			size_board;
+
+  int			max_letters;
+  char			*letters_path;
   
   char			*alphabet;
-  int			**nb_ltr_en;
-  int			**pt_ltr_en;
+
+  char			*nb_ltr_en;
+  int			*pt_ltr_en;
   
 }			t_game;
 

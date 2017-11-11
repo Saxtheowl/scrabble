@@ -32,6 +32,12 @@ enum BOARD_SYMBOL_NUMBER
   
 #define MAX_LETTERS_EN 100
 
+enum LANGUAGE
+  {
+    ENGLISH,
+    FRENCH,
+  };
+
 enum NUMBER_LETTERS_EN
   {
     N_EN_A = 9,
@@ -198,10 +204,11 @@ void		pre_init_game_data(t_game *);
 /* init.c */
 
 void		init_game(t_game *);
-void		init_game_data(t_game *);
+void		init_pre_board(t_game *);
+void		init_pre_letters(t_game *);
 void		init_game_memory(t_game *);
-void		init_board(t_game *);
-void		init_letters(t_game *);
+void		init_letters_list(t_game *);
+void		init_letters_point(t_game *);
 
 /* menu.c */
 

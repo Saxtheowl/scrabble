@@ -39,5 +39,6 @@ int		main(int ac, char **av)
 #endif
   //  end_of_the_game(&game);
   //  free(&game);
+  printf(game.letters_path);
   return(0);
 }
