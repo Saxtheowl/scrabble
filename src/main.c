@@ -37,5 +37,6 @@ int		main(int ac, char **av)
 #ifdef DEBUG_FLAG
   printf("return at int main() OK\n");
 #endif
+  //  end_of_the_game(game);
   return(0);
 }

@@ -10,6 +10,8 @@
 #define HUMAN 0
 #define BOT 1
 
+#define NB_LETTER_ALPHABET 26
+
 #ifndef	SUPER_SCRABBLE /* STANDARD SCRABBLE */
 
 #define MAX_PLAYERS 4

@@ -3,12 +3,6 @@
 
 #include "my.h"
 
-//#define MAX_PLAYERS 4
-
-//#define BOARD_SIZE_X 15
-//#define BOARD_SIZE_Y 15
-
-
 typedef struct		s_cnfg
 {
   
@@ -24,11 +18,12 @@ typedef struct		s_game
   int			language;
   int			amount_players;
   int			*players_type;
-  
+  /* fixed value */
   char			**board;
 
-
-  /* fixed value */
+  char			*board_path;
+  int			size_board;
+  
   char			*alphabet;
   int			**nb_ltr_en;
   int			**pt_ltr_en;

@@ -15,6 +15,7 @@ SRCS		=	$(DIR_SRC)main.c \
 			$(DIR_SRC)game_core.c \
 			$(DIR_SRC)menu.c \
 			$(DIR_SRC)config_pre_game.c \
+			$(DIR_SRC)end_of_the_game.c \
 			$(DIR_UTIL)read_entry.c \
 			$(DIR_UTIL)xfunc.c
 
