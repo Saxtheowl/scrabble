@@ -92,14 +92,66 @@ enum POINT_LETTERS_EN
     P_EN_JOKER = 0,
   };
 
-enum POINT_LETTERS_FR
-  {
-    P_FR_A = 0,
-  };
+#define MAX_LETTERS_FR 102
 
 enum NUMBER_LETTERS_FR
   {
-    N_FR_A = 0,
+    N_FR_A = 9,
+    N_FR_B = 2,
+    N_FR_C = 2,
+    N_FR_D = 3,
+    N_FR_E = 15,
+    N_FR_F = 2,
+    N_FR_G = 2,
+    N_FR_H = 2,
+    N_FR_I = 8,
+    N_FR_J = 1,
+    N_FR_K = 1,
+    N_FR_L = 8,
+    N_FR_M = 3,
+    N_FR_N = 6,
+    N_FR_O = 6,
+    N_FR_P = 2,
+    N_FR_Q = 1,
+    N_FR_R = 6,
+    N_FR_S = 6,
+    N_FR_T = 6,
+    N_FR_U = 6,
+    N_FR_V = 2,
+    N_FR_W = 1,
+    N_FR_X = 1,
+    N_FR_Y = 1,
+    N_FR_Z = 1,
+  };
+
+enum POINT_LETTERS_FR
+  {
+    P_FR_A = 1,
+    P_FR_B = 3,
+    P_FR_C = 3,
+    P_FR_D = 2,
+    P_FR_E = 1,
+    P_FR_F = 4,
+    P_FR_G = 2,
+    P_FR_H = 4,
+    P_FR_I = 1,
+    P_FR_J = 8,
+    P_FR_K = 10,
+    P_FR_L = 1,
+    P_FR_M = 2,
+    P_FR_N = 1,
+    P_FR_O = 1,
+    P_FR_P = 2,
+    P_FR_Q = 8,
+    P_FR_R = 1,
+    P_FR_S = 1,
+    P_FR_T = 1,
+    P_FR_U = 1,
+    P_FR_V = 4,
+    P_FR_W = 10,
+    P_FR_X = 10,
+    P_FR_Y = 10,
+    P_FR_Z = 10,
   };
 
 #else /* SUPER BOARD */
@@ -137,9 +189,14 @@ char		*put_prompt();
 
 void		start_game(t_game *);
 
+/* pre_init.c */
+
+void		pre_init_game_data(t_game *);
+
 /* init.c */
 
 void		init_game_data(t_game *);
+void		init_alphabet_rules(t_game *);
 void		init_board(t_game *);
 
 /* menu.c */
@@ -149,9 +206,10 @@ void		menu_pre_game(t_game *);
 
 /* config_pre_game.c */
 
+
 void		config_with_av(t_game *, char **);
 void		config_skip_menu(t_game *);
-void		select_skip_menu(t_game *);
+bool		select_yes_or_no_question(t_game *, char *);
 void		select_language_to_play(t_game *);
 void		select_number_of_players(t_game *);
 void		select_players_type(t_game *);

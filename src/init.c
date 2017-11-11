@@ -4,16 +4,21 @@
 #include "../include/my.h"
 
 void		init_game_data(t_game *);
+void		init_alphabet_rules(t_game *);
 void		init_board(t_game *);
 
 void		init_game_data(t_game *game)
 {
-  game->players_type = xmalloc(sizeof(*game->players_type) * MAX_PLAYERS);
   game->board = xmalloc(sizeof(*game->board) * BOARD_SIZE_X);
   for(int i = 0; i < BOARD_SIZE_Y; i++)
     game->board[i] = xmalloc(sizeof(**game->board) * BOARD_SIZE_X);
 
-    
+  init_board(game);
+}
+
+void		init_alphabet_rules(t_game *game)
+{
+  
 }
 
 void		init_board(t_game *game)
@@ -38,9 +43,9 @@ void		init_board(t_game *game)
       printf("error no board file found\n");
       exit(1);
     }
-    while(getline(&board_tmp[i], &len, fp) != -1)
-      {
-	strncpy(game->board[i], board_tmp[i], BOARD_SIZE_Y);
-	i++;
-      }
+  while(getline(&board_tmp[i], &len, fp) != -1)
+    {
+      strncpy(game->board[i], board_tmp[i], BOARD_SIZE_Y);
+      i++;
+    }
 }

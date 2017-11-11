@@ -9,6 +9,7 @@ CC		=	gcc
 RM		=	rm -f
 
 SRCS		=	$(DIR_SRC)main.c \
+			$(DIR_SRC)pre_init.c \
 			$(DIR_SRC)init.c \
 			$(DIR_SRC)ask_user.c \
 			$(DIR_SRC)game_core.c \
@@ -19,11 +20,11 @@ SRCS		=	$(DIR_SRC)main.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
-SUPER_SCRABBLE	=	-DSUPER_SCRABBLE
+#SUPER_SCRABBLE	=	-DSUPER_SCRABBLE
 
 DEBUG		=	-DDEBUG_FLAG
 
-CPPFLAGS	=	-Wall -Wextra -g3 -I include/ $(DEBUG) $(SUPER_SCRABBLE) #-DDEBUG_FLAG #-Werror
+CPPFLAGS	=	-Wall -Wextra -g3 -I include/ $(DEBUG) #$(SUPER_SCRABBLE) #-DDEBUG_FLAG #-Werror
 
 $(NAME)		:	$(OBJS)
 			$(CC) -o $(NAME) $(OBJS)

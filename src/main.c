@@ -26,16 +26,14 @@ int		main(int ac, char **av)
   printf("size of struct game: %zu\n", sizeof(game));
 #endif
 
-  init_game_data(&game);
-  init_board(&game);
+  pre_init_game_data(&game);
   if (ac > 1)
-    {
-      config_with_av(&game, av);
-      // TODO load game with args
-      start_game(&game);
-    }
+    config_with_av(&game, av);
   else
     menu_pre_game(&game);
+  init_game_data(&game);
+  start_game(&game);
+
 #ifdef DEBUG_FLAG
   printf("return at int main() OK\n");
 #endif
