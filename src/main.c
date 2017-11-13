@@ -36,9 +36,9 @@ int		main(int ac, char **av)
 
 #ifdef DEBUG_FLAG
   printf("return at int main() OK\n");
+  printf("size of struct game: %zu\n", sizeof(game));
 #endif
   //  end_of_the_game(&game);
   //  free(&game);
-  printf(game.letters_path);
   return(0);
 }

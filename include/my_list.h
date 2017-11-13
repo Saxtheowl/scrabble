@@ -26,13 +26,13 @@ typedef struct		s_game
   char			*board_path;
   int			size_board;
 
+  char			*letters_list_path;
+  char			*letters_points_path;
   int			max_letters;
-  char			*letters_path;
-  
   char			*alphabet;
 
-  char			*nb_ltr_en;
-  int			*pt_ltr_en;
+  char			*letters_list;
+  int			*letters_point;
   
 }			t_game;
 

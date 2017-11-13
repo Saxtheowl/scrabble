@@ -16,6 +16,11 @@ void		start_game(t_game *game)
       printf("%s", game->board[i]);*/
   for(int i = 0; game->board[i] != NULL; i++)
     printf("%s", game->board[i]);
+  printf("%s\n", game->letters_list);
+  for(int i = 0; i < NB_LETTERS_ALPHABET + 1; i++)
+    printf("%d\n", game->letters_point[i]);
+  
 #endif
+  
   return;
 }

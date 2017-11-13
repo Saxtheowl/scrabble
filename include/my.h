@@ -31,10 +31,11 @@ enum BOARD_SYMBOL_NUMBER
   };
   
 #define MAX_LETTERS_EN 100
+#define MAX_LETTERS_FR 102
 
 enum LANGUAGE
   {
-    ENGLISH,
+    ENGLISH = 1,
     FRENCH,
   };
 
@@ -227,10 +228,11 @@ void		select_players_type(t_game *);
 
 int		main(int, char **);
 
-/* ../util/read_entry.c */
+/* ../util/util.c */
 
 char		*read_entry();
 char		*put_prompt();
+void		super_exit(char *);
 
 /* xfunc.c */
 

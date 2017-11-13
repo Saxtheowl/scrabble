@@ -39,13 +39,15 @@ void		init_pre_letters(t_game *game)
 {
   if(game->language == ENGLISH)
     {
-      game->max_letters = 100;
-      game->letters_path = "files/letters_en";
+      game->max_letters = MAX_LETTERS_EN;
+      game->letters_list_path =  "files/letters_list_en";
+      game->letters_points_path = "files/letters_points_en";
     }
   else if(game->language == FRENCH)
     {
-      game->max_letters = 102;
-      game->letters_path = "files/letters_fr";
+      game->max_letters = MAX_LETTERS_FR;
+      game->letters_list_path =  "files/letters_list_fr";
+      game->letters_points_path = "files/letters_points_fr";
     }
 }
 
@@ -54,31 +56,42 @@ void		init_game_memory(t_game *game)
   game->board = xmalloc(sizeof(*game->board) * game->size_board);
   for(int i = 0; i < game->size_board; i++)
     game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
-  //  game->nb_ltr_en = xmalloc(sizeof(*game->nb_ltr_en) * game->max_letters);
+  game->letters_list = xmalloc(sizeof(*game->letters_list) * game->max_letters);
+  game->letters_point = xmalloc(sizeof(*game->letters_point) * NB_LETTERS_ALPHABET);
 }
 
 void		init_board(t_game *game)
 {
   FILE		*fp = fopen(game->board_path, "r");
   size_t	len = 0;
-
+  
   if (fp == NULL)
-    {
-      printf("error no board file found\n");
-      exit(1);
-    }
+    super_exit("error no files board found\n");
   for(int i = 0; getline(&game->board[i], &len, fp) != -1; i++);
   game->board[game->size_board] = NULL;
 }
 
 void		init_letters_list(t_game *game) // not sexy
 {
-  //  game->nb_ltr_en[0] = { 1 };
-  /*  if (game->is_super_mod == false)
-      game->nb_ltr_en[0][0] = { 1, 2 };*/
+  FILE		*fp = fopen(game->letters_list_path, "r");
+  size_t	len = 0;
+
+  if (fp == NULL)
+    super_exit("error no letters list file found\n");
+  getline(&game->letters_list, &len, fp);
 }
 
 void		init_letters_point(t_game *game)
 {
-  
+  FILE		*fp = fopen(game->letters_points_path, "r");
+  size_t	len = 0;
+  char		*tmp;
+
+  if (fp == NULL)
+    super_exit("error no letters points file found\n");
+  for(int i = 0; i < NB_LETTERS_ALPHABET + 1; i++)
+    {
+      getline(&tmp , &len, fp);
+      game->letters_point[i] = atoi(tmp);  
+    }
 }

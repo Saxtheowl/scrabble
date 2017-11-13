@@ -19,7 +19,7 @@ void		menu_pre_game(t_game *game)
   game->is_duplicate_mod = select_yes_or_no_question(game, "Duplicate mod ?\n");
   printf("In which language the game will be played : \n");
   select_language_to_play(game);
-  printf("How many players\n");
+  printf("How many players : \n");
   select_number_of_players(game);
   printf("Select the type of player : \n");
   select_players_type(game);

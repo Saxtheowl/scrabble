@@ -34,7 +34,7 @@ void		config_with_av(t_game *game, char **cp_av)
 
 void		config_skip_menu(t_game *game)
 {
-  game->language = 0;
+  game->language = 1;
   game->amount_players = 2;
   game->players_type[0] = HUMAN;
   game->players_type[1] = BOT;
@@ -57,7 +57,7 @@ void		select_language_to_play(t_game *game)
       choice = put_prompt();
       nb = atoi(choice);
     }
-  game->language = ((nb == 1) ? 1 : 0);
+  game->language = ((nb == 1) ? 1 : nb);
 }
 
 void		select_number_of_players(t_game *game)
@@ -67,7 +67,7 @@ void		select_number_of_players(t_game *game)
 
   while (nb < 2 || nb > 4)
     {
-      printf("choose a number between 1 and 4\n");
+      printf("enter a number between 1 and 4\n");
       choice = put_prompt();
       nb = atoi(choice);
     }
