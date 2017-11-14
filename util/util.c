@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../include/my.h"
+#include "../include/scrabble.h"
 
 char		*put_prompt();
 char		*read_entry();

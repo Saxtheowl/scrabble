@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../include/my.h"
+#include "../include/scrabble.h"
 
 void		init_game(t_game *);
 void		init_pre_board(t_game *);

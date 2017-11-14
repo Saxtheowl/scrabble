@@ -1,4 +1,4 @@
-#include "../include/my.h"
+#include "../include/scrabble.h"
 
 void		start_game(t_game *);
 

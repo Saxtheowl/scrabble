@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "../include/my.h"
+#include "../include/scrabble.h"
 
 int		main(int, char **);
 

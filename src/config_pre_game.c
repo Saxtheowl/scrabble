@@ -1,4 +1,4 @@
-#include "../include/my.h"
+#include "../include/scrabble.h"
 
 void		config_with_av(t_game *, char **);
 void		config_skip_menu(t_game *);
