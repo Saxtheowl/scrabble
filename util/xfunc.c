@@ -1,4 +1,4 @@
-#include "../include/my.h"
+#include "../include/scrabble.h"
 
 void		*xmalloc(int size)
 {

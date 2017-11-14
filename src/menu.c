@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../include/my.h"
-#include "../include/my_list.h"
+#include "../include/scrabble.h"
+
 
 void		menu_intro(t_game *);
 
