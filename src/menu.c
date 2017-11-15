@@ -24,3 +24,7 @@ void		menu_pre_game(t_game *game)
   select_players_type(game);
 }
 
+void		menu_play(t_game *game)
+{
+  
+}

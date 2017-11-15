@@ -19,6 +19,7 @@ int		who_play_first(t_game *game)
 
 void		make_play(t_game *game)
 {
+  menu_play(game);
   game->racks[game->playing][2] = ' ';
   game->racks[game->playing][3] = ' ';
   game->nb_letters[game->playing]--;

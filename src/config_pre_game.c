@@ -38,6 +38,8 @@ void		config_skip_menu(t_game *game)
   game->amount_players = 2;
   game->players_type[0] = HUMAN;
   game->players_type[1] = BOT;
+  game->is_super_mod = false;
+  game->is_duplicate_mod = false;
 }
 
 void		config_with_file(t_game *game, char *path)

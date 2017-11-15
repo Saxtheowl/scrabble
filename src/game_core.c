@@ -22,7 +22,7 @@ void		start_game(t_game *game)
   
 #endif
   int		i = 0;
-
+  
   fulfill_all_racks(game);
   game->playing = who_play_first(game);
   while(game->letters_left > 0 || test_cant_play(game) == false)

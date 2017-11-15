@@ -18,6 +18,8 @@
 
 #define MAX_LETTERS_RACK 7
 
+#define	MAX_WORDS_DICT_EN 172805
+
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_YELLOW  "\x1b[33m"
@@ -66,6 +68,10 @@ typedef struct		s_game
   int			*score;
 
   int			playing;
+
+  char			**dictionnary;
+  char			*dictionnary_path;
+  int			max_words_dict;
 }			t_game;
 
 /* game_core.c */

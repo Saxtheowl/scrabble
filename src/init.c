@@ -19,16 +19,14 @@ void		init_game(t_game *game)
   init_board(game);
   init_letters_list(game);
   init_letters_point(game);
-
+  init_dictionnary(game);
   game->letters_left = game->max_letters;
   game->is_first_time = true;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
   for(int i = 0; i < game->amount_players; i++)
-    {
-      memset(game->racks[i], ' ', MAX_LETTERS_RACK);
-      printf("AAA\n");
-    }
+    memset(game->racks[i], ' ', MAX_LETTERS_RACK);
+  
 }
 
 void		init_pre_board(t_game *game)
@@ -52,6 +50,8 @@ void		init_pre_letters(t_game *game)
       game->max_letters = MAX_LETTERS_EN;
       game->letters_list_path =  "files/letters_list_en";
       game->letters_points_path = "files/letters_points_en";
+      game->dictionnary_path = "files/dictionnary_en_tmp";
+      game->max_words_dict = MAX_WORDS_DICT_EN;
     }
   else if(game->language == FRENCH)
     {
@@ -75,8 +75,12 @@ void		init_game_memory(t_game *game)
   game->letters_point = xmalloc(sizeof(*game->letters_point) * NB_LETTERS_ALPHABET);
   game->racks = xmalloc(sizeof(*game->racks) * game->amount_players);
   for(int i = 0; i < game->amount_players; i++)
-    game->racks[i] = xmalloc(sizeof(**game->racks) * MAX_LETTERS_RACK);
+      game->racks[i] = xmalloc(sizeof(**game->racks) * MAX_LETTERS_RACK);
   game->nb_letters = xmalloc(sizeof(*game->nb_letters) * game->amount_players);
+  game->dictionnary = xmalloc(sizeof(*game->dictionnary) * game->max_words_dict);
+  for(int i = 0; i < game->max_words_dict; i++)
+    game->dictionnary[i] = xmalloc(sizeof(**game->dictionnary) * 1); // WTF * 1 ?
+
 }
 
 void		init_board(t_game *game)
@@ -113,4 +117,17 @@ void		init_letters_point(t_game *game)
       getline(&tmp , &len, fp);
       game->letters_point[i] = atoi(tmp);  
     }
+}
+
+void		init_dictionnary(t_game *game)
+{
+  FILE		*fp = fopen(game->dictionnary_path, "r");
+  size_t	len = 0;
+  char		*tmp;
+
+  if (fp == NULL)
+    super_exit("error no dictionnary file found\n");
+  for(int i = 0; i < game->max_words_dict; i++)
+    getline(&game->dictionnary[i], &len, fp);
+  game->dictionnary[game->max_words_dict] = NULL;
 }
