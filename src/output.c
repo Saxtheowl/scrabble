@@ -22,3 +22,20 @@ void		print_board(t_game *game)
     }
   printf(ANSI_COLOR_RED"%s"ANSI_COLOR_RESET, alphabet_tmp);
 }
+
+void		print_player_info(t_game *game)
+{
+  for(int i = 0; i < game->amount_players; i++)
+    {
+      printf("PLAYER %d rack:\n", i);
+      if(i == game->playing)
+	printf("%s\n", game->racks[i]);
+      else
+	{
+	  for(int y = 0; game->racks[i][y] == is_char() && game->racks[i][y] != '\0'; y++)
+	    printf("X");
+	  i++;
+	}
+    }
+  printf("letters left: %d\n", game->letters_left);
+}

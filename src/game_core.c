@@ -21,17 +21,28 @@ void		start_game(t_game *game)
     printf("%d\n", game->letters_point[i]);
   
 #endif
-  print_board(game);
-  printf("ok\n");
-  for(int i = 0; i < game->amount_players; i++)
+  int		i = 0;
+
+  if(game->is_first_time = true)
     {
-      printf("ok1\n");
-      game->racks[i] = fulfill_rack(game, i);
+      game->playing = who_play_first();
+      game->is_first_time = false;
     }
-  for(int i = 0; i < game->amount_players; i++)
+  while(game->letters_left > 0 || test_cant_play(game) == false)
     {
-      printf("ok2\n");
-      //      printf("player %d got %s\n", i, game->racks[i][0]);
+      fulfill_rack(game, game->playing);
+      print_player_info(game);
+      make_play(game);
+      if(game->playing == game->amount_players)
+	{
+	  printf("ok1\n");
+	  game->playing = 0;
+	}
+      else
+	{
+	  printf("ok2\n");
+	  game->playing++;
+	}
     }
   return;
 }

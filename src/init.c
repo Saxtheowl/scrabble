@@ -21,8 +21,13 @@ void		init_game(t_game *game)
   init_letters_point(game);
 
   game->letters_left = game->max_letters;
+  game->is_first_time = true;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
+  for(int i = 0; i < game->amount_players; i++)
+    {
+      memset(game->racks[i], ' ', MAX_LETTERS_RACK);
+    }
 }
 
 void		init_pre_board(t_game *game)

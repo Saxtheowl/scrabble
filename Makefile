@@ -17,6 +17,8 @@ SRCS		=	$(DIR_SRC)main.c \
 			$(DIR_SRC)letters.c \
 			$(DIR_SRC)output.c \
 			$(DIR_SRC)end_of_the_game.c \
+			$(DIR_SRC)check.c \
+			$(DIR_SRC)play.c \
 			$(DIR_UTIL)util.c \
 			$(DIR_UTIL)xfunc.c
 

@@ -42,3 +42,10 @@ int		rack_strlen(char *rack)
     i++;
   return(i);
 }
+
+bool		is_char(char c)
+{
+  if((c >= 'A' && c <= 'Z ') && c >= 'a' && c <= 'z')
+    return(true);
+  return(false);
+}

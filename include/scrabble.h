@@ -41,6 +41,7 @@ typedef struct		s_game
   bool			is_skip_menu;
   bool			is_super_mod;
   bool			is_duplicate_mod;
+  bool			is_first_time;
   int			language;
   int			amount_players;
   int			*players_type;
@@ -63,7 +64,8 @@ typedef struct		s_game
   int			*nb_letters;
   char			**racks;
   int			*score;
-  
+
+  int			playing;
 }			t_game;
 
 /* game_core.c */

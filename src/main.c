@@ -34,5 +34,6 @@ int		main(int ac, char **av)
 #endif
   //  end_of_the_game(&game);
   //  free(&game);
+  printf("%s\n", game.letters_list);
   return(0);
 }
