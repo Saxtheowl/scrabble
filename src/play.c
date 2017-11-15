@@ -14,6 +14,8 @@ void		fulfill_all_racks(t_game *game)
 int		who_play_first(t_game *game)
 {
   //  fulfill_all_racks(game);
+  if(is_valid_word(game,"AA"))
+    printf("OK VALID");
   return(1);
 }
 
