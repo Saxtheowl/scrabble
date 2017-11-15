@@ -21,6 +21,17 @@ void		start_game(t_game *game)
     printf("%d\n", game->letters_point[i]);
   
 #endif
-  
+  print_board(game);
+  printf("ok\n");
+  for(int i = 0; i < game->amount_players; i++)
+    {
+      printf("ok1\n");
+      game->racks[i] = fulfill_rack(game, i);
+    }
+  for(int i = 0; i < game->amount_players; i++)
+    {
+      printf("ok2\n");
+      //      printf("player %d got %s\n", i, game->racks[i][0]);
+    }
   return;
 }

@@ -33,3 +33,12 @@ void		super_exit(char *message)
   printf("%s", message);
   exit(1);
 }
+
+int		rack_strlen(char *rack)
+{
+  int		i = 0;
+
+  while(rack[i] != '\0' && rack[i] != ' ' )
+    i++;
+  return(i);
+}

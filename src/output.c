@@ -1,0 +1,24 @@
+#include "../include/scrabble.h"
+
+void		print_board(t_game *game)
+{
+  int		nb_lines = 1;
+  char		*alphabet_tmp;
+
+  if(game->is_super_mod == true)
+    alphabet_tmp = "  ABCDEFGHIJKLMNOPQRSTU \n";
+  else
+    alphabet_tmp = "  ABCDEFGHIJKLMNO \n";
+  printf(ANSI_COLOR_RED"%s"ANSI_COLOR_RESET, alphabet_tmp);
+  for(int i = 0; i < game->size_board; i++)
+    {
+      if(nb_lines < 10)
+	printf(" ");
+      printf(ANSI_COLOR_RED"%d"ANSI_COLOR_RESET, nb_lines);
+      printf("%.*s", game->size_board, game->board[i]);
+      printf(ANSI_COLOR_RED"%d\n"ANSI_COLOR_RESET, nb_lines);
+      nb_lines++;
+
+    }
+  printf(ANSI_COLOR_RED"%s"ANSI_COLOR_RESET, alphabet_tmp);
+}

@@ -19,6 +19,10 @@ void		init_game(t_game *game)
   init_board(game);
   init_letters_list(game);
   init_letters_point(game);
+
+  game->letters_left = game->max_letters;
+  for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
+    game->nb_letters[i] = 0;
 }
 
 void		init_pre_board(t_game *game)
@@ -49,6 +53,11 @@ void		init_pre_letters(t_game *game)
       game->letters_list_path =  "files/letters_list_fr";
       game->letters_points_path = "files/letters_points_fr";
     }
+  if(game->is_super_mod == true)
+    {
+      game->max_letters = MAX_LETTERS_SUPER;
+      game->letters_list_path = "files/letters_list_super";
+    }
 }
 
 void		init_game_memory(t_game *game)
@@ -58,6 +67,10 @@ void		init_game_memory(t_game *game)
     game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
   game->letters_list = xmalloc(sizeof(*game->letters_list) * game->max_letters);
   game->letters_point = xmalloc(sizeof(*game->letters_point) * NB_LETTERS_ALPHABET);
+  game->racks = xmalloc(sizeof(*game->racks) * game->amount_players);
+  for(int i = 0; i < game->amount_players; i++)
+    game->racks[i] = xmalloc(sizeof(**game->racks) * MAX_LETTERS_RACK);
+  game->nb_letters = xmalloc(sizeof(*game->nb_letters) * game->amount_players);
 }
 
 void		init_board(t_game *game)

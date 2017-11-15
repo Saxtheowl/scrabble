@@ -14,17 +14,17 @@ SRCS		=	$(DIR_SRC)main.c \
 			$(DIR_SRC)game_core.c \
 			$(DIR_SRC)menu.c \
 			$(DIR_SRC)config_pre_game.c \
+			$(DIR_SRC)letters.c \
+			$(DIR_SRC)output.c \
 			$(DIR_SRC)end_of_the_game.c \
 			$(DIR_UTIL)util.c \
 			$(DIR_UTIL)xfunc.c
 
 OBJS		=	$(SRCS:.c=.o)
 
-#SUPER_SCRABBLE	=	-DSUPER_SCRABBLE
-
 DEBUG		=	-DDEBUG_FLAG
 
-CPPFLAGS	=	-Wall -Wextra -g3 -I include/ $(DEBUG) #$(SUPER_SCRABBLE) #-DDEBUG_FLAG #-Werror
+CPPFLAGS	=	-Wall -Wextra -g3 -I include/ $(DEBUG) -DDEBUG_FLAG #-Werror
 
 $(NAME)		:	$(OBJS)
 			$(CC) -o $(NAME) $(OBJS)
