@@ -45,7 +45,11 @@ int		rack_strlen(char *rack)
 
 bool		is_char(char c)
 {
-  if((c >= 'A' && c <= 'Z ') && c >= 'a' && c <= 'z')
-    return(true);
+  if((c >= 'A' && c <= 'Z ') || (c >= 'a' && c <= 'z'))
+    {
+      //      printf("\nc == %c\n", c);
+      return(true);
+    }
+  printf("\nc == %c\n", c);
   return(false);
 }

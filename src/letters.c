@@ -16,22 +16,21 @@ char		get_letter(t_game *game)
   return(letter);
 }
 
-void		fulfill_rack(t_game *game, int player)
+void		fulfill_rack(t_game *game, int player, int amount)
 {
   int		i = 0;
 
-    while(game->nb_letters[player] < MAX_LETTERS_RACK && game->letters_left != 0 && i < MAX_LETTERS_RACK)
+  printf("ok7\n");
+  while(amount > 0 && game->letters_left > 0 && game->racks[player][i] != '\0')
     {
-      printf("old char = %c\n", game->racks[player][i]);
-      if (game->racks[player][i] == ' ')
+      printf("ok6\n");
+      if(game->racks[player][i] == ' ')
 	{
 	  game->racks[player][i] = get_letter(game);
 	  game->nb_letters[player]++;
 	  game->letters_left--;
-	  printf("letters left : %d\n", game->letters_left);
-	  i++;
+	  amount--;
 	}
-      else
-	i++;
+      i++;
     }
 }

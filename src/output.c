@@ -27,13 +27,14 @@ void		print_player_info(t_game *game)
 {
   for(int i = 0; i < game->amount_players; i++)
     {
-      printf("PLAYER %d rack:\n", i);
+      printf("PLAYER %d rack:", i);
       if(i == game->playing)
 	printf("%s\n", game->racks[i]);
       else
 	{
-	  for(int y = 0; game->racks[i][y] == is_char() && game->racks[i][y] != '\0'; y++)
+	  for(int y = 0; game->racks[i][y] != '\0' && is_char(game->racks[i][y]) ; y++)
 	    printf("X");
+	  printf("\n");
 	  i++;
 	}
     }
