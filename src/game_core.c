@@ -23,35 +23,18 @@ void		start_game(t_game *game)
 #endif
   int		i = 0;
 
+  fulfill_all_racks(game);
+  game->playing = who_play_first(game);
   while(game->letters_left > 0 || test_cant_play(game) == false)
     {
+      print_board(game);
+      print_player_info(game);
       getchar();
-      if(game->is_first_time == true)
-	{
-	  fulfill_all_racks(game);
-	  game->playing = who_play_first();
-	  game->is_first_time = false;
-	  print_player_info(game);
-	}
-      else
-	{
-	  getchar();
-	  printf("ok4\n");
-	  fulfill_rack(game, game->playing, 2);
-	  printf("ok5\n");
-	  print_player_info(game);
-	  make_play(game);
-	}
+      make_play(game); // like he play a 2 letter word
+      game->playing++;
       if(game->playing == game->amount_players)
-	{
-	  printf("ok1\n");
-	  game->playing = 0;
-	}
-      else
-	{
-	  printf("ok2\n");
-	  game->playing++;
-	}
-    }
-  return;
+	game->playing = 0;
+      //      else
+      //	game->playing++;
+    }      
 }

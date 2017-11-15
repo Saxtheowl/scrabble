@@ -8,7 +8,7 @@ char		get_letter(t_game *game)
   while(letter == ' ')
     {
       rd = rand() % (game->max_letters);
-      printf("rd = %d\n", rd);
+      //      printf("rd = %d\n", rd);
       letter = game->letters_list[rd];
       //      printf("new char = %c\n", letter);
     }
@@ -20,10 +20,8 @@ void		fulfill_rack(t_game *game, int player, int amount)
 {
   int		i = 0;
 
-  printf("ok7\n");
   while(amount > 0 && game->letters_left > 0 && game->racks[player][i] != '\0')
     {
-      printf("ok6\n");
       if(game->racks[player][i] == ' ')
 	{
 	  game->racks[player][i] = get_letter(game);

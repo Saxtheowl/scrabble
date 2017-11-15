@@ -13,13 +13,15 @@ void		fulfill_all_racks(t_game *game)
 
 int		who_play_first(t_game *game)
 {
-  return(0);
+  //  fulfill_all_racks(game);
+  return(1);
 }
 
 void		make_play(t_game *game)
 {
-  /*  game->racks[game->playing][2] = ' ';
+  game->racks[game->playing][2] = ' ';
   game->racks[game->playing][3] = ' ';
   game->nb_letters[game->playing]--;
-  game->nb_letters[game->playing]--;*/
+  game->nb_letters[game->playing]--;
+  fulfill_rack(game, game->playing, 2);
 }

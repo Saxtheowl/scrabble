@@ -27,6 +27,7 @@ void		init_game(t_game *game)
   for(int i = 0; i < game->amount_players; i++)
     {
       memset(game->racks[i], ' ', MAX_LETTERS_RACK);
+      printf("AAA\n");
     }
 }
 

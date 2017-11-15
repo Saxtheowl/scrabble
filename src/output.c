@@ -5,6 +5,7 @@ void		print_board(t_game *game)
   int		nb_lines = 1;
   char		*alphabet_tmp;
 
+  system("clear");
   if(game->is_super_mod == true)
     alphabet_tmp = "  ABCDEFGHIJKLMNOPQRSTU \n";
   else
@@ -35,7 +36,6 @@ void		print_player_info(t_game *game)
 	  for(int y = 0; game->racks[i][y] != '\0' && is_char(game->racks[i][y]) ; y++)
 	    printf("X");
 	  printf("\n");
-	  i++;
 	}
     }
   printf("letters left: %d\n", game->letters_left);
