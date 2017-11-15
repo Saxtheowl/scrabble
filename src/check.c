@@ -9,9 +9,8 @@ bool		is_valid_word(t_game *game, char *word)
 {
   for(int i = 0; i < game->max_words_dict; i++)
     {
-      if(strncmp(word, game->dictionnary[i]), strlen(word) != 0)
-	return(false);
+      if(strcmp_dictionnary(word, game->dictionnary[i]) == true)
+	return(true);
     }
-  printf("OK STRNCMP");
-  return(true);
+  return(false);
 }
