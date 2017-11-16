@@ -25,6 +25,9 @@ int		main(int ac, char **av)
     config_with_av(&game, av);
   else
     menu_pre_game(&game);
+#ifndef DEBUG_FLAG
+  system("clear");
+#endif
   init_game(&game);
   start_game(&game);
 

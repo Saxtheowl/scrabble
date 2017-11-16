@@ -5,7 +5,8 @@ void		print_board(t_game *game)
   int		nb_lines = 1;
   char		*alphabet_tmp;
 
-  system("clear");
+  if(game->is_first_time == false)
+    system("clear");
   if(game->is_super_mod == true)
     alphabet_tmp = "  ABCDEFGHIJKLMNOPQRSTU \n";
   else
@@ -24,7 +25,7 @@ void		print_board(t_game *game)
   printf(ANSI_COLOR_RED"%s"ANSI_COLOR_RESET, alphabet_tmp);
 }
 
-void		print_player_info(t_game *game)
+void		print_players_info(t_game *game)
 {
   for(int i = 0; i < game->amount_players; i++)
     {

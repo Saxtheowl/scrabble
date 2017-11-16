@@ -2,13 +2,8 @@
 
 void		fulfill_all_racks(t_game *game)
 {
-  printf("ok3\n");
   for(int i = 0; i < game->amount_players; i++)
-    {
-      fulfill_rack(game, i, 7);
-      getchar();
-      printf("ok3\n");
-    }
+    fulfill_rack(game, i, 7);
 }
 
 
@@ -19,6 +14,8 @@ int		who_play_first(t_game *game)
   char		tmp;
   int		to_return;
   int		i = 0;
+  int		blank_flag = false;
+  int		blank_owner = 0;
 
   while(i < game->amount_players)
     {
@@ -26,8 +23,20 @@ int		who_play_first(t_game *game)
       printf("Player %d show a %c\n", i, tmp);
       if(tmp == 'j')
 	{
-	  printf("Player %d has a %c (blank tile) and begin\n", i, tmp);
-	  return(i);
+	  if(blank_flag == true) // in the rare case of double case :-O
+	    {
+	      i = 0;
+	      blank_owner = 0;
+	      tmp = 'Z';
+	      biggest = 'Z';
+	      blank_flag = false;
+	    }
+	  else
+	    {
+	      blank_owner = i;
+	      blank_flag = true;
+	    }
+	  //	  printf("Player %d has a %c (blank tile) and begin\n", i, tmp);
 	}
       if(tmp < biggest)
 	{
@@ -37,12 +46,25 @@ int		who_play_first(t_game *game)
       i++;
     }
   printf("Player %d has a %c and is first\n", to_return, biggest);
+  if(blank_flag == true)
+    {
+      printf("Player %d has a 'j' (blank tile) and then begin\n", blank_owner);
+      return(blank_owner);
+    }
+  else
     return(to_return);
 }
 
 void		make_play(t_game *game)
 {
+  print_board(game);
+  print_players_info(game);
   menu_play(game);
+  if(game->is_first_time == true)
+    {
+      system("clear");
+      game->is_first_time == false;
+    }
   game->racks[game->playing][2] = ' ';
   game->racks[game->playing][3] = ' ';
   game->nb_letters[game->playing]--;

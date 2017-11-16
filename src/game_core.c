@@ -28,13 +28,12 @@ void		start_game(t_game *game)
   //  game->playing = 0;
   while(game->letters_left > 0 || test_cant_play(game) == false)
     {
-      print_board(game);
-      print_player_info(game);
-      getchar();
       make_play(game); // like he play a 2 letter word
       game->playing++;
       if(game->playing == game->amount_players)
-	game->playing = 0;
+	{
+	  game->playing = 0;
+	}
       //      else
       //	game->playing++;
     }      
