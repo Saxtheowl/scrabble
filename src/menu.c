@@ -27,7 +27,19 @@ void		menu_pre_game(t_game *game)
 
 void		menu_play(t_game *game)
 {
-  printf("\n( Player %d ) OPTIONS : \n", game->playing);
+  char		*choice;
+  int		nb = 0;
   
+  printf("\n( Player %d ) OPTIONS : \n", game->playing);
+  while(nb != 1 && nb != 2 && nb != 3) // lol
+    {
+      printf("1. Play word\n");
+      printf("2. Change letter(s)\n");
+      printf("3. Pass turn\n");
+      choice = put_prompt();
+      nb = atoi(choice);
+    }
+  if(nb == 1)
+    play_word(game);
   getchar();
 }
