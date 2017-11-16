@@ -25,33 +25,14 @@ bool		is_valid_word(t_game *game, char *word)
 
 bool		is_in_rack(t_game *game, char *word)
 {
-  int		nb_letters = strlen(word) - 1;
-  int		i = 0;
-  int		y = 0;
-  char		to_find = word[y];
+  char		word_cp[7];
 
+  strncpy(word_cp, word, strlen(word));
+  printf("word = %s\n", word);
+  printf("word cp= %s\n", word_cp);
+  
   // WASTE
-  // WAEASTE
-
-  while(nb_letters > 0)
-    {
-      to_find = word[y];
-      while(i < game->nb_letters[game->playing])
-	{
-	  if(game->racks[game->playing][i])
-	    {
-	      to_find = word[y];
-	      printf("to find = %c\n", word[y]);
-	      nb_letters--;
-	      y++;
-	      i = 0;
-	    }
-	  else
-	    i++;
-	}
-      printf(" is in rack false\n");
-      return(false);
-    }
-  printf(" is in rack true\n");
-  return(true);
+  // WS TESA
+  printf(" is in rack false\n");
+  return(false);
 }
