@@ -10,6 +10,7 @@ void		init_board(t_game *);
 void		init_game_memory(t_game *);
 void		init_letters_list(t_game *);
 void		init_letters_point(t_game *);
+void		init_dictionnary(t_game *);
 
 void		init_game(t_game *game)
 {
@@ -80,7 +81,6 @@ void		init_game_memory(t_game *game)
   game->dictionnary = xmalloc(sizeof(*game->dictionnary) * game->max_words_dict);
   for(int i = 0; i < game->max_words_dict; i++)
     game->dictionnary[i] = xmalloc(sizeof(**game->dictionnary) * 1); // WTF * 1 ?
-
 }
 
 void		init_board(t_game *game)
@@ -123,7 +123,6 @@ void		init_dictionnary(t_game *game)
 {
   FILE		*fp = fopen(game->dictionnary_path, "r");
   size_t	len = 0;
-  char		*tmp;
 
   if (fp == NULL)
     super_exit("error no dictionnary file found\n");

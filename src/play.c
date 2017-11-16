@@ -1,12 +1,14 @@
 #include "../include/scrabble.h"
 
+void		fulfill_all_racks(t_game *);
+int		who_play_first(t_game *);
+void		make_play(t_game *);
+
 void		fulfill_all_racks(t_game *game)
 {
   for(int i = 0; i < game->amount_players; i++)
     fulfill_rack(game, i, 7);
 }
-
-
 
 int		who_play_first(t_game *game)
 {

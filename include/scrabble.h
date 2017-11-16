@@ -92,10 +92,12 @@ void		init_pre_letters(t_game *);
 void		init_game_memory(t_game *);
 void		init_letters_list(t_game *);
 void		init_letters_point(t_game *);
+void		init_dictionnary(t_game *);
 
 /* menu.c */
 
 void		menu_pre_game(t_game *);
+void		menu_play(t_game *);
 
 /* config_pre_game.c */
 
@@ -106,6 +108,32 @@ void		select_language_to_play(t_game *);
 void		select_number_of_players(t_game *);
 void		select_players_type(t_game *);
 
+/* letters.c */
+
+char		get_letter(t_game *);
+char		get_rdm_letter(t_game *, int);
+void		fulfill_rack(t_game *, int, int);
+
+/*output.c */
+
+void		print_board(t_game *);
+void		print_players_info(t_game *);
+
+/* play.c */
+
+void		fulfill_all_racks(t_game *);
+int		who_play_first(t_game *);
+void		make_play(t_game *);
+
+/* check.c */
+
+bool		test_cant_play(t_game *);
+bool		is_valid_word(t_game *, char *);
+
+/* end_of_the_game.c */
+
+void		end_of_the_game(t_game *);
+
 /* main.c */
 
 int		main(int, char **);
@@ -115,7 +143,10 @@ int		main(int, char **);
 char		*read_entry();
 char		*put_prompt();
 void		super_exit(char *);
-void		print_double_tab(char **);
+int		rack_strlen(char *);
+bool		is_char(char);
+int		strcmp_dictionnary(char *, char *);
+
 
 /* xfunc.c */
 

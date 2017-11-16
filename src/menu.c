@@ -3,7 +3,8 @@
 
 #include "../include/scrabble.h"
 
-void		menu_intro(t_game *);
+void		menu_pre_game(t_game *);
+void		menu_play(t_game *);
 
 void		menu_pre_game(t_game *game)
 {
@@ -27,5 +28,6 @@ void		menu_pre_game(t_game *game)
 void		menu_play(t_game *game)
 {
   printf("\n( Player %d ) OPTIONS : \n", game->playing);
+  
   getchar();
 }

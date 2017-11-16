@@ -1,5 +1,9 @@
 #include "../include/scrabble.h"
 
+char		get_letter(t_game *);
+char		get_rdm_letter(t_game *, int);
+void		fulfill_rack(t_game *, int, int);
+
 char		get_letter(t_game *game)
 {
   char		letter = ' ';

@@ -6,6 +6,9 @@
 char		*put_prompt();
 char		*read_entry();
 void		super_exit();
+int		rack_strlen(char *);
+bool		is_char(char);
+int		strcmp_dictionnary(char *, char *);
 
 char		*read_entry()
 {

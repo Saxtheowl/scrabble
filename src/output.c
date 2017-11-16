@@ -1,5 +1,8 @@
 #include "../include/scrabble.h"
 
+void		print_board(t_game *);
+void		print_players_info(t_game *);
+
 void		print_board(t_game *game)
 {
   int		nb_lines = 1;
@@ -35,7 +38,7 @@ void		print_players_info(t_game *game)
       else
 	{
 	  for(int y = 0; game->racks[i][y] != '\0' && is_char(game->racks[i][y]) ; y++)
-	    printf("X");
+	    printf("@");
 	  printf("\n");
 	}
     }

@@ -1,5 +1,8 @@
 #include "../include/scrabble.h"
 
+bool		test_cant_play(t_game *);
+bool		is_valid_word(t_game *, char *);
+
 bool		test_cant_play(t_game *game)
 {
   return(false);
