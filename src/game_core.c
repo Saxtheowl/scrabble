@@ -25,6 +25,7 @@ void		start_game(t_game *game)
   
   fulfill_all_racks(game);
   game->playing = who_play_first(game);
+  //  game->playing = 0;
   while(game->letters_left > 0 || test_cant_play(game) == false)
     {
       print_board(game);

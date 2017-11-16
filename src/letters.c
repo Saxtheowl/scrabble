@@ -16,6 +16,19 @@ char		get_letter(t_game *game)
   return(letter);
 }
 
+char		get_rdm_letter(t_game *game, int player)
+{
+  char		letter = ' ';
+  int		rd;
+
+  while(letter == ' ')
+    {
+      rd = rand() % rack_strlen(game->racks[player]);
+      letter = game->racks[player][rd];
+    }
+  return(letter);
+}
+
 void		fulfill_rack(t_game *game, int player, int amount)
 {
   int		i = 0;

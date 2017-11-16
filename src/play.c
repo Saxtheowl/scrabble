@@ -11,11 +11,33 @@ void		fulfill_all_racks(t_game *game)
     }
 }
 
+
+
 int		who_play_first(t_game *game)
 {
-  //  fulfill_all_racks(game);
+  char		biggest = 'Z';
+  char		tmp;
+  int		to_return;
+  int		i = 0;
 
-  return(1);
+  while(i < game->amount_players)
+    {
+      tmp = get_rdm_letter(game, i);
+      printf("Player %d show a %c\n", i, tmp);
+      if(tmp == 'j')
+	{
+	  printf("Player %d has a %c (blank tile) and begin\n", i, tmp);
+	  return(i);
+	}
+      if(tmp < biggest)
+	{
+	  to_return = i;
+	  biggest = tmp;
+	}
+      i++;
+    }
+  printf("Player %d has a %c and is first\n", to_return, biggest);
+    return(to_return);
 }
 
 void		make_play(t_game *game)
