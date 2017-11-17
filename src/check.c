@@ -13,6 +13,7 @@ bool		is_syntax_letter_valid(t_game *game, char *pos)
 {
   char		max_letter;
 
+  
   if(game->is_super_mod == true)
     max_letter = 'U';
   else
@@ -24,18 +25,18 @@ bool		is_syntax_letter_valid(t_game *game, char *pos)
 
 void		get_proper_coord_word(t_game *game, char *pos, bool is_pos1, int dat_number)
 {
-  printf("pos = %s\n", pos);
+  printf("pos =%s\n", pos); 
   printf("is_pos1 = %d\n", is_pos1);
   printf("dat_number = %d\n", dat_number);
   if(is_pos1 == true)
     {
       game->x_word_pos1 = get_number_from_letter(pos[0]);
-      game->y_word_pos1 = dat_number;
+      game->y_word_pos1 = dat_number -1;
     }
   else
     {
       game->x_word_pos2 = get_number_from_letter(pos[0]);
-      game->y_word_pos2 = dat_number;
+      game->y_word_pos2 = dat_number -1;
     }
 }
 
@@ -62,14 +63,15 @@ bool		is_syntax_number_valid(t_game *game, char *pos, bool is_pos1)
   if(dat_number <= game->size_board)
     {
       get_proper_coord_word(game, pos, is_pos1, dat_number);
-      return(true);
+      if(pos[1] >= '1') // last test but there is still more
+	return(true);
     }
   return(false);
 }
 
 bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 {
-  printf("pos =%s\n", pos1);
+  printf("is_valid_syntax pos =%s\n", pos1);
   if(is_syntax_letter_valid(game, pos1)
      && is_syntax_number_valid(game, pos1, 1)
      && is_syntax_letter_valid(game, pos2)
@@ -88,8 +90,12 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
   return(false);
 }
 
-bool		is_valid_position(t_game *game, char* pos1, char *pos2)
-{  
+bool		is_valid_position(t_game *game, char *pos1, char *pos2)
+{
+  game->board[game->y_word_pos1][game->x_word_pos1] = 'X';
+  game->board[game->y_word_pos2][game->x_word_pos2] = 'X';
+
+  printf("is valid position valid\n");
   return(true);
 }
 

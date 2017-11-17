@@ -82,6 +82,7 @@ typedef struct		s_game
   int			x_word_pos2;
   int			y_word_pos1;
   int			y_word_pos2;
+
 }			t_game;
 
 /* game_core.c */
