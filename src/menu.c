@@ -40,6 +40,25 @@ void		menu_play(t_game *game)
       nb = atoi(choice);
     }
   if(nb == 1)
-    play_word(game);
+    {
+      int		x = -1;
+      int		y = -1;
+
+      while(x < 1 && x > game->size_board)
+	{
+	  printf("Enter x coordinate\n");
+	  choice = put_prompt();
+	  x = atoi(choice);
+	}
+      while(y < 1 && y > game->size_board)
+	{
+	  printf("Enter y coordinate\n");
+	  choice = put_prompt();
+	  y = atoi(choice);
+	}
+      play_word(game, x, y);
+      if (game->is_word_put == false)
+	printf("cant play this word or bad coordinate\n");
+    }
   getchar();
 }

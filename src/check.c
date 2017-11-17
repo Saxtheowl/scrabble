@@ -8,6 +8,10 @@ bool		test_cant_play(t_game *game)
   return(false);
 }
 
+bool		check_position_word(t_game *game)
+{
+}
+
 bool		is_valid_word(t_game *game, char *word)
 {
   printf("word to test =%s\n", word);

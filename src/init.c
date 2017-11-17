@@ -23,6 +23,7 @@ void		init_game(t_game *game)
   init_dictionnary(game);
   game->letters_left = game->max_letters;
   game->is_first_time = true;
+  game->is_word_put = false;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
   for(int i = 0; i < game->amount_players; i++)

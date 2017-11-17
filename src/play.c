@@ -74,20 +74,19 @@ void		make_play(t_game *game)
   fulfill_rack(game, game->playing, 2);
 }
 
-void		play_word(t_game *game)
+void		update_score(t_game *game)
+{
+}
+
+void		play_word(t_game *game, )
 {
   char		*choice = "lul";
-  /*
-  while(!(is_valid_word(game, choice)) && !(is_in_rack(game, choice)))
+
+  while(game->is_word_put == false)
     {
-      printf("Enter the word :\n");
-      choice = put_prompt();
-      printf("choice = %s\n", choice);
+      printf("Enter proper word:\n");
+      check_position_word(game);
     }
-    printf("OK WORD in play_word\n");*/
-  while(!(is_valid_word(game, choice)) || !(is_in_rack(game, choice)))
-    {
-      choice = put_prompt();
-    }
-    printf("ok100\n");
+  
+  printf("ok100\n");
 }   
