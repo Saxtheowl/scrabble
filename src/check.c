@@ -22,12 +22,20 @@ bool		is_syntax_letter_valid(t_game *game, char *pos)
   return(false);
 }
 
-void		get_proper_coord_word(t_game *game, char *pos, int is_pos1, int dat_number)
+void		get_proper_coord_word(t_game *game, char *pos, bool is_pos1, int dat_number)
 {
+  printf("pos = %s\n", pos);
+  printf("is_pos1 = %d\n", is_pos1);
+  printf("dat_number = %d\n", dat_number);
   if(is_pos1 == true)
     {
-      game->x_word_pos1 = 0;
-      game->y_word_pos1 = 0;
+      game->x_word_pos1 = get_number_from_letter(pos[0]);
+      game->y_word_pos1 = dat_number;
+    }
+  else
+    {
+      game->x_word_pos2 = get_number_from_letter(pos[0]);
+      game->y_word_pos2 = dat_number;
     }
 }
 
@@ -47,13 +55,13 @@ bool		is_syntax_number_valid(t_game *game, char *pos, bool is_pos1)
       tmp_pos[0] = pos[1];
       tmp_pos[1] = pos[2];
       tmp_pos[2] = '\0';
-      printf("tmp pos =%s\n", tmp_pos);
+      //      printf("tmp pos =%s\n", tmp_pos);
       dat_number = atoi(tmp_pos);
     }
-  printf("ok2\n");
+  //  printf("ok2\n");
   if(dat_number <= game->size_board)
     {
-      get_proper_coord_word(game, pos, is_pos1, i);
+      get_proper_coord_word(game, pos, is_pos1, dat_number);
       return(true);
     }
   return(false);
@@ -63,13 +71,16 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 {
   printf("pos =%s\n", pos1);
   if(is_syntax_letter_valid(game, pos1)
-     && is_syntax_number_valid(game, pos1, 0)
+     && is_syntax_number_valid(game, pos1, 1)
      && is_syntax_letter_valid(game, pos2)
-     && is_syntax_number_valid(game, pos2, 1)
+     && is_syntax_number_valid(game, pos2, 0)
      )
     {
       printf("y word pos1:%d\n", game->y_word_pos1);
       printf("y word pos2:%d\n", game->y_word_pos2);
+      printf("x word pos1:%d\n", game->x_word_pos1);
+      printf("x word pos2:%d\n", game->x_word_pos2);
+      
       printf("syntax valid\n");
       return(true);
     }

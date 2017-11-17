@@ -48,7 +48,7 @@ int		rack_strlen(char *rack)
 
 bool		is_num_char(char c)
 {
-  if(c >= '1' && c <= '9')
+  if(c >= '0' && c <= '9')
     return(true);
   return(false);
 }
@@ -76,4 +76,17 @@ int		strcmp_dictionnary(char *s1, char *s2)
   return(false);
   
   //  return (s1[i] - s2[i]);
+}
+
+int		get_number_from_letter(char c)
+{
+  char		*alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  printf("ok6\n");
+  for(int i = 0; i <= NB_LETTERS_ALPHABET; i++)
+    {
+      if(alphabet[i] == c)
+	return(i);
+    }
+  printf("ok7\n");    
 }

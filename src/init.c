@@ -36,7 +36,7 @@ void		init_pre_board(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "files/standard_board_t1";
+      game->board_path = "files/standard_board";
       game->size_board = 15;
     }
   else
@@ -69,7 +69,7 @@ void		init_pre_letters(t_game *game)
     }
 }
 
-void		init_game_memory(t_game *game)
+void		init_game_memory(t_game *game) // fcking C lul
 {
   game->board = xmalloc(sizeof(*game->board) * game->size_board);
     game->s_board = xmalloc(sizeof(*game->s_board) * game->size_board);
