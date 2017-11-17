@@ -41,24 +41,16 @@ void		menu_play(t_game *game)
     }
   if(nb == 1)
     {
-      int		x = -1;
-      int		y = -1;
+      char		*pos1;
+      char		*pos2;
 
-      while(x < 1 || x > game->size_board)
-	{
-	  printf("Enter x coordinate\n");
-	  choice = put_prompt();
-	  x = atoi(choice);
-	}
-      while(y < 1 || y > game->size_board)
-	{
-	  printf("Enter y coordinate\n");
-	  choice = put_prompt();
-	  y = atoi(choice);
-	}
-      play_word(game, x, y);
+      printf("Enter the position where the word start (eg: E3)\n");
+      pos1 = put_prompt();
+      printf("Enter the position where the word end (eg: E6)\n");
+      pos2 = put_prompt();
+      play_word(game, pos1, pos2);
       if (game->is_turn_done == false)
-	printf("cant play this word or bad coordinate\n");
+	printf("wrong syntax or wrong position or wrong word or bad coordinate\n");
     }
   if(nb == 3)
     play_pass(game);

@@ -30,14 +30,13 @@ void		init_game(t_game *game)
     memset(game->racks[i], ' ', MAX_LETTERS_RACK);
   for(int i = 0; i < game->amount_players; i++)
     game->score[i] = 0;
-  
 }
 
 void		init_pre_board(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "files/standard_board";
+      game->board_path = "files/standard_board_t1";
       game->size_board = 15;
     }
   else
@@ -73,8 +72,12 @@ void		init_pre_letters(t_game *game)
 void		init_game_memory(t_game *game)
 {
   game->board = xmalloc(sizeof(*game->board) * game->size_board);
+    game->s_board = xmalloc(sizeof(*game->s_board) * game->size_board);
   for(int i = 0; i < game->size_board; i++)
-    game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
+    {
+      game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
+      game->s_board[i] = xmalloc(sizeof(**game->s_board) * game->size_board);
+    }
   game->letters_list = xmalloc(sizeof(*game->letters_list) * game->max_letters);
   game->letters_point = xmalloc(sizeof(*game->letters_point) * NB_LETTERS_ALPHABET);
   game->racks = xmalloc(sizeof(*game->racks) * game->amount_players);
@@ -84,18 +87,24 @@ void		init_game_memory(t_game *game)
   game->dictionnary = xmalloc(sizeof(*game->dictionnary) * game->max_words_dict);
   for(int i = 0; i < game->max_words_dict; i++)
     game->dictionnary[i] = xmalloc(sizeof(**game->dictionnary) * 1); // WTF * 1 ?
-    game->score = xmalloc(sizeof(*game->score) * game->amount_players);
+  game->score = xmalloc(sizeof(*game->score) * game->amount_players);
 }
 
 void		init_board(t_game *game)
 {
   FILE		*fp = fopen(game->board_path, "r");
   size_t	len = 0;
+  int		i = 0;
   
   if (fp == NULL)
     super_exit("error no files board found\n");
-  for(int i = 0; getline(&game->board[i], &len, fp) != -1; i++);
+  while(getline(&game->board[i], &len, fp) != -1)
+  {
+    strcpy(game->s_board[i], game->board[i]);
+    i++;
+  }
   game->board[game->size_board] = NULL;
+  game->s_board[game->size_board] = NULL;
 }
 
 void		init_letters_list(t_game *game) // not sexy

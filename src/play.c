@@ -83,18 +83,23 @@ void		make_play(t_game *game)
 void		update_score(t_game *game, int player)
 {
   game->score[player] = 999999;
-
 }
 
-void		play_word(t_game *game, int x, int y)
+void		play_word(t_game *game, char *pos1, char *pos2)
 {
-  char		*choice = "lul";
+  char		*word;
 
-  printf("Enter  word:\n");
-  check_position_word(game);
-  game->is_turn_done = true;
+  printf("Enter word:\n");
+  word = put_prompt();
+  printf("play_word word to test =%s\n", word);
+  if(is_valid_syntax(game, pos1) && is_valid_syntax(game, pos2) && is_valid_position(game, pos1, pos2) && is_valid_word(game, word) && is_in_rack(game, word, pos1, pos2))
+    {
+      printf("word is put\n");
+      game->is_turn_done = true;
+    }
 }   
 
 void		play_pass(t_game *game)
 {
+  game->is_turn_done = true;
 }

@@ -23,7 +23,6 @@ void		print_board(t_game *game)
       printf("%.*s", game->size_board, game->board[i]);
       printf(ANSI_COLOR_RED"%d\n"ANSI_COLOR_RESET, nb_lines);
       nb_lines++;
-
     }
   printf(ANSI_COLOR_RED"%s"ANSI_COLOR_RESET, alphabet_tmp);
 }
@@ -32,7 +31,7 @@ void		print_players_info(t_game *game)
 {
   for(int i = 0; i < game->amount_players; i++)
     {
-      printf("PLAYER %d score : %d rack:", i, game->score[i]);
+      printf("PLAYER %d score:%d rack:", i, game->score[i]);
       if(i == game->playing)
 	printf("%s\n", game->racks[i]);
       else
