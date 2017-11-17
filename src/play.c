@@ -57,6 +57,15 @@ int		who_play_first(t_game *game)
     return(to_return);
 }
 
+void		update_score(t_game *game, int player)
+{
+  game->score[player] = 999999;
+}
+
+void		reset_turn(t_game *game)
+{
+}
+
 void		make_play(t_game *game)
 {
   while(game->is_turn_done == false)
@@ -80,11 +89,6 @@ void		make_play(t_game *game)
   fulfill_rack(game, game->playing, 2);
 }
 
-void		update_score(t_game *game, int player)
-{
-  game->score[player] = 999999;
-}
-
 void		play_word(t_game *game, char *pos1, char *pos2)
 {
   char		*word;
@@ -92,7 +96,10 @@ void		play_word(t_game *game, char *pos1, char *pos2)
   printf("Enter word:\n");
   word = put_prompt();
   printf("play_word word to test =%s\n", word);
-  if(is_valid_syntax(game, pos1) && is_valid_syntax(game, pos2) && is_valid_position(game, pos1, pos2) && is_valid_word(game, word) && is_in_rack(game, word, pos1, pos2))
+  if(is_valid_syntax(game, pos1, pos2) &&
+     is_valid_position(game, pos1, pos2) &&
+     is_valid_word(game, word) &&
+     is_in_rack(game, word, pos1, pos2))
     {
       printf("word is put\n");
       game->is_turn_done = true;

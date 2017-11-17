@@ -77,6 +77,11 @@ typedef struct		s_game
   char			**dictionnary;
   char			*dictionnary_path;
   int			max_words_dict;
+
+  int			x_word_pos1;
+  int			x_word_pos2;
+  int			y_word_pos1;
+  int			y_word_pos2;
 }			t_game;
 
 /* game_core.c */
