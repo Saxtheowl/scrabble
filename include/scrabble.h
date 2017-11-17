@@ -46,7 +46,7 @@ typedef struct		s_game
   bool			is_super_mod;
   bool			is_duplicate_mod;
   bool			is_first_time;
-  bool			is_word_put;
+  bool			is_turn_done;
   int			language;
   int			amount_players;
   int			*players_type;

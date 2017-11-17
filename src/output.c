@@ -32,7 +32,7 @@ void		print_players_info(t_game *game)
 {
   for(int i = 0; i < game->amount_players; i++)
     {
-      printf("PLAYER %d rack:", i);
+      printf("PLAYER %d score : %d rack:", i, game->score[i]);
       if(i == game->playing)
 	printf("%s\n", game->racks[i]);
       else
@@ -43,4 +43,9 @@ void		print_players_info(t_game *game)
 	}
     }
   printf("letters left: %d\n", game->letters_left);
+}
+
+void		print_score(t_game *game)
+{
+  
 }

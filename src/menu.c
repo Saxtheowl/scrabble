@@ -44,21 +44,23 @@ void		menu_play(t_game *game)
       int		x = -1;
       int		y = -1;
 
-      while(x < 1 && x > game->size_board)
+      while(x < 1 || x > game->size_board)
 	{
 	  printf("Enter x coordinate\n");
 	  choice = put_prompt();
 	  x = atoi(choice);
 	}
-      while(y < 1 && y > game->size_board)
+      while(y < 1 || y > game->size_board)
 	{
 	  printf("Enter y coordinate\n");
 	  choice = put_prompt();
 	  y = atoi(choice);
 	}
       play_word(game, x, y);
-      if (game->is_word_put == false)
+      if (game->is_turn_done == false)
 	printf("cant play this word or bad coordinate\n");
     }
-  getchar();
+  if(nb == 3)
+    play_pass(game);
+  //  getchar();
 }

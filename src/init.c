@@ -23,11 +23,13 @@ void		init_game(t_game *game)
   init_dictionnary(game);
   game->letters_left = game->max_letters;
   game->is_first_time = true;
-  game->is_word_put = false;
+  game->is_turn_done = false;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
   for(int i = 0; i < game->amount_players; i++)
     memset(game->racks[i], ' ', MAX_LETTERS_RACK);
+  for(int i = 0; i < game->amount_players; i++)
+    game->score[i] = 0;
   
 }
 
@@ -82,6 +84,7 @@ void		init_game_memory(t_game *game)
   game->dictionnary = xmalloc(sizeof(*game->dictionnary) * game->max_words_dict);
   for(int i = 0; i < game->max_words_dict; i++)
     game->dictionnary[i] = xmalloc(sizeof(**game->dictionnary) * 1); // WTF * 1 ?
+    game->score = xmalloc(sizeof(*game->score) * game->amount_players);
 }
 
 void		init_board(t_game *game)

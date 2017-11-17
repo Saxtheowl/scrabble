@@ -59,14 +59,20 @@ int		who_play_first(t_game *game)
 
 void		make_play(t_game *game)
 {
-  print_board(game);
-  print_players_info(game);
-  menu_play(game);
+  while(game->is_turn_done == false)
+    {
+      print_board(game);
+      print_players_info(game);
+      menu_play(game);
+    }
+  system("clear");
+  game->is_turn_done = false;
   if(game->is_first_time == true)
     {
-      system("clear");
+      //      system("clear");
       game->is_first_time == false;
     }
+  update_score(game, game->playing);
   game->racks[game->playing][2] = ' ';
   game->racks[game->playing][3] = ' ';
   game->nb_letters[game->playing]--;
@@ -74,19 +80,21 @@ void		make_play(t_game *game)
   fulfill_rack(game, game->playing, 2);
 }
 
-void		update_score(t_game *game)
+void		update_score(t_game *game, int player)
 {
+  game->score[player] = 999999;
+
 }
 
-void		play_word(t_game *game, )
+void		play_word(t_game *game, int x, int y)
 {
   char		*choice = "lul";
 
-  while(game->is_word_put == false)
-    {
-      printf("Enter proper word:\n");
-      check_position_word(game);
-    }
-  
-  printf("ok100\n");
+  printf("Enter  word:\n");
+  check_position_word(game);
+  game->is_turn_done = true;
 }   
+
+void		play_pass(t_game *game)
+{
+}
