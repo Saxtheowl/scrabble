@@ -27,8 +27,8 @@ char		get_rdm_letter(t_game *game, int player)
 
   while(letter == ' ')
     {
-      rd = rand() % rack_strlen(game->racks[player]);
-      letter = game->racks[player][rd];
+      rd = rand() % game->max_letters;
+      letter = game->letters_list[rd];
     }
   return(letter);
 }

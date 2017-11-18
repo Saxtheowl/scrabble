@@ -21,9 +21,9 @@ void		start_game(t_game *game)
     printf("%d\n", game->letters_point[i]);
   
 #endif
-  
-  fulfill_all_racks(game);
+
   game->playing = who_play_first(game);
+  fulfill_all_racks(game);
   //  game->playing = 0;
   while(game->letters_left > 0 || test_cant_play(game) == false)
     {

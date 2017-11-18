@@ -30,13 +30,13 @@ void		get_proper_coord_word(t_game *game, char *pos, bool is_pos1, int dat_numbe
   printf("dat_number = %d\n", dat_number);
   if(is_pos1 == true)
     {
-      game->y_word_pos1 = get_number_from_letter(pos[0]);
-      game->x_word_pos1 = dat_number -1;
+      game->y_wrd_p1 = get_number_from_letter(pos[0]);
+      game->x_wrd_p1 = dat_number -1;
     }
   else
     {
-      game->y_word_pos2 = get_number_from_letter(pos[0]);
-      game->x_word_pos2 = dat_number -1;
+      game->y_wrd_p2 = get_number_from_letter(pos[0]);
+      game->x_wrd_p2 = dat_number -1;
     }
 }
 
@@ -78,10 +78,10 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
      && is_syntax_number_valid(game, pos2, 0)
      )
     {
-      printf("y word pos1:%d\n", game->y_word_pos1);
-      printf("y word pos2:%d\n", game->y_word_pos2);
-      printf("x word pos1:%d\n", game->x_word_pos1);
-      printf("x word pos2:%d\n", game->x_word_pos2);
+      printf("y word pos1:%d\n", game->y_wrd_p1);
+      printf("y word pos2:%d\n", game->y_wrd_p2);
+      printf("x word pos1:%d\n", game->x_wrd_p1);
+      printf("x word pos2:%d\n", game->x_wrd_p2);
       
       printf("syntax valid\n");
       return(true);
@@ -97,8 +97,8 @@ bool		is_valid_direction(t_game *game)
 
 bool		is_valid_position(t_game *game)
 {
-  game->board[game->x_word_pos1][game->y_word_pos1] = 'X';
-  game->board[game->x_word_pos2][game->y_word_pos2] = 'X';
+  game->board[game->x_wrd_p1][game->y_wrd_p1] = 'X';
+  game->board[game->x_wrd_p2][game->y_wrd_p2] = 'X';
 
   printf("is valid position valid\n");
   return(true);
