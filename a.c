@@ -1,6 +1,11 @@
 int		main()
 {
-  char		*lul = "lul\n";
+  char		**map;
 
-  printf("%d\n", strlen(lul));
+  map = malloc(sizeof(*map) * 10);
+
+  map[0][0] = 'a';
+  map[0][1] = 'a';
+  map[1][0] = 'a';
+  map[1][1] = 'a';
 }
