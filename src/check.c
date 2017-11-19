@@ -30,13 +30,13 @@ void		get_proper_coord_word(t_game *game, char *pos, bool is_pos1, int dat_numbe
   printf("dat_number = %d\n", dat_number);
   if(is_pos1 == true)
     {
-      game->y_wrd_p1 = get_number_from_letter(pos[0]);
-      game->x_wrd_p1 = dat_number -1;
+      game->x_wrd_p1 = get_number_from_letter(pos[0]);
+      game->y_wrd_p1 = dat_number -1;
     }
   else
     {
-      game->y_wrd_p2 = get_number_from_letter(pos[0]);
-      game->x_wrd_p2 = dat_number -1;
+      game->x_wrd_p2 = get_number_from_letter(pos[0]);
+      game->y_wrd_p2 = dat_number -1;
     }
 }
 
@@ -90,18 +90,65 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
   return(false);
 }
 
-bool		is_valid_direction(t_game *game)
+bool		is_left_to_right(t_game *game)
 {
-  
+  if((game->y_wrd_p1 == game->y_wrd_p2 )
+     && (game->x_wrd_p1 < game->x_wrd_p2))
+    {
+      game->is_left_to_right = true;
+      printf("YES RIGHT\n");
+      return(true);
+    }
+  return(false);
+}
+
+bool		is_top_to_bottom(t_game *game)
+{
+  if((game->x_wrd_p1 == game->x_wrd_p2 )
+     && (game->y_wrd_p1 < game->y_wrd_p2))
+    {
+      game->is_left_to_right = false; // this one or the other, ugly ?
+      printf("NO RIGHT\n");
+      return(true);
+    }
+  return(false);
+}
+
+bool		is_connected(t_game *game) // http://www.word-buff.com/adding-a-tile-to-each-end-of-a-scrabble-word.html WTF ! ?
+{
+  int		cp_x_wrd_p1 = game->x_wrd_p1;
+
+  printf("START IS CONNECTED\n");
+  if(game->is_left_to_right == true)
+    {
+      printf("IS CONNECTED ENTER\n");
+      while(cp_x_wrd_p1 < game->x_wrd_p2)
+	{
+	  printf("IS CONNECTED++\n");
+	  if(is_char(game->board[cp_x_wrd_p1][game->y_wrd_p1]))
+	    return(true);
+	  cp_x_wrd_p1++;
+	}
+    }
+  return(false);
 }
 
 bool		is_valid_position(t_game *game)
 {
-  game->board[game->x_wrd_p1][game->y_wrd_p1] = 'X';
-  game->board[game->x_wrd_p2][game->y_wrd_p2] = 'X';
+  /*
+  if(is_left_to_right(game) || is_top_to_bottom(game) && is_connected(game) == true)
+    {
+      game->board[game->x_wrd_p1][game->y_wrd_p1] = '0';
+      game->board[game->x_wrd_p2][game->y_wrd_p2] = '1';
+      return(true);
+      printf("is valid position valid\n");
+    }
+  printf("is valid position false\n");
+  return(false);
+  */
+  game->board[game->x_wrd_p1][game->y_wrd_p1] = '0';
+  game->board[game->x_wrd_p2][game->y_wrd_p2] = '1';
 
-  printf("is valid position valid\n");
-  return(true);
 }
 
 bool		is_valid_word(t_game *game, char *word)

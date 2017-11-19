@@ -22,7 +22,7 @@ int		who_play_first(t_game *game)
   while(i < game->amount_players)
     {
       tmp = get_rdm_letter(game, i);
-      printf("Player %d show a %c\n", i, tmp);
+      printf("Player %d pick a %c\n", i, tmp);
       if(tmp == 'j')
 	{
 	  if(blank_flag == true) // in the rare case of double case :-O
