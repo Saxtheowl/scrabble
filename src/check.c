@@ -90,33 +90,70 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
   return(false);
 }
 
-bool		is_left_to_right(t_game *game)
+bool		is_connections_left_to_right_valid(t_game *game)
 {
-  if((game->y_wrd_p1 == game->y_wrd_p2 )
-     && (game->x_wrd_p1 < game->x_wrd_p2))
+  int		tmp_pos;
+  int		i = 0;
+
+  tmp_pos = game->x_wrd_p1;
+  while(tmp_pos <= game->x_wrd_p2)
     {
-      game->is_left_to_right = true;
-      printf("YES RIGHT TO LEFT\n");
-      return(true);
+      game->road_word[i] = game->board[game->y_wrd_p1][tmp_pos];
+      game->board[game->y_wrd_p1][tmp_pos] = game->word_test[i];
+      i++;
+      tmp_pos++;
     }
-  return(false);
+  game->road_word[i] = '\0';
+  game->word_test[i] = '\0';
 }
 
-bool		is_top_to_bottom(t_game *game)
+bool		is_connections_top_to_bottom_valid(t_game *game)
 {
-  if((game->x_wrd_p1 == game->x_wrd_p2 )
-     && (game->y_wrd_p1 < game->y_wrd_p2))
+  int		tmp_pos;
+  int		i = 0;
+  
+  tmp_pos = game->y_wrd_p1;
+  while(tmp_pos <= game->y_wrd_p2)
     {
-      game->is_left_to_right = false; // this one or the other, ugly ?
-      printf("NO RIGHT TO LEFT\n");
-      return(true);
+      game->road_word[i] = game->board[tmp_pos][game->x_wrd_p1];
+      game->board[tmp_pos][game->x_wrd_p1] = game->word_test[i];
+      i++;
+      tmp_pos++;
     }
-  return(false);
+      game->road_word[i] = '\0';
+      game->word_test[i] = '\0';
+
 }
 
-bool		is_connected(t_game *game)
+
+bool		is_more_left_empty(t_game *game)
 {
-  setup_connection(game);
+  int		tmp_pos = game->x_wrd_p1 - 1;
+
+  //  game->board[game->y_wrd_p1][tmp_pos] = 'X';
+  if(game->y_wrd_p1 == 0)
+    return(true);
+   if (game->board[game->y_wrd_p1][tmp_pos] != '.')
+     printf("wrong is more left empty\n");
+    return(false);
+}
+
+bool		is_more_up_empty(t_game *game)
+{
+  int		tmp_pos = game->y_wrd_p1 - 1;
+
+  //  game->board[game->y_wrd_p1][tmp_pos] = 'X';
+  /*  if(game->x_wrd_p1 == 0) USELESS ?
+      return(true);*/
+   if (game->board[tmp_pos][game->x_wrd_p1] != '.')
+     printf("wrong is more up empty\n");
+    return(false);
+
+}
+
+bool		is_connected_to_a_letter(t_game *game)
+{
+  //  setup_connection(game);
   for(int i = 0; game->road_word[i] != '\0' ; i++)
     {
       if(is_char(game->road_word[i]))
@@ -126,50 +163,51 @@ bool		is_connected(t_game *game)
 	  return(true);
 	}
     }
-  remove_word(game);
   return(false);
 }
 
-void		setup_connection(t_game *game) // http://www.word-buff.com/adding-a-tile-to-each-end-of-a-scrabble-word.html WTF ! ?
+bool		is_direction_valid(t_game *game)
 {
-  int		tmp_pos;
-  int		i = 0;
-
-  if(game->is_left_to_right == true)
+  if((game->y_wrd_p1 == game->y_wrd_p2 )
+     && (game->x_wrd_p1 < game->x_wrd_p2))
     {
-      tmp_pos = game->x_wrd_p1;
-      while(tmp_pos <= game->x_wrd_p2)
-	{
-	  game->road_word[i] = game->board[game->y_wrd_p1][tmp_pos];
-	  game->board[game->y_wrd_p1][tmp_pos] = game->word_test[i];
-	  i++;
-	  tmp_pos++;
-	}
+      game->is_left_to_right = true;
+      printf("YES RIGHT TO LEFT\n");
+      return(true);
     }
-  else
+  else if((game->x_wrd_p1 == game->x_wrd_p2 )
+     && (game->y_wrd_p1 < game->y_wrd_p2))
     {
-      tmp_pos = game->y_wrd_p1;
-      while(tmp_pos <= game->y_wrd_p2)
-	{
-	  game->road_word[i] = game->board[tmp_pos][game->x_wrd_p1];
-	  game->board[tmp_pos][game->x_wrd_p1] = game->word_test[i];
-	  i++;
-	  tmp_pos++;
-	}
+      game->is_left_to_right = false; // this one or the other, ugly ?
+      printf("NO RIGHT TO LEFT\n");
+      return(true);
     }
+  return(false);
 }
 
 bool		is_valid_position(t_game *game)
 {  
-  if((is_left_to_right(game) || is_top_to_bottom(game) && is_connected(game) == true))
+  if(is_direction_valid(game))
     {
-      printf("is valid position valid\n");
-      return(true);
+      if((game->is_left_to_right == true && is_connections_left_to_right_valid(game) == true && is_more_left_empty(game))
+	 || (game->is_left_to_right == false &&  is_connections_top_to_bottom_valid(game) == true) && is_more_up_empty(game))
+	{
+	  if(is_connected_to_a_letter(game))
+	    return(true);
+	}
     }
+      
+      /*
+      put_temporary_word(game);
+      if((is_connections_left_to_right_valid(game) || is_connections_top_to_bottom_valid(game)) && is_connected(game))
+	{
+	  printf(" valid position TRUE\n");
+	  return(true);
+	}
+    }
+  remove_word(game);
   printf("is valid position false\n");
-  return(false);
-  game->board[game->y_wrd_p1][game->x_wrd_p1] = '0';
-  game->board[game->y_wrd_p2][game->x_wrd_p2] = '1';
+  return(false);*/
 }
 
 bool		is_valid_word(t_game *game, char *word)
@@ -191,10 +229,6 @@ bool		is_valid_word(t_game *game, char *word)
 char		*get_letters_to_test(t_game *game, char *word)
 {
   
-}
-
-bool		is_new_words_valid(t_game *game)
-{
 }
 
 bool		is_joker_in_rack(t_game *game)
@@ -219,6 +253,3 @@ bool		is_letters_in_rack(t_game *game, char *word)
   return(false);
 }
 
-bool		is_new_connections_valid(t_game *game)
-{
-}
