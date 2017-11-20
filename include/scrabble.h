@@ -84,7 +84,7 @@ typedef struct		s_game
   int			x_wrd_p1;
   int			x_wrd_p2;
 
-
+  char			*road_word;
 }			t_game;
 
 /* game_core.c */

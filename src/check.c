@@ -117,27 +117,32 @@ bool		is_top_to_bottom(t_game *game)
 bool		is_connected(t_game *game) // http://www.word-buff.com/adding-a-tile-to-each-end-of-a-scrabble-word.html WTF ! ?
 {
   int		tmp_pos;
+  int		i = 0;
 
   if(game->is_left_to_right == true)
     {
       tmp_pos = game->x_wrd_p1;
       while(tmp_pos <= game->x_wrd_p2)
 	{
+	  game->road_word[i] = game->board[game->y_wrd_p1][tmp_pos];
 	  game->board[game->y_wrd_p1][tmp_pos] = 'X';
 	  tmp_pos++;
+	  i++;
 	}
-      printf("IS LEFT TO RIGHT CONNECT TEST START\n");
+      game->road_word[i] = '\0';
       return(true);
     }
   else
     {
       tmp_pos = game->y_wrd_p1;
-      printf("IS TOP TO BOTTOM CONNECT TEST START\n");
       while(tmp_pos <= game->y_wrd_p2)
 	{
+	  game->road_word[i] = game->board[tmp_pos][game->x_wrd_p1];
 	  game->board[tmp_pos][game->x_wrd_p1] = 'X';
 	  tmp_pos++;
+	  i++;
 	}
+      game->road_word[i] = '\0';
       return(true);
     }
   return(false);
@@ -158,6 +163,7 @@ bool		is_valid_position(t_game *game)
 
 bool		is_valid_word(t_game *game, char *word)
 {
+  printf("road word =%s\n", game->road_word);
   printf("is_valid_word word to test =%s\n", word);
   for(int i = 0; i < game->max_words_dict; i++)
     {
@@ -173,21 +179,6 @@ bool		is_valid_word(t_game *game, char *word)
 
 char		*get_letters_to_test(t_game *game, char *word)
 {
-  int		tmp_pos;
-  int		max_letters = strlen(word) - 1;
-  char		*old_words;
-
-  while(max_letters > 0)
-    {
-      if(is_left_to_right == true)
-	{
-	  //	  tmp_pos = 
-	  if(is_char(game->board[game->y_wrd_p1][tmp_pos]))
-	    {
-	      
-	    }
-	}
-    }
 
 }
 
@@ -196,10 +187,8 @@ bool		is_letter_in_rack(t_game *game, char letter)
   
 }
 
-bool		is_word_in_rack(t_game *game, char *word)
+bool		is_letters_in_rack(t_game *game, char *word)
 {
-  char		letters_to_find = get_letters_to_test(game, word);
-  
   return(false);
 }
 
