@@ -92,11 +92,11 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 
 bool		is_left_to_right(t_game *game)
 {
-  if((game->x_wrd_p1 == game->x_wrd_p2 )
-     && (game->y_wrd_p1 < game->y_wrd_p2))
+  if((game->y_wrd_p1 == game->y_wrd_p2 )
+     && (game->x_wrd_p1 < game->x_wrd_p2))
     {
       game->is_left_to_right = true;
-      printf("YES RIGHT\n");
+      printf("YES RIGHT TO LEFT\n");
       return(true);
     }
   return(false);
@@ -104,11 +104,11 @@ bool		is_left_to_right(t_game *game)
 
 bool		is_top_to_bottom(t_game *game)
 {
-  if((game->y_wrd_p1 == game->y_wrd_p2 )
-     && (game->x_wrd_p1 < game->x_wrd_p2))
+  if((game->x_wrd_p1 == game->x_wrd_p2 )
+     && (game->y_wrd_p1 < game->y_wrd_p2))
     {
       game->is_left_to_right = false; // this one or the other, ugly ?
-      printf("NO RIGHT\n");
+      printf("NO RIGHT TO LEFT\n");
       return(true);
     }
   return(false);
@@ -116,37 +116,42 @@ bool		is_top_to_bottom(t_game *game)
 
 bool		is_connected(t_game *game) // http://www.word-buff.com/adding-a-tile-to-each-end-of-a-scrabble-word.html WTF ! ?
 {
-  int		cp_y_wrd_p1 = game->y_wrd_p1;
+  int		tmp_pos;
 
   if(game->is_left_to_right == true)
     {
-      printf("IS LEFT TO RIGHT CONNECT TEST START\n");
-      while(cp_y_wrd_p1 <= game->y_wrd_p2)
+      tmp_pos = game->x_wrd_p1;
+      while(tmp_pos <= game->x_wrd_p2)
 	{
-	  game->board[cp_y_wrd_p1][game->x_wrd_p1] = 'X';
-	  cp_y_wrd_p1++;
+	  game->board[game->y_wrd_p1][tmp_pos] = 'X';
+	  tmp_pos++;
 	}
+      printf("IS LEFT TO RIGHT CONNECT TEST START\n");
       return(true);
     }
   else
     {
+      tmp_pos = game->y_wrd_p1;
       printf("IS TOP TO BOTTOM CONNECT TEST START\n");
+      while(tmp_pos <= game->y_wrd_p2)
+	{
+	  game->board[tmp_pos][game->x_wrd_p1] = 'X';
+	  tmp_pos++;
+	}
       return(true);
     }
   return(false);
 }
 
 bool		is_valid_position(t_game *game)
-{
-  
-    if( (is_left_to_right(game) || is_top_to_bottom(game)) && is_connected(game) == true)
+{  
+  if( (is_left_to_right(game) || is_top_to_bottom(game)) && is_connected(game) == true)
     {
       printf("is valid position valid\n");
       return(true);
-      }
+    }
   printf("is valid position false\n");
   return(false);
-  
   game->board[game->y_wrd_p1][game->x_wrd_p1] = '0';
   game->board[game->y_wrd_p2][game->x_wrd_p2] = '1';
 }
@@ -166,16 +171,38 @@ bool		is_valid_word(t_game *game, char *word)
   return(false);
 }
 
-bool		is_in_rack(t_game *game, char *word, int x, int y)
+char		*get_letters_to_test(t_game *game, char *word)
 {
-  char		word_cp[7];
+  int		tmp_pos;
+  int		max_letters = strlen(word) - 1;
+  char		*old_words;
 
-  strncpy(word_cp, word, strlen(word));
-  printf("word = %s\n", word);
-  printf("word cp= %s\n", word_cp);
+  while(max_letters > 0)
+    {
+      if(is_left_to_right == true)
+	{
+	  //	  tmp_pos = 
+	  if(is_char(game->board[game->y_wrd_p1][tmp_pos]))
+	    {
+	      
+	    }
+	}
+    }
+
+}
+
+bool		is_letter_in_rack(t_game *game, char letter)
+{
   
-  // WASTE
-  // WS TESA
-  printf(" is in rack false\n");
+}
+
+bool		is_word_in_rack(t_game *game, char *word)
+{
+  char		letters_to_find = get_letters_to_test(game, word);
+  
   return(false);
+}
+
+bool		is_new_connections_valid(t_game *game)
+{
 }

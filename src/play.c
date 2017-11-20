@@ -99,7 +99,7 @@ void		play_word(t_game *game, char *pos1, char *pos2)
   if(is_valid_syntax(game, pos1, pos2) &&
      is_valid_position(game) &&
      is_valid_word(game, word) &&
-     is_in_rack(game, word, pos1, pos2))
+     is_word_in_rack(game, word))
     {
       printf("word is put\n");
       game->is_turn_done = true;
