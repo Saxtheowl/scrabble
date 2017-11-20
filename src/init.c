@@ -89,6 +89,7 @@ void		init_game_memory(t_game *game) // fcking C lul
     game->dictionnary[i] = xmalloc(sizeof(**game->dictionnary) * 1); // WTF * 1 ?
   game->score = xmalloc(sizeof(*game->score) * game->amount_players);
   game->road_word = xmalloc(sizeof(*game->road_word) * game->size_board);
+  game->word_test = xmalloc(sizeof(*game->word_test) * game->size_board);
 }
 
 void		init_board(t_game *game)

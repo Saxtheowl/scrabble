@@ -95,6 +95,7 @@ void		play_word(t_game *game, char *pos1, char *pos2)
 
   printf("Enter word:\n");
   word = put_prompt();
+  strncpy(game->word_test, word, strlen(word) - 1);
   printf("play_word word to test =%s\n", word);
   if(is_valid_syntax(game, pos1, pos2) &&
      is_valid_position(game) &&

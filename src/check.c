@@ -114,7 +114,23 @@ bool		is_top_to_bottom(t_game *game)
   return(false);
 }
 
-bool		is_connected(t_game *game) // http://www.word-buff.com/adding-a-tile-to-each-end-of-a-scrabble-word.html WTF ! ?
+bool		is_connected(t_game *game)
+{
+  setup_connection(game);
+  for(int i = 0; game->road_word[i] != '\0' ; i++)
+    {
+      if(is_char(game->road_word[i]))
+	{
+	  game->road_word[i] = '\0';
+	  game->word_test[i] = '\0';
+	  return(true);
+	}
+    }
+  remove_word(game);
+  return(false);
+}
+
+void		setup_connection(t_game *game) // http://www.word-buff.com/adding-a-tile-to-each-end-of-a-scrabble-word.html WTF ! ?
 {
   int		tmp_pos;
   int		i = 0;
@@ -125,12 +141,10 @@ bool		is_connected(t_game *game) // http://www.word-buff.com/adding-a-tile-to-ea
       while(tmp_pos <= game->x_wrd_p2)
 	{
 	  game->road_word[i] = game->board[game->y_wrd_p1][tmp_pos];
-	  game->board[game->y_wrd_p1][tmp_pos] = 'X';
-	  tmp_pos++;
+	  game->board[game->y_wrd_p1][tmp_pos] = game->word_test[i];
 	  i++;
+	  tmp_pos++;
 	}
-      game->road_word[i] = '\0';
-      return(true);
     }
   else
     {
@@ -138,19 +152,16 @@ bool		is_connected(t_game *game) // http://www.word-buff.com/adding-a-tile-to-ea
       while(tmp_pos <= game->y_wrd_p2)
 	{
 	  game->road_word[i] = game->board[tmp_pos][game->x_wrd_p1];
-	  game->board[tmp_pos][game->x_wrd_p1] = 'X';
-	  tmp_pos++;
+	  game->board[tmp_pos][game->x_wrd_p1] = game->word_test[i];
 	  i++;
+	  tmp_pos++;
 	}
-      game->road_word[i] = '\0';
-      return(true);
     }
-  return(false);
 }
 
 bool		is_valid_position(t_game *game)
 {  
-  if( (is_left_to_right(game) || is_top_to_bottom(game)) && is_connected(game) == true)
+  if((is_left_to_right(game) || is_top_to_bottom(game) && is_connected(game) == true))
     {
       printf("is valid position valid\n");
       return(true);
@@ -179,16 +190,32 @@ bool		is_valid_word(t_game *game, char *word)
 
 char		*get_letters_to_test(t_game *game, char *word)
 {
+  
+}
 
+bool		is_new_words_valid(t_game *game)
+{
+}
+
+bool		is_joker_in_rack(t_game *game)
+{
+  for(int i = 0; i < MAX_LETTERS_RACK; i++)
+    {
+      if(game->racks[game->playing][i] = 'j')
+	return(true);
+    }
+  return(false);
 }
 
 bool		is_letter_in_rack(t_game *game, char letter)
 {
+  bool		is_blank_tile_present = false;
   
 }
 
 bool		is_letters_in_rack(t_game *game, char *word)
 {
+
   return(false);
 }
 
