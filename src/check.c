@@ -101,8 +101,8 @@ void		setup_connections_left_to_right(t_game *game)
       i++;
       tmp_pos++;
     }
-  game->road_word[i] = '\0';
-  game->word_test[i] = '\0';
+  //  game->road_word[i] = '\0';
+  //  game->word_test[i] = '\0';
 }
 
 void		setup_connections_top_to_bottom(t_game *game)
@@ -119,8 +119,8 @@ void		setup_connections_top_to_bottom(t_game *game)
       i++;
       tmp_pos++;
     }
-  game->road_word[i] = '\0';
-  game->word_test[i] = '\0';
+  //  game->road_word[i] = '\0';
+  //  game->word_test[i] = '\0';
 }
 
 bool		is_more_left_empty(t_game *game)
@@ -172,7 +172,11 @@ bool		is_connected_to_a_letter(t_game *game)
 	one_empty = true;
     }
   if(one_char == true && one_empty == true)
-    return(true);
+    {
+      printf("is connected to a letter true\n");
+      return(true);
+    }
+  printf("is connected to a letter false\n");
   return(false);
 }
 
@@ -222,7 +226,7 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
       if((game->is_left_to_right == true))
 	{
 	  setup_connections_left_to_right(game);
-	  if(is_more_left_empty(game) == true && is_connected_to_a_letter(game) == true && is_new_connections_left_to_right_valid(game))
+	  if(is_more_left_empty(game) == true && is_connected_to_a_letter(game))
 	    {
 	      printf("valid position true\n");
 	      return(true);
@@ -231,7 +235,7 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
       else if (game->is_left_to_right == false)
 	{
 	  setup_connections_top_to_bottom(game);
-	  if(is_more_up_empty(game) && is_connected_to_a_letter(game) && is_new_connections_top_to_bottom_valid(game));
+	  if(is_more_up_empty(game) && is_connected_to_a_letter(game))
 	  {
 	    printf("valid position true\n");
 	    return(true);
@@ -241,32 +245,58 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
   printf("valid position false\n");
   return(false);
 }
-      
-      /*
-      put_temporary_word(game);
-      if((is_connections_left_to_right_valid(game) || is_connections_top_to_bottom_valid(game)) && is_connected(game))
-	{
-	  printf(" valid position TRUE\n");
-	  return(true);
-	}
+
+bool		is_valid_new_words(t_game *game)
+{
+
+  if(game->is_left_to_right == true && is_new_connections_left_to_right_valid(game))
+    {
+      printf("is valid new words true\n");
+      return(true);
     }
-  remove_word(game);
-  printf("is valid position false\n");
-  return(false);*/
+  else if (game->is_left_to_right == false && is_new_connections_top_to_bottom_valid(game))
+    {
+      printf("is valid new words true\n");
+      return(true);
+    }
+  printf("is valid new words false\n");
+  return(false);
+
+}
+
+/*
+bool		is_valid_new_words(t_game *game)
+{
+  if (game->is_left_to_right == true && is_new_connections_left_to_right_valid(game))
+    {
+      printf("is valid new words true\n");
+      return(true);
+      {
+  else if (game->is_left_to_right == false && is_new_connections_left_to_right_valid(game))
+    {
+	printf("is valid new words true\n");
+	return(true);
+      }
+  printf("is valid new words false\n");
+  return(false);
+      }
+      }
+}
+*/
 
 bool		is_valid_word(t_game *game, char *word)
 {
-  printf("road word =%s\n", game->road_word);
+	printf("road word =%s\n", game->road_word);
   printf("is_valid_word word to test =%s\n", word);
   for(int i = 0; i < game->max_words_dict; i++)
     {
       if(strcmp_dictionnary(word, game->dictionnary[i]) == true)
 	{
-	  printf(" is valid true\n");
+	  printf(" is valid word true\n");
 	  return(true);
 	}
     }
-  printf(" is valid false\n");
+  printf(" is valid word false\n");
   return(false);
 }
 
