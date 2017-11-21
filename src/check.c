@@ -90,7 +90,7 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
   return(false);
 }
 
-bool		is_connections_left_to_right_valid(t_game *game)
+bool		setup_connections_left_to_right(t_game *game)
 {
   int		tmp_pos;
   int		i = 0;
@@ -107,7 +107,7 @@ bool		is_connections_left_to_right_valid(t_game *game)
   game->word_test[i] = '\0';
 }
 
-bool		is_connections_top_to_bottom_valid(t_game *game)
+bool		setup_connections_top_to_bottom(t_game *game)
 {
   int		tmp_pos;
   int		i = 0;
@@ -120,11 +120,10 @@ bool		is_connections_top_to_bottom_valid(t_game *game)
       i++;
       tmp_pos++;
     }
-      game->road_word[i] = '\0';
-      game->word_test[i] = '\0';
-
+  game->road_word[i] = '\0';
+  game->word_test[i] = '\0';
+  printf("ok\n");
 }
-
 
 bool		is_more_left_empty(t_game *game)
 {
@@ -143,8 +142,8 @@ bool		is_more_up_empty(t_game *game)
   int		tmp_pos = game->y_wrd_p1 - 1;
 
   //  game->board[game->y_wrd_p1][tmp_pos] = 'X';
-  /*  if(game->x_wrd_p1 == 0) USELESS ?
-      return(true);*/
+  if(game->x_wrd_p1 == 0) 
+      return(true);
    if (game->board[tmp_pos][game->x_wrd_p1] != '.')
      printf("wrong is more up empty\n");
     return(false);
@@ -153,16 +152,18 @@ bool		is_more_up_empty(t_game *game)
 
 bool		is_connected_to_a_letter(t_game *game)
 {
+  bool		one_char = false;
+  bool		one_empty = false;
   //  setup_connection(game);
   for(int i = 0; game->road_word[i] != '\0' ; i++)
     {
       if(is_char(game->road_word[i]))
-	{
-	  game->road_word[i] = '\0';
-	  game->word_test[i] = '\0';
-	  return(true);
-	}
+	one_char = true;
+      if(game->road_word[i] = '.')
+	one_empty = true;
     }
+  if(one_char == true && one_empty == true)
+    return(true);
   return(false);
 }
 
@@ -185,17 +186,35 @@ bool		is_direction_valid(t_game *game)
   return(false);
 }
 
+bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCORE ?
+{
+  
+}
+
+bool		is_new_connections_top_to_bottom_valid(t_game *game)
+{
+}
+
 bool		is_valid_position(t_game *game)
 {  
   if(is_direction_valid(game))
     {
-      if((game->is_left_to_right == true && is_connections_left_to_right_valid(game) == true && is_more_left_empty(game))
-	 || (game->is_left_to_right == false &&  is_connections_top_to_bottom_valid(game) == true) && is_more_up_empty(game))
+      if((game->is_left_to_right == true))
 	{
-	  if(is_connected_to_a_letter(game))
+	  setup_connections_left_to_right(game);
+	  if(is_more_left_empty(game) && is_connected_to_a_letter(game) && is_new_connections_left_to_right_valid(game))
 	    return(true);
 	}
+      else if (game->is_left_to_right == false)
+	{
+	  setup_connections_top_to_bottom(game);
+	  if(is_more_up_empty(game) && is_connected_to_a_letter(game) && is_new_connections_top_to_bottom_valid(game));
+	  return(true);
+	}
     }
+  printf("valid position false\n");
+  return(false);
+}
       
       /*
       put_temporary_word(game);
@@ -208,7 +227,6 @@ bool		is_valid_position(t_game *game)
   remove_word(game);
   printf("is valid position false\n");
   return(false);*/
-}
 
 bool		is_valid_word(t_game *game, char *word)
 {
