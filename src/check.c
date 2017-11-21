@@ -199,18 +199,61 @@ bool		is_direction_valid(t_game *game)
   return(false);
 }
 
+bool		is_new_connections_valid_right(t_game *game, int i_cp)
+{
+  int		i = i_cp;
+  int		x_cp = game->x_wrd_p1 + i;
+  int		y_cp = game->y_wrd_p1;
+
+
+  return(false);
+}
+
+
+bool		is_new_connections_valid_left(t_game *game, int i_cp)
+{
+  int		i = i_cp;
+  int		x_cp = game->x_wrd_p1 + i;
+  int		y_cp = game->y_wrd_p1;
+
+  return(false);
+}
+
+
+bool		is_new_connections_valid_down(t_game *game, int i_cp)
+{
+  int		i = i_cp;
+  int		x_cp = game->x_wrd_p1 + i;
+  int		y_cp = game->y_wrd_p1;
+
+  return(false);
+}
+
+bool		is_new_connections_valid_up(t_game *game, int i_cp)
+{
+  int		i = i_cp;
+  int		x_cp = game->x_wrd_p1 + i;
+  int		y_cp = game->y_wrd_p1;
+  
+  return(false);
+}
+
 bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCORE ?
-{/*
-  int		tmp_pos;
+{
+  int		x_cp;
   int		i = 0;
 
-  tmp_pos = game->x_wrd_p1;
-  while(tmp_pos <= game->x_wrd_p2)
+  x_cp = game->x_wrd_p1;
+  while(x_cp <= game->x_wrd_p2)
     {
-      if(game->road_word[i] = '.'
+      if(game->road_word[i] == '.')
 	{
-	  tmp_pos++;
-	  }*/
+	  if(
+	    return(false);
+	}
+      i++;
+      x_cp++;
+    }
   return(true);
 }
 
@@ -286,7 +329,7 @@ bool		is_valid_new_words(t_game *game)
 
 bool		is_valid_word(t_game *game, char *word)
 {
-	printf("road word =%s\n", game->road_word);
+  printf("road word =%s\n", game->road_word);
   printf("is_valid_word word to test =%s\n", word);
   for(int i = 0; i < game->max_words_dict; i++)
     {
