@@ -195,7 +195,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 {
 }
 
-bool		is_valid_position(t_game *game)
+bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGHT OF THE GIVEN POSITION ?
 {  
   if(is_direction_valid(game))
     {
