@@ -56,10 +56,8 @@ bool		is_syntax_number_valid(t_game *game, char *pos, bool is_pos1)
       tmp_pos[0] = pos[1];
       tmp_pos[1] = pos[2];
       tmp_pos[2] = '\0';
-      //      printf("tmp pos =%s\n", tmp_pos);
       dat_number = atoi(tmp_pos);
     }
-  //  printf("ok2\n");
   if(dat_number <= game->size_board)
     {
       get_proper_coord_word(game, pos, is_pos1, dat_number);
@@ -90,7 +88,7 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
   return(false);
 }
 
-bool		setup_connections_left_to_right(t_game *game)
+void		setup_connections_left_to_right(t_game *game)
 {
   int		tmp_pos;
   int		i = 0;
@@ -107,10 +105,11 @@ bool		setup_connections_left_to_right(t_game *game)
   game->word_test[i] = '\0';
 }
 
-bool		setup_connections_top_to_bottom(t_game *game)
+void		setup_connections_top_to_bottom(t_game *game)
 {
   int		tmp_pos;
   int		i = 0;
+
   
   tmp_pos = game->y_wrd_p1;
   while(tmp_pos <= game->y_wrd_p2)
@@ -122,31 +121,40 @@ bool		setup_connections_top_to_bottom(t_game *game)
     }
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
-  printf("ok\n");
 }
 
 bool		is_more_left_empty(t_game *game)
 {
   int		tmp_pos = game->x_wrd_p1 - 1;
 
-  //  game->board[game->y_wrd_p1][tmp_pos] = 'X';
   if(game->y_wrd_p1 == 0)
-    return(true);
-   if (game->board[game->y_wrd_p1][tmp_pos] != '.')
-     printf("wrong is more left empty\n");
-    return(false);
+    {
+      printf("true is more left empty\n");
+      return(true);
+    }
+  if (game->board[game->y_wrd_p1][tmp_pos] != '.')
+    {
+      printf("wrong is more left empty\n");
+      return(false);
+    }
+  return(true);
 }
 
 bool		is_more_up_empty(t_game *game)
 {
   int		tmp_pos = game->y_wrd_p1 - 1;
-
-  //  game->board[game->y_wrd_p1][tmp_pos] = 'X';
-  if(game->x_wrd_p1 == 0) 
+  
+  if(game->x_wrd_p1 == 0)
+    {
+      printf("true is more up empty\n");
       return(true);
-   if (game->board[tmp_pos][game->x_wrd_p1] != '.')
-     printf("wrong is more up empty\n");
-    return(false);
+    }
+  if (game->board[tmp_pos][game->x_wrd_p1] != '.')
+    {
+      printf("wrong is more up empty\n");
+      return(false);
+    }
+  return(true);
 
 }
 
@@ -154,12 +162,13 @@ bool		is_connected_to_a_letter(t_game *game)
 {
   bool		one_char = false;
   bool		one_empty = false;
-  //  setup_connection(game);
+
+  
   for(int i = 0; game->road_word[i] != '\0' ; i++)
     {
       if(is_char(game->road_word[i]))
 	one_char = true;
-      if(game->road_word[i] = '.')
+      if(game->road_word[i] == '.')
 	one_empty = true;
     }
   if(one_char == true && one_empty == true)
@@ -173,26 +182,37 @@ bool		is_direction_valid(t_game *game)
      && (game->x_wrd_p1 < game->x_wrd_p2))
     {
       game->is_left_to_right = true;
-      printf("YES RIGHT TO LEFT\n");
+      printf("YES LEFT TO RIGHT\n");
       return(true);
     }
   else if((game->x_wrd_p1 == game->x_wrd_p2 )
      && (game->y_wrd_p1 < game->y_wrd_p2))
     {
       game->is_left_to_right = false; // this one or the other, ugly ?
-      printf("NO RIGHT TO LEFT\n");
+      printf("NO LEFT TO RIGHT\n");
       return(true);
     }
   return(false);
 }
 
 bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCORE ?
-{
-  
+{/*
+  int		tmp_pos;
+  int		i = 0;
+
+  tmp_pos = game->x_wrd_p1;
+  while(tmp_pos <= game->x_wrd_p2)
+    {
+      if(game->road_word[i] = '.'
+	{
+	  tmp_pos++;
+	  }*/
+  return(true);
 }
 
 bool		is_new_connections_top_to_bottom_valid(t_game *game)
 {
+  return(true);
 }
 
 bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGHT OF THE GIVEN POSITION ?
@@ -202,14 +222,20 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
       if((game->is_left_to_right == true))
 	{
 	  setup_connections_left_to_right(game);
-	  if(is_more_left_empty(game) && is_connected_to_a_letter(game) && is_new_connections_left_to_right_valid(game))
-	    return(true);
+	  if(is_more_left_empty(game) == true && is_connected_to_a_letter(game) == true && is_new_connections_left_to_right_valid(game))
+	    {
+	      printf("valid position true\n");
+	      return(true);
+	    }
 	}
       else if (game->is_left_to_right == false)
 	{
 	  setup_connections_top_to_bottom(game);
 	  if(is_more_up_empty(game) && is_connected_to_a_letter(game) && is_new_connections_top_to_bottom_valid(game));
-	  return(true);
+	  {
+	    printf("valid position true\n");
+	    return(true);
+	  }
 	}
     }
   printf("valid position false\n");
