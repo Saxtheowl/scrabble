@@ -241,15 +241,28 @@ bool		is_new_connections_valid_up(t_game *game, int i_cp)
 bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCORE ?
 {
   int		x_cp;
+  int		y_cp_up;
+  int		y_cp_down;
   int		i = 0;
 
+  y_cp_up = game->y_wrd_p1 + 1;
+  y_cp_down = game->y_wrd_p1 - 1;
   x_cp = game->x_wrd_p1;
   while(x_cp <= game->x_wrd_p2)
     {
       if(game->road_word[i] == '.')
 	{
-	  if(
-	    return(false);
+	  if(game->board[y_cp_down][x_cp] != '.')
+	    {
+	      printf("ok down\n");
+	      game->board[y_cp_down][x_cp] = 'X';
+	    }
+	  if(game->board[y_cp_up][x_cp] != '.')
+	    {
+	      printf("ok down\n");
+	      game->board[y_cp_up][x_cp] = 'X';
+	    }
+
 	}
       i++;
       x_cp++;
