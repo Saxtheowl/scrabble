@@ -245,24 +245,23 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
   int		y_cp_down;
   int		i = 0;
 
-  y_cp_up = game->y_wrd_p1 + 1;
-  y_cp_down = game->y_wrd_p1 - 1;
+  y_cp_down = game->y_wrd_p1 + 1;
+  y_cp_up = game->y_wrd_p1 - 1;
   x_cp = game->x_wrd_p1;
   while(x_cp <= game->x_wrd_p2)
     {
       if(game->road_word[i] == '.')
 	{
+	  if(game->board[y_cp_up][x_cp] != '.')
+	    {
+	      printf("ok up\n");
+	      game->board[y_cp_up][x_cp] = 'X';
+	    }	  
 	  if(game->board[y_cp_down][x_cp] != '.')
 	    {
 	      printf("ok down\n");
 	      game->board[y_cp_down][x_cp] = 'X';
 	    }
-	  if(game->board[y_cp_up][x_cp] != '.')
-	    {
-	      printf("ok down\n");
-	      game->board[y_cp_up][x_cp] = 'X';
-	    }
-
 	}
       i++;
       x_cp++;
@@ -282,7 +281,7 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
       if((game->is_left_to_right == true))
 	{
 	  setup_connections_left_to_right(game);
-	  if(is_more_left_empty(game) == true && is_connected_to_a_letter(game))
+	  if(is_more_left_empty(game) == true) //&& is_connected_to_a_letter(game))
 	    {
 	      printf("valid position true\n");
 	      return(true);
@@ -291,7 +290,7 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
       else if (game->is_left_to_right == false)
 	{
 	  setup_connections_top_to_bottom(game);
-	  if(is_more_up_empty(game) && is_connected_to_a_letter(game))
+	  if(is_more_up_empty(game)) //&& is_connected_to_a_letter(game))
 	  {
 	    printf("valid position true\n");
 	    return(true);
