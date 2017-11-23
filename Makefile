@@ -20,6 +20,7 @@ SRCS		=	$(DIR_SRC)main.c \
 			$(DIR_SRC)check.c \
 			$(DIR_SRC)play.c \
 			$(DIR_SRC)board.c \
+			$(DIR_SRC)rack.c \
 			$(DIR_UTIL)util.c \
 			$(DIR_UTIL)xfunc.c
 

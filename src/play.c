@@ -1,14 +1,7 @@
 #include "../include/scrabble.h"
 
-void		fulfill_all_racks(t_game *);
 int		who_play_first(t_game *);
 void		make_play(t_game *);
-
-void		fulfill_all_racks(t_game *game)
-{
-  for(int i = 0; i < game->amount_players; i++)
-    fulfill_rack(game, i, 7);
-}
 
 int		who_play_first(t_game *game)
 {
@@ -99,7 +92,7 @@ void		play_word(t_game *game, char *pos1, char *pos2)
   printf("play_word word to test =%s\n", word);
   if(is_valid_syntax(game, pos1, pos2) &&
      is_valid_position(game) &&
-     //     is_valid_word(game, word) &&
+     is_valid_word(game, word) &&
      is_valid_new_words(game) &&
      is_letters_in_rack(game, word))
     {
