@@ -68,10 +68,12 @@ int		strcmp_dictionnary(char *s1, char *s2)
 {
   int		i;
 
+  printf("s1=%s\n", s1);
+  printf("s2=%s\n", s2);
   i = 0;
   while ((s1[i] == s2[i]) && (s1[i] != '\0') && (s2[i] != '\0'))
     i++;
-  if(s1[i] == '\0') //s2[i] == '\n')
+  if(s1[i] == '\0' && s2[i] == '\n') //s2[i] == '\n')
     return(true);
   return(false);
   

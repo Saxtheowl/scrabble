@@ -229,24 +229,54 @@ bool		is_new_connections_valid_down(t_game *game, int i_cp)
   return(false);
 }
 
-bool		is_new_connections_up_valid(t_game *game, int x_cp, int i_cp)
+bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up)
 {
   char		*tmp_new_word;
   int		y_cp = game->y_wrd_p1;
   int		i = 0;
 
   tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
-  while(y_cp > 0 && game->board[y_cp][x_cp] != '.')
-    y_cp--;
+  game->board[y_cp][x_cp] = 'X';
+  if(flag_up == true)
+    {
+      while(y_cp > 0 && game->board[y_cp][x_cp] != '.')
+	y_cp--;
+      y_cp++;
+    }
   while(y_cp < game->size_board && game->board[y_cp][x_cp] != '.')
     {
       tmp_new_word[i] = game->board[y_cp][x_cp];
       y_cp++;
       i++;
     }
+  tmp_new_word[i] = '\0';
   printf(" is new connections up valid new word =%s\n", tmp_new_word);
-  return(true);
+  if(is_valid_word(game, tmp_new_word))
+    return(true);
+  else
+    return(false);
 }
+
+bool		is_new_connections_down_valid(t_game *game, int x_cp)
+{
+  char		*tmp_new_word;
+  int		y_cp = game->y_wrd_p1;
+  int		i = 0;
+
+  tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
+  while(y_cp < game->size_board && game->board[y_cp][x_cp] != '.')
+    {
+      tmp_new_word[i] = game->board[y_cp][x_cp];
+      y_cp++;
+      i++;
+    }
+  printf(" is new connections down valid new word =%s\n", tmp_new_word);
+  if(is_valid_word(game, tmp_new_word))
+     return(true);
+  else
+    return(false);
+}
+
 
 bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCORE ?
 {
@@ -254,7 +284,6 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
   int		y_cp_up;
   int		y_cp_down;
   int		i = 0;
-
 
   y_cp_down = game->y_wrd_p1 + 1;
   y_cp_up = game->y_wrd_p1 - 1;
@@ -266,16 +295,19 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 	  if(game->board[y_cp_up][x_cp] != '.')
 	    {
 	      printf("ok up START is new connections up \n");
-	      if(is_new_connections_up_valid(game, x_cp, i))
+	      if(search_new_connections_up_or_down(game, x_cp, 1))
 		return(true);
 	      else
 		return(false);
 	    }	  
 	  if(game->board[y_cp_down][x_cp] != '.')
 	    {
-	      printf("ok down\n");
-	      game->board[y_cp_down][x_cp] = 'X';
-	    }
+	      printf("ok down START is new connections up \n");
+	      if(search_new_connections_up_or_down(game, x_cp, 0))
+		return(true);
+	      else
+		return(false);
+	    } 
 	}
       i++;
       x_cp++;
@@ -332,26 +364,6 @@ bool		is_valid_new_words(t_game *game)
   return(false);
 
 }
-
-/*
-bool		is_valid_new_words(t_game *game)
-{
-  if (game->is_left_to_right == true && is_new_connections_left_to_right_valid(game))
-    {
-      printf("is valid new words true\n");
-      return(true);
-      {
-  else if (game->is_left_to_right == false && is_new_connections_left_to_right_valid(game))
-    {
-	printf("is valid new words true\n");
-	return(true);
-      }
-  printf("is valid new words false\n");
-  return(false);
-      }
-      }
-}
-*/
 
 bool		is_valid_word(t_game *game, char *word)
 {
