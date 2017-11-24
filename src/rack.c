@@ -1,8 +1,50 @@
 #include "../include/scrabble.h"
 
+char		give_rdm_letter(t_game *game)
+{
+  char		letter = ' ';
+  int		rd;
+
+  while(letter == ' ')
+    {
+      rd = rand() % (game->max_letters);
+      //      printf("rd = %d\n", rd);
+      letter = game->letters_list[rd];
+      //      printf("new char = %c\n", letter);
+    }
+  game->letters_list[rd] = ' ';
+  return(letter);
+}
+
+char		get_rdm_letter(t_game *game, int player)
+{
+  char		letter = ' ';
+  int		rd;
+
+  while(letter == ' ')
+    {
+      rd = rand() % game->max_letters;
+      letter = game->letters_list[rd];
+    }
+  return(letter);
+}
+
+bool		remove_letter_in_rack(t_game *game, char letter)
+{
+  for(int i = 0; i < MAX_LETTERS_RACK; i++)
+    {
+      if(game->racks[game->playing][i] == letter)
+	{
+	  game->racks[game->playing][i] = ' ';
+	  return(true);
+	}
+    }
+  printf("no letter %c found \n", letter);
+  return(false);
+}
+
 void		put_letter_in_rack(t_game *game, char letter)
 {
-  
 }
 
 void		fulfill_rack(t_game *game, int player, int amount)
