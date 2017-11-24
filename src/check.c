@@ -405,30 +405,38 @@ bool		is_joker_in_rack(t_game *game)
 {
   for(int i = 0; i < MAX_LETTERS_RACK; i++)
     {
-      if(game->racks[game->playing][i] = 'j')
+      if(game->racks[game->playing][i] == 'j')
 	return(true);
     }
   return(false);
 }
 
-bool		is_letter_in_rack(t_game *game, char letter)
-{
-}
-
 bool		is_letters_in_rack(t_game *game, char *word)
 {
-  bool		is_blank_tile_present = false;
+  char		*tmp_retired_letters;
   int		i = 0;
   int		f = 0;
 
-  /*  while(game->road_word[i] != '\0')
+  printf("is letter in rack start\n");
+  while(game->road_word[i] != '\0')
     {
       if(game->road_word[i] == '.')
 	{
-	  while(rack[f])
+	  if(remove_letter_in_rack(game, game->word_test[i]) == true)
+	    tmp_retired_letters[f] = game->word_test[i];
+	  else
+	    {
+	      while(f > 0)
+		{
+		  put_letter_in_rack(game, tmp_retired_letters[f]);
+		  f--;
+		}
+	      printf("letters in rack false\n");
+	      return(false);
+	    }
 	}
       i++;
     }
-    return(false);*/
+  return(true);
 }
 
