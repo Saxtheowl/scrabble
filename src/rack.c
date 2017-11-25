@@ -50,6 +50,7 @@ void		put_letter_in_rack(t_game *game, char letter)
       if(game->racks[game->playing][i] == ' ')
 	game->racks[game->playing][i] = letter;
     }
+    printf("letter = %c\n", letter);
 }
 
 void		fulfill_rack(t_game *game, int player, int amount)

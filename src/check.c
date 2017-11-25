@@ -101,8 +101,8 @@ void		setup_connections_left_to_right(t_game *game)
       i++;
       tmp_pos++;
     }
-  //  game->road_word[i] = '\0';
-  //  game->word_test[i] = '\0';
+  game->road_word[i] = '\0';
+  game->word_test[i] = '\0';
 }
 
 void		setup_connections_top_to_bottom(t_game *game)
@@ -119,8 +119,8 @@ void		setup_connections_top_to_bottom(t_game *game)
       i++;
       tmp_pos++;
     }
-  //  game->road_word[i] = '\0';
-  //  game->word_test[i] = '\0';
+  game->road_word[i] = '\0';
+  game->word_test[i] = '\0';
 }
 
 bool		is_more_left_empty(t_game *game)
@@ -364,7 +364,6 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
 
 bool		is_valid_new_words(t_game *game)
 {
-
   if(game->is_left_to_right == true && is_new_connections_left_to_right_valid(game))
     {
       printf("is valid new words true\n");
@@ -377,7 +376,6 @@ bool		is_valid_new_words(t_game *game)
     }
   printf("is valid new words false\n");
   return(false);
-
 }
 
 bool		is_valid_word(t_game *game, char *word)
@@ -396,11 +394,6 @@ bool		is_valid_word(t_game *game, char *word)
   return(false);
 }
 
-char		*get_letters_to_test(t_game *game, char *word)
-{
-  
-}
-
 bool		is_joker_in_rack(t_game *game)
 {
   for(int i = 0; i < MAX_LETTERS_RACK; i++)
@@ -417,26 +410,28 @@ bool		is_letters_in_rack(t_game *game, char *word)
   int		i = 0;
   int		f = 0;
 
+  tmp_retired_letters = xmalloc(sizeof(*tmp_retired_letters) * MAX_LETTERS_RACK);
   printf("is letter in rack start\n");
   while(game->road_word[i] != '\0')
     {
       if(game->road_word[i] == '.')
 	{
 	  if(remove_letter_in_rack(game, game->word_test[i]) == true)
-	    tmp_retired_letters[f] = game->word_test[i];
+	    {
+	      tmp_retired_letters[f] = game->word_test[i];
+	      f++;
+	    }
 	  else
 	    {
-	      while(f > 0)
-		{
-		  put_letter_in_rack(game, tmp_retired_letters[f]);
-		  f--;
-		}
+	      tmp_retired_letters[f] = '\0';
+	      for(f = 0; tmp_retired_letters[f] != '\0'; f++)
+		put_letter_in_rack(game, tmp_retired_letters[f]);
 	      printf("letters in rack false\n");
 	      return(false);
 	    }
 	}
       i++;
     }
+  printf("letters in rack true\n");
   return(true);
 }
-

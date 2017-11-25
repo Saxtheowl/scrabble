@@ -36,8 +36,13 @@ void		print_players_info(t_game *game)
 	printf("%s\n", game->racks[i]);
       else
 	{
-	  for(int y = 0; game->racks[i][y] != '\0' && is_char(game->racks[i][y]) ; y++)
-	    printf("@");
+	  for(int y = 0; game->racks[i][y] != '\0'; y++)
+	    {
+	      if(game->racks[i][y] != ' ')
+		printf("@");
+	      else
+		printf(" ");
+	    }
 	  printf("\n");
 	}
     }

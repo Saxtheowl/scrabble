@@ -75,11 +75,11 @@ void		make_play(t_game *game)
       game->is_first_time == false;
     }
   update_score(game, game->playing);
-  game->racks[game->playing][2] = ' ';
+  /*  game->racks[game->playing][2] = ' ';
   game->racks[game->playing][3] = ' ';
   game->nb_letters[game->playing]--;
-  game->nb_letters[game->playing]--;
-  fulfill_rack(game, game->playing, 2);
+  game->nb_letters[game->playing]--;*/
+  //  fulfill_rack(game, game->playing, 2);
 }
 
 void		play_word(t_game *game, char *pos1, char *pos2)
@@ -96,9 +96,11 @@ void		play_word(t_game *game, char *pos1, char *pos2)
      is_valid_new_words(game) &&
      is_letters_in_rack(game, game->word_test))
     {
-      printf("word is put\n");
       game->is_turn_done = true;
+      printf("word is put\n");
     }
+  else
+    remove_word(game);
 }   
 
 void		play_pass(t_game *game)
