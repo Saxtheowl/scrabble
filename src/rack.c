@@ -36,6 +36,7 @@ bool		remove_letter_in_rack(t_game *game, char letter)
       if(game->racks[game->playing][i] == letter)
 	{
 	  game->racks[game->playing][i] = ' ';
+	  game->nb_letters[game->playing]--;
 	  return(true);
 	}
     }
@@ -74,4 +75,23 @@ void		fulfill_all_racks(t_game *game)
 {
   for(int i = 0; i < game->amount_players; i++)
     fulfill_rack(game, i, 7);
+}
+
+void		put_letter_back_in_list(t_game *game, char letter)
+{
+  int		i = 0;
+  
+  while(game->letters_list[i] != ' ')
+    i++;
+  game->letters_list[i] = letter;
+  game->letters_left++;
+}
+
+void		put_letters_back_in_rack(t_game *game, char *retired_letters)
+{
+  for(int i = 0; retired_letters[i] != '\0'; i++)
+    {
+      game->nb_letters[game->playing]++;
+      put_letter_in_rack(game, retired_letters[i]);
+    }
 }

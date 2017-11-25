@@ -221,7 +221,10 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up)
     }
   tmp_new_word[i] = '\0'; // useless ?
   if(is_valid_word(game, tmp_new_word))
-    return(true);
+    {
+      game->is_side_word = true;
+      return(true);
+    }
   else
     return(false);
 }
@@ -299,7 +302,10 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up)
     }
   tmp_new_word[i] = '\0';
   if(is_valid_word(game, tmp_new_word))
-    return(true);
+    {
+      game->is_side_word = true;
+      return(true);
+    }
   else
     return(false);
 }
@@ -380,6 +386,7 @@ bool		is_valid_new_words(t_game *game)
 
 bool		is_valid_word(t_game *game, char *word)
 {
+  word = to_upper(word);
   printf("road word =%s\n", game->road_word);
   printf("is_valid_word word to test =%s\n", word);
   for(int i = 0; i < game->max_words_dict; i++)
@@ -398,7 +405,7 @@ bool		is_joker_in_rack(t_game *game)
 {
   for(int i = 0; i < MAX_LETTERS_RACK; i++)
     {
-      if(game->racks[game->playing][i] == 'j')
+      if(game->racks[game->playing][i] == '?')
 	return(true);
     }
   return(false);
@@ -423,9 +430,7 @@ bool		is_letters_in_rack(t_game *game, char *word)
 	    }
 	  else
 	    {
-	      tmp_retired_letters[f] = '\0';
-	      for(f = 0; tmp_retired_letters[f] != '\0'; f++)
-		put_letter_in_rack(game, tmp_retired_letters[f]);
+	      put_letters_back_in_rack(game, tmp_retired_letters);
 	      printf("letters in rack false\n");
 	      return(false);
 	    }

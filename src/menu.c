@@ -36,6 +36,8 @@ void		menu_play(t_game *game)
       printf("1. Play word\n");
       printf("2. Change letter(s)\n");
       printf("3. Pass turn\n");
+      if(is_joker_in_rack(game))
+	printf("4. transform joker\n");
       choice = put_prompt();
       nb = atoi(choice);
     }
@@ -52,7 +54,18 @@ void		menu_play(t_game *game)
       if (game->is_turn_done == false)
 	printf("wrong syntax or wrong position or wrong word or bad coordinate\n");
     }
-  if(nb == 3)
+  else if(nb == 2)
+    {
+      char		*letters;
+      
+      printf("Enter the letters you want to change\n");
+      letters = put_prompt();
+      play_exchange_letters(game, letters);
+    }
+  else if(nb == 3)
     play_pass(game);
   //  getchar();
+  else if(is_joker_in_rack(game) && nb == 4)
+    {
+    }
 }

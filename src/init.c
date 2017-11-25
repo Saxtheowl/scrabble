@@ -24,6 +24,7 @@ void		init_game(t_game *game)
   game->letters_left = game->max_letters;
   game->is_first_time = true;
   game->is_turn_done = false;
+  game->is_side_word = false;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
   for(int i = 0; i < game->amount_players; i++)
@@ -69,7 +70,7 @@ void		init_pre_letters(t_game *game)
     }
 }
 
-void		init_game_memory(t_game *game) // fcking C lul
+void		init_game_memory(t_game *game) // fcking C language lul
 {
   game->board = xmalloc(sizeof(*game->board) * game->size_board);
     game->s_board = xmalloc(sizeof(*game->s_board) * game->size_board);
