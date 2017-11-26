@@ -18,7 +18,7 @@ int		who_play_first(t_game *game)
       printf("Player %d pick a %c\n", i, tmp);
       if(tmp == '?')
 	{
-	  if(blank_flag == true) // in the rare case of double case :-O
+	  if(blank_flag == true) // in the rare case of double blank :-O
 	    {
 	      i = 0;
 	      blank_owner = 0;
@@ -132,10 +132,13 @@ void		play_pass(t_game *game)
 
 void		transform_joker(t_game *game, char *letter)
 {
-  for(int i = 0; i < MAX_LETTERS_RACK; i++)
+  if(letter[0] >= 'a' && letter[0] <= 'z')
     {
-      if(game->racks[game->playing][i] == '?')
-	game->racks[game->playing][i] = letter[0];
+      for(int i = 0; i < MAX_LETTERS_RACK; i++)
+	{
+	  if(game->racks[game->playing][i] == '?')
+	    game->racks[game->playing][i] = letter[0];
+	}
     }
   
 }

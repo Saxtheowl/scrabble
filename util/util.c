@@ -63,7 +63,13 @@ bool		is_char(char c)
   printf("\nc == %c\n", c);
   return(false);
 }
-
+/*
+char		to_lower(char letter)
+{
+  if(str[i] >= 'A' && str[i] <= 'Z')
+    str[i] = str[i] + 32 ;
+}
+*/
 char		*to_upper(char *str)
 {
   for(int i = 0; str[i] != '\0'; i++)

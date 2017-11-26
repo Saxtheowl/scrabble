@@ -4,6 +4,8 @@ DIR_SRC		=	src/
 
 DIR_UTIL	=	util/
 
+DIR_AI		=	src/ai/
+
 CC		=	gcc
 
 RM		=	rm -f
@@ -21,7 +23,8 @@ SRCS		=	$(DIR_SRC)main.c \
 			$(DIR_SRC)board.c \
 			$(DIR_SRC)rack.c \
 			$(DIR_UTIL)util.c \
-			$(DIR_UTIL)xfunc.c
+			$(DIR_UTIL)xfunc.c \
+			$(DIR_AI)word.c
 
 OBJS		=	$(SRCS:.c=.o)
 

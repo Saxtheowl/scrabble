@@ -31,8 +31,7 @@ void		menu_play(t_game *game)
   int		nb = 0;
   
   printf("\n( Player %d ) OPTIONS : \n", game->playing);
-  //  while(nb != 1 && nb != 2 && nb != 3 && nb != 4 ) // lol
-  while(nb >= 0 && nb < 4)
+  while(nb != 1 && nb != 2 && nb != 3 && nb != 4 ) // lol
     {
       printf("1. Play word\n");
       printf("2. Change letter(s)\n");
@@ -65,13 +64,12 @@ void		menu_play(t_game *game)
     }
   else if(nb == 3)
     play_pass(game);
-  //  getchar();
   else if(is_joker_in_rack(game) && nb == 4)
     {
-      char		*letters;
+      char		*letter;
 
       printf("Enter the letter you want\n"); 
-      letters = put_prompt();
-      transform_joker(game, letters);
+      letter = put_prompt();
+      transform_joker(game, letter);
     }
 }
