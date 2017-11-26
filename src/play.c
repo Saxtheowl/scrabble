@@ -121,8 +121,7 @@ void		play_exchange_letters(t_game *game, char *letters)
 	  put_letter_back_in_list(game, letters[i]);
 	  fulfill_rack(game, game->playing, 1);
 	  game->is_turn_done = true;
-	}
-      
+	}      
     }
 }
 
@@ -131,7 +130,12 @@ void		play_pass(t_game *game)
   game->is_turn_done = true;
 }
 
-void		transform_joker(t_game *game, char letter)
+void		transform_joker(t_game *game, char *letter)
 {
+  for(int i = 0; i < MAX_LETTERS_RACK; i++)
+    {
+      if(game->racks[game->playing][i] == '?')
+	game->racks[game->playing][i] = letter[0];
+    }
   
 }
