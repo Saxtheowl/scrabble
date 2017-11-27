@@ -64,19 +64,9 @@ void		make_play(t_game *game)
     }
   system("clear");
   game->is_turn_done = false;
-  if(game->is_first_time == true)
-    {
-      //      system("clear");
-      game->is_first_time == false;
-    }
-  /*  game->racks[game->playing][2] = ' ';
-  game->racks[game->playing][3] = ' ';
-  game->nb_letters[game->playing]--;
-  game->nb_letters[game->playing]--;*/
-  //  fulfill_rack(game, game->playing, 2);
 }
 
-void		update_round(t_game *game)
+void		update_turn(t_game *game)
 {
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
@@ -97,20 +87,32 @@ void		play_word(t_game *game, char *pos1, char *pos2)
      (is_connected_to_a_letter(game) || game->is_side_word == true) &&
      is_valid_word(game, game->word_test) &&
      is_valid_new_words(game) &&
-     is_letters_in_rack(game, game->word_test))
+     is_letters_in_rack(game, game->word_test) &&
+     is_first_turn_valid(game))
     {
+#ifdef DEBUG_FLAG
       printf("missing letters:%d\n", MAX_LETTERS_RACK - game->nb_letters[game->playing]);
-      update_round(game);
+#endif
+      update_turn(game);
+#ifdef DEBUG_FLAG
       printf("word is put\n");
+#endif
     }
   else
-    remove_word(game);
+    {
+      remove_word(game);
+#ifdef DEBUG_FLAG
+      printf("word is not put\n");
+#endif
+    }
 }   
 
 void		play_exchange_letters(t_game *game, char *letters)
 {
   for(int i = 0; letters[i] != '\0'; i++)
     {
+      if(is_lower_char(letters[i]))
+	 letters[i] = '?';
       if(remove_letter_in_rack(game, letters[i]))
 	{
 	  put_letter_back_in_list(game, letters[i]);
@@ -134,5 +136,6 @@ void		transform_joker(t_game *game, char *letter)
 	  if(game->racks[game->playing][i] == '?')
 	    game->racks[game->playing][i] = letter[0];
 	}
-    }  
+    }
+  game->is_turn_done = true;
 }

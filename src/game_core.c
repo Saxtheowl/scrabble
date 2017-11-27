@@ -27,8 +27,6 @@ void		start_game(t_game *game)
       make_play(game); // like he play a 2 letter word
       game->playing++;
       if(game->playing == game->amount_players)
-	{
-	  game->playing = 0;
-	}
+	game->playing = 0;
     }      
 }

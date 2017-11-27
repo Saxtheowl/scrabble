@@ -45,7 +45,7 @@ typedef struct		s_game
   bool			is_skip_menu;
   bool			is_super_mod;
   bool			is_duplicate_mod;
-  bool			is_first_time;
+  bool			is_first_turn;
   bool			is_turn_done;
   bool			is_left_to_right;
   bool			is_side_word;

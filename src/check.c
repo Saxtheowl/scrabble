@@ -160,21 +160,25 @@ bool		is_connected_to_a_letter(t_game *game)
   bool		one_char = false;
   bool		one_empty = false;
 
-  
-  for(int i = 0; game->road_word[i] != '\0' ; i++)
+  if(game->is_first_turn == false)
     {
-      if(is_char(game->road_word[i]))
-	one_char = true;
-      if(game->road_word[i] == '.')
-	one_empty = true;
+      for(int i = 0; game->road_word[i] != '\0' ; i++)
+	{
+	  if(is_char(game->road_word[i]))
+	    one_char = true;
+	  if(game->road_word[i] == '.')
+	    one_empty = true;
+	}
+      if(one_char == true && one_empty == true)
+	{
+	  printf("is connected to a letter true\n");
+	  return(true);
+	}
+      printf("is connected to a letter false\n");
+      return(false);
     }
-  if(one_char == true && one_empty == true)
-    {
-      printf("is connected to a letter true\n");
-      return(true);
-    }
-  printf("is connected to a letter false\n");
-  return(false);
+  else
+    return(true);
 }
 
 bool		is_direction_valid(t_game *game)
@@ -246,8 +250,6 @@ bool		is_new_connections_down_valid(t_game *game, int x_cp)
   else
     return(false);
 }
-
-
 
 bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCORE ?
 {
@@ -446,4 +448,16 @@ bool		is_letters_in_rack(t_game *game, char *word)
     }
   printf("letters in rack true\n");
   return(true);
+}
+
+bool		is_first_turn_valid(t_game *game)
+{
+  if(game->is_first_turn == true)
+    {
+      if(game->board[(game->size_board / 2) + 1][(game->size_board / 2) + 1] != '.' &&
+	 strlen(game->word_test) > 1)
+	{
+	  game->is_first_turn = false;
+	}
+    }
 }

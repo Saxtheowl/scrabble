@@ -53,14 +53,17 @@ bool		is_num_char(char c)
   return(false);
 }
 
+bool		is_lower_char(char c)
+{
+  if (c >= 'a' && c <= 'z')
+    return(true);
+  return(false);
+}
+
 bool		is_char(char c)
 {
   if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-    {
-      //      printf("\nc == %c\n", c);
-      return(true);
-    }
-  printf("\nc == %c\n", c);
+    return(true);
   return(false);
 }
 /*

@@ -22,7 +22,7 @@ void		init_game(t_game *game)
   init_letters_point(game);
   init_dictionnary(game);
   game->letters_left = game->max_letters;
-  game->is_first_time = true;
+  game->is_first_turn = true;
   game->is_turn_done = false;
   game->is_side_word = false;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
@@ -62,6 +62,7 @@ void		init_pre_letters(t_game *game)
       game->max_letters = MAX_LETTERS_FR;
       game->letters_list_path =  "files/letters_list_fr";
       game->letters_points_path = "files/letters_points_fr";
+      game->dictionnary_path = "files/dictionnary_fr_tmp";
     }
   if(game->is_super_mod == true)
     {
