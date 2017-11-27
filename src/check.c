@@ -103,6 +103,7 @@ void		setup_connections_left_to_right(t_game *game)
       i++;
       tmp_pos++;
     }
+  game->is_word_put = true;
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
 }
@@ -117,10 +118,16 @@ void		setup_connections_top_to_bottom(t_game *game)
   while(tmp_pos <= game->y_wrd_p2)
     {
       game->road_word[i] = game->board[tmp_pos][game->x_wrd_p1];
+      if(is_upper_char(game->word_test[i]) && is_lower_char(game->road_word[i]))
+	{
+	  printf("ok3334\n");
+	  game->board[tmp_pos][game->x_wrd_p1] = to_lower_solo(game->word_test[i]);
+	}
       game->board[tmp_pos][game->x_wrd_p1] = game->word_test[i];
       i++;
       tmp_pos++;
     }
+  game->is_word_put = true;
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
 }
@@ -134,7 +141,7 @@ bool		is_more_left_empty(t_game *game)
       printf("true is more left empty\n");
       return(true);
     }
-  if (game->board[game->y_wrd_p1][tmp_pos] != '.')
+  if (is_char(game->board[game->y_wrd_p1][tmp_pos]))
     {
       printf("wrong is more left empty\n");
       return(false);
@@ -151,7 +158,7 @@ bool		is_more_up_empty(t_game *game)
       printf("true is more up empty\n");
       return(true);
     }
-  if (game->board[tmp_pos][game->x_wrd_p1] != '.')
+  if (is_char(game->board[tmp_pos][game->x_wrd_p1]))
     {
       printf("wrong is more up empty\n");
       return(false);
@@ -170,7 +177,7 @@ bool		is_connected_to_a_letter(t_game *game)
 	{
 	  if(is_char(game->road_word[i]))
 	    one_char = true;
-	  if(game->road_word[i] == '.')
+	  if(!(is_char(game->road_word[i])))
 	    one_empty = true;
 	}
       if(one_char == true && one_empty == true)
@@ -217,11 +224,11 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up)
   tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
   if(flag_up == true)
     {
-      while(y_cp > 0 && game->board[y_cp][x_cp] != '.')
+      while(y_cp > 0 && is_char(game->board[y_cp][x_cp]))
 	y_cp--;
       y_cp++; // UGLY, TO FIX
     }
-  while(y_cp < game->size_board && game->board[y_cp][x_cp] != '.')
+  while(y_cp < game->size_board && is_char(game->board[y_cp][x_cp]))
     {
       tmp_new_word[i] = game->board[y_cp][x_cp];
       y_cp++;
@@ -243,7 +250,7 @@ bool		is_new_connections_down_valid(t_game *game, int x_cp)
   int		y_cp = game->y_wrd_p1;
   int		i = 0;
 
-  while(y_cp < game->size_board && game->board[y_cp][x_cp] != '.')
+  while(y_cp < game->size_board && is_char(game->board[y_cp][x_cp]))
     {
       tmp_new_word[i] = game->board[y_cp][x_cp];
       y_cp++;
@@ -264,9 +271,9 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 
   while(x_cp <= game->x_wrd_p2)
     {
-      if(game->road_word[i] == '.')
+      if(!(is_char(game->road_word[i])))
 	{
-	  if(y_cp_up >= 0 && game->board[y_cp_up][x_cp] != '.')
+	  if(y_cp_up >= 0 && is_char(game->board[y_cp_up][x_cp]))
 	    {
 #ifdef DEBUG_FLAG
 	      printf("ok up START is new connections up \n");
@@ -274,7 +281,7 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 	      if(!(search_new_connections_up_or_down(game, x_cp, 1)))
 		return(false);
 	    }	  
-	  if(game->board[y_cp_down][x_cp] != '.')
+	  if(is_char(game->board[y_cp_down][x_cp]))
 	    {
 #ifdef DEBUG_FLAG
 	      printf("ok down START is new connections up \n");
@@ -299,11 +306,11 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up)
   //  game->board[y_cp][x_cp] = 'X';
   if(flag_up == true)
     {
-      while(x_cp > 0 && game->board[y_cp][x_cp] != '.')
+      while(x_cp > 0 && is_char(game->board[y_cp][x_cp]))
 	x_cp--;
       x_cp++; // TO FIX
     }
-  while(x_cp < game->size_board && game->board[y_cp][x_cp] != '.')
+  while(x_cp < game->size_board && is_char(game->board[y_cp][x_cp]))
     {
       tmp_new_word[i] = game->board[y_cp][x_cp];
       x_cp++;
@@ -329,9 +336,9 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 
   while(y_cp <= game->y_wrd_p2)
     {
-      if(game->road_word[i] == '.')
+      if(!(is_char(game->road_word[i])))
 	{
-	  if(x_cp_left >= 0 && game->board[y_cp][x_cp_left] != '.')
+	  if(x_cp_left >= 0 && is_char(game->board[y_cp][x_cp_left]))
 	    {
 #ifdef DEBUG_FLAG
 	      printf("ok left START is new connections left \n");
@@ -339,7 +346,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 	      if(!(search_new_connections_left_or_right(game, y_cp, 1)))	 
 		return(false);
 	    }	  
-	  if(game->board[y_cp][x_cp_right] != '.')
+	  if(is_char(game->board[y_cp][x_cp_right]))
 	    {
 #ifdef DEBUG_FLAG
 	      printf("ok right START is new connections right \n");
@@ -434,7 +441,7 @@ bool		is_letters_in_rack(t_game *game, char *word)
   printf("is letter in rack start\n");
   while(game->road_word[i] != '\0')
     {
-      if(game->road_word[i] == '.')
+      if(!(is_char(game->road_word[i])))
 	{
 	  if(remove_letter_in_rack(game, game->word_test[i]) == true)
 	    {
@@ -458,8 +465,14 @@ bool		is_first_turn_valid(t_game *game)
 {
   if(game->is_first_turn == true)
     {
-      if(game->board[(game->size_board / 2) + 1][(game->size_board / 2) + 1] != '.' &&
+      printf("first turn TRUE\n");
+      printf("middle =%d\n", (game->size_board / 2) );
+      if(is_char(game->board[(game->size_board / 2)][(game->size_board / 2)]) &&
 	 strlen(game->word_test) > 1)
-	game->is_first_turn = false;
+	{
+	  game->is_first_turn = false;
+	  return(true);
+	}
     }
+  return(true);
 }

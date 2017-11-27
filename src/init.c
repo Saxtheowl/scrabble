@@ -24,6 +24,7 @@ void		init_game(t_game *game)
   game->letters_left = game->max_letters;
   game->is_first_turn = true;
   game->is_turn_done = false;
+  game->is_word_put = false;
   game->is_side_word = false;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
@@ -37,7 +38,7 @@ void		init_pre_board(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "files/standard_board";
+      game->board_path = "files/standard_board_t1";
       game->size_board = 15;
     }
   else
@@ -63,6 +64,7 @@ void		init_pre_letters(t_game *game)
       game->letters_list_path =  "files/letters_list_fr";
       game->letters_points_path = "files/letters_points_fr";
       game->dictionnary_path = "files/dictionnary_fr_tmp";
+      game->max_words_dict = MAX_WORDS_DICT_FR;
     }
   if(game->is_super_mod == true)
     {

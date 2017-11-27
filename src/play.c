@@ -50,10 +50,6 @@ int		who_play_first(t_game *game)
     return(to_return);
 }
 
-void		reset_turn(t_game *game)
-{
-}
-
 void		make_play(t_game *game)
 {
   while(game->is_turn_done == false)
@@ -87,19 +83,17 @@ void		play_word(t_game *game, char *pos1, char *pos2)
      (is_connected_to_a_letter(game) || game->is_side_word == true) &&
      is_valid_word(game, game->word_test) &&
      is_valid_new_words(game) &&
-     is_letters_in_rack(game, game->word_test) &&
-     is_first_turn_valid(game))
+     is_first_turn_valid(game) &&
+     is_letters_in_rack(game, game->word_test))
     {
-#ifdef DEBUG_FLAG
-      printf("missing letters:%d\n", MAX_LETTERS_RACK - game->nb_letters[game->playing]);
-#endif
       update_turn(game);
 #ifdef DEBUG_FLAG
       printf("word is put\n");
 #endif
     }
-  else
+  else if(game->is_word_put == true)
     {
+      printf("lul\n");
       remove_word(game);
 #ifdef DEBUG_FLAG
       printf("word is not put\n");

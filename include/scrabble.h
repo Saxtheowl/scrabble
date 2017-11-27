@@ -19,6 +19,7 @@
 #define MAX_LETTERS_RACK 7
 
 #define	MAX_WORDS_DICT_EN 172805
+#define	MAX_WORDS_DICT_FR 130557
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -49,6 +50,7 @@ typedef struct		s_game
   bool			is_turn_done;
   bool			is_left_to_right;
   bool			is_side_word;
+  bool			is_word_put;
   int			language;
   int			amount_players;
   int			*players_type;
