@@ -50,11 +50,6 @@ int		who_play_first(t_game *game)
     return(to_return);
 }
 
-void		update_score(t_game *game, int player)
-{
-  game->score[player] = 999999;
-}
-
 void		reset_turn(t_game *game)
 {
 }
@@ -139,6 +134,5 @@ void		transform_joker(t_game *game, char *letter)
 	  if(game->racks[game->playing][i] == '?')
 	    game->racks[game->playing][i] = letter[0];
 	}
-    }
-  
+    }  
 }

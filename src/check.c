@@ -25,9 +25,6 @@ bool		is_syntax_letter_valid(t_game *game, char *pos)
 
 void		get_proper_coord_word(t_game *game, char *pos, bool is_pos1, int dat_number)
 {
-  printf("pos =%s\n", pos); 
-  printf("is_pos1 = %d\n", is_pos1);
-  printf("dat_number = %d\n", dat_number);
   if(is_pos1 == true)
     {
       game->x_wrd_p1 = get_number_from_letter(pos[0]);
@@ -69,19 +66,19 @@ bool		is_syntax_number_valid(t_game *game, char *pos, bool is_pos1)
 
 bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 {
-  printf("is_valid_syntax pos =%s\n", pos1);
   if(is_syntax_letter_valid(game, pos1)
      && is_syntax_number_valid(game, pos1, 1)
      && is_syntax_letter_valid(game, pos2)
      && is_syntax_number_valid(game, pos2, 0)
      )
     {
+#ifdef DEBUG_FLAG
       printf("y word pos1:%d\n", game->y_wrd_p1);
       printf("y word pos2:%d\n", game->y_wrd_p2);
       printf("x word pos1:%d\n", game->x_wrd_p1);
-      printf("x word pos2:%d\n", game->x_wrd_p2);
-      
+      printf("x word pos2:%d\n", game->x_wrd_p2);     
       printf("syntax valid\n");
+#endif      
       return(true);
     }
   printf("syntax wrong\n");
@@ -186,14 +183,18 @@ bool		is_direction_valid(t_game *game)
      && (game->x_wrd_p1 < game->x_wrd_p2))
     {
       game->is_left_to_right = true;
+#ifdef DEBUG_FLAG
       printf("YES LEFT TO RIGHT\n");
+#endif
       return(true);
     }
   else if((game->x_wrd_p1 == game->x_wrd_p2 )
      && (game->y_wrd_p1 < game->y_wrd_p2))
     {
       game->is_left_to_right = false; // this one or the other, ugly ?
+#ifdef DEBUG_FLAG
       printf("NO LEFT TO RIGHT\n");
+#endif
       return(true);
     }
   return(false);
@@ -206,7 +207,6 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up)
   int		i = 0;
 
   tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
-  //  game->board[y_cp][x_cp] = 'X';
   if(flag_up == true)
     {
       while(y_cp > 0 && game->board[y_cp][x_cp] != '.')
@@ -241,9 +241,8 @@ bool		is_new_connections_down_valid(t_game *game, int x_cp)
       y_cp++;
       i++;
     }
-  printf(" is new connections down valid new word =%s\n", tmp_new_word);
   if(is_valid_word(game, tmp_new_word))
-     return(true);
+    return(true);
   else
     return(false);
 }
@@ -263,13 +262,17 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 	{
 	  if(y_cp_up >= 0 && game->board[y_cp_up][x_cp] != '.')
 	    {
+#ifdef DEBUG_FLAG
 	      printf("ok up START is new connections up \n");
+#endif
 	      if(!(search_new_connections_up_or_down(game, x_cp, 1)))
 		return(false);
 	    }	  
 	  if(game->board[y_cp_down][x_cp] != '.')
 	    {
+#ifdef DEBUG_FLAG
 	      printf("ok down START is new connections up \n");
+#endif
 	      if(!(search_new_connections_up_or_down(game, x_cp, 0)))
 		return(false);
 	    } 
@@ -324,13 +327,17 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 	{
 	  if(x_cp_left >= 0 && game->board[y_cp][x_cp_left] != '.')
 	    {
+#ifdef DEBUG_FLAG
 	      printf("ok left START is new connections left \n");
+#endif
 	      if(!(search_new_connections_left_or_right(game, y_cp, 1)))	 
 		return(false);
 	    }	  
 	  if(game->board[y_cp][x_cp_right] != '.')
 	    {
+#ifdef DEBUG_FLAG
 	      printf("ok right START is new connections right \n");
+#endif
 	      if(!(search_new_connections_left_or_right(game, y_cp, 0)))
 		return(false);
 	    } 

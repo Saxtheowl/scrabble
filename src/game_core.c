@@ -12,8 +12,6 @@ void		start_game(t_game *game)
   printf("type p 2 = %d\n", game->players_type[1]);
   printf("type p 3 = %d\n", game->players_type[2]);
   printf("board is :\n");
-  /*  for(int i = 0; i < 21; i++)
-      printf("%s", game->board[i]);*/
   for(int i = 0; game->board[i] != NULL; i++)
     printf("%s", game->board[i]);
   printf("%s\n", game->letters_list);
@@ -24,7 +22,6 @@ void		start_game(t_game *game)
 
   game->playing = who_play_first(game);
   fulfill_all_racks(game);
-  //  game->playing = 0;
   while(game->letters_left > 0 || test_cant_play(game) == false)
     {
       make_play(game); // like he play a 2 letter word
@@ -33,7 +30,5 @@ void		start_game(t_game *game)
 	{
 	  game->playing = 0;
 	}
-      //      else
-      //	game->playing++;
     }      
 }
