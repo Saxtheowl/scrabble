@@ -127,14 +127,14 @@ void		play_pass(t_game *game)
   game->is_turn_done = true;
 }
 
-void		transform_joker(t_game *game, char *letter)
+void		transform_joker(t_game *game, char *letters)
 {
-  if(letter[0] >= 'a' && letter[0] <= 'z')
+  if(letters[0] >= 'a' && letters[0] <= 'z')
     {
       for(int i = 0; i < MAX_LETTERS_RACK; i++)
 	{
 	  if(game->racks[game->playing][i] == '?')
-	    game->racks[game->playing][i] = letter[0];
+	    game->racks[game->playing][i] = letters[0];
 	}
     }
   game->is_turn_done = true;

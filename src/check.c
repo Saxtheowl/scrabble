@@ -12,7 +12,6 @@ bool		test_cant_play(t_game *game)
 bool		is_syntax_letter_valid(t_game *game, char *pos)
 {
   char		max_letter;
-
   
   if(game->is_super_mod == true)
     max_letter = 'U';
@@ -94,7 +93,13 @@ void		setup_connections_left_to_right(t_game *game)
   while(tmp_pos <= game->x_wrd_p2)
     {
       game->road_word[i] = game->board[game->y_wrd_p1][tmp_pos];
-      game->board[game->y_wrd_p1][tmp_pos] = game->word_test[i];
+      if(is_upper_char(game->word_test[i]) && is_lower_char(game->road_word[i]))
+	{
+	  printf("ok3333\n");
+	  game->board[game->y_wrd_p1][tmp_pos] = to_lower_solo(game->word_test[i]);
+	}
+      else
+	game->board[game->y_wrd_p1][tmp_pos] = game->word_test[i];
       i++;
       tmp_pos++;
     }
@@ -152,7 +157,6 @@ bool		is_more_up_empty(t_game *game)
       return(false);
     }
   return(true);
-
 }
 
 bool		is_connected_to_a_letter(t_game *game)
@@ -456,8 +460,6 @@ bool		is_first_turn_valid(t_game *game)
     {
       if(game->board[(game->size_board / 2) + 1][(game->size_board / 2) + 1] != '.' &&
 	 strlen(game->word_test) > 1)
-	{
-	  game->is_first_turn = false;
-	}
+	game->is_first_turn = false;
     }
 }

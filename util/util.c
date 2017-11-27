@@ -60,19 +60,36 @@ bool		is_lower_char(char c)
   return(false);
 }
 
+bool		is_upper_char(char c)
+{
+  if (c >= 'A' && c <= 'Z')
+    return(true);
+  return(false);
+}
+
+
 bool		is_char(char c)
 {
   if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
     return(true);
   return(false);
 }
-/*
-char		to_lower(char letter)
+
+char		to_lower_solo(char letter)
 {
-  if(str[i] >= 'A' && str[i] <= 'Z')
-    str[i] = str[i] + 32 ;
+  if(letter >= 'A' && letter <= 'Z')
+    letter = letter + 32 ;
+  return(letter);
 }
-*/
+
+
+char		to_upper_solo(char letter)
+{
+  if(letter >= 'a' && letter <= 'z')
+    letter = letter - 32;
+  return(letter);
+}
+
 char		*to_upper(char *str)
 {
   for(int i = 0; str[i] != '\0'; i++)
