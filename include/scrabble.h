@@ -74,6 +74,7 @@ typedef struct		s_game
 
   int			*nb_letters;
   char			**racks;
+  int			pre_score;
   int			*score;
 
   int			playing;

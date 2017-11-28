@@ -112,7 +112,6 @@ void		setup_connections_top_to_bottom(t_game *game)
 {
   int		tmp_pos;
   int		i = 0;
-
   
   tmp_pos = game->y_wrd_p1;
   while(tmp_pos <= game->y_wrd_p2)

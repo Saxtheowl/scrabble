@@ -2,10 +2,10 @@
 
 int		who_play_first(t_game *);
 void		make_play(t_game *);
-
+/*
 int		who_play_first(t_game *game)
 {
-  char		biggest = 'Z';
+  char		lowest = 'Z';
   char		tmp;
   int		to_return;
   int		i = 0;
@@ -23,7 +23,7 @@ int		who_play_first(t_game *game)
 	      i = 0;
 	      blank_owner = 0;
 	      tmp = 'Z';
-	      biggest = 'Z';
+	      lowest = 'Z';
 	      blank_flag = false;
 	    }
 	  else
@@ -33,21 +33,27 @@ int		who_play_first(t_game *game)
 	    }
 	  //	  printf("Player %d has a %c (blank tile) and begin\n", i, tmp);
 	}
-      if(tmp < biggest)
+      if(tmp < lowest)
 	{
 	  to_return = i;
-	  biggest = tmp;
+	  lowest = tmp;
 	}
       i++;
     }
-  printf("Player %d has a %c and is first\n", to_return, biggest);
+  printf("Player %d has a %c and so is first\n", to_return, lowest);
   if(blank_flag == true)
     {
-      printf("Player %d has a '?' (blank tile) and then begin\n", blank_owner);
+      printf("Player %d has a '?' (blank tile) and so is first\n", blank_owner);
       return(blank_owner);
     }
   else
     return(to_return);
+}
+*/
+
+int		who_play_first(t_game *game) // fuck this lets do a standard random, it is the same
+{
+  return(rand() % (game->amount_players));
 }
 
 void		make_play(t_game *game)
