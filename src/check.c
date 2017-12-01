@@ -65,11 +65,12 @@ bool		is_syntax_number_valid(t_game *game, char *pos, bool is_pos1)
 
 bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 {
-  if(is_syntax_letter_valid(game, pos1)
-     && is_syntax_number_valid(game, pos1, 1)
-     && is_syntax_letter_valid(game, pos2)
-     && is_syntax_number_valid(game, pos2, 0)
-     )
+  if(//strlen(pos1) > 2 &&
+     //     strlen(pos2) > 2 &&
+     is_syntax_letter_valid(game, pos1) &&
+     is_syntax_number_valid(game, pos1, 1) &&
+     is_syntax_letter_valid(game, pos2) &&
+     is_syntax_number_valid(game, pos2, 0))
     {
 #ifdef DEBUG_FLAG
       printf("y word pos1:%d\n", game->y_wrd_p1);

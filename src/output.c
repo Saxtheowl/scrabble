@@ -34,7 +34,6 @@ void		color_print_inner_board(char *line, int nb_to_copy)
     {
       if(is_num_char(line[i]))
 	printf(ANSI_COLOR_BLUE"%c"ANSI_COLOR_RESET, line[i]);
-
       else
 	printf("%c", line[i]);
     }
