@@ -223,7 +223,7 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up)
   tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
   if(flag_up == true)
     {
-      while(y_cp > 0 && is_char(game->board[y_cp][x_cp]))
+      while(y_cp >= 0 && is_char(game->board[y_cp][x_cp]))
 	y_cp--;
       y_cp++; // UGLY, TO FIX
     }
@@ -462,16 +462,18 @@ bool		is_letters_in_rack(t_game *game, char *word)
 
 bool		is_first_turn_valid(t_game *game)
 {
+  printf("first turn valid start\n");
   if(game->is_first_turn == true)
     {
-      printf("first turn TRUE\n");
       printf("middle =%d\n", (game->size_board / 2) );
       if(is_char(game->board[(game->size_board / 2)][(game->size_board / 2)]) &&
 	 strlen(game->word_test) > 1)
 	{
+	  printf("the char is=%c\n", game->board[(game->size_board / 2)][(game->size_board / 2)]);
 	  game->is_first_turn = false;
 	  return(true);
 	}
     }
-  return(true);
+  printf("first turn valid false\n");
+  return(false);
 }

@@ -38,7 +38,7 @@ void		init_pre_board(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "files/standard_board_t1";
+      game->board_path = "files/standard_board_t4";
       game->size_board = 15;
     }
   else
@@ -53,7 +53,7 @@ void		init_pre_letters(t_game *game)
   if(game->language == ENGLISH)
     {
       game->max_letters = MAX_LETTERS_EN;
-      game->letters_list_path =  "files/letters_list_en_t1";
+      game->letters_list_path =  "files/letters_list_en";
       game->letters_points_path = "files/letters_points_en";
       game->dictionnary_path = "files/dictionnary_en_tmp";
       game->max_words_dict = MAX_WORDS_DICT_EN;

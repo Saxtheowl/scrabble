@@ -20,11 +20,24 @@ void		print_board(t_game *game)
       if(nb_lines < 10)
 	printf(" ");
       printf(ANSI_COLOR_RED"%d"ANSI_COLOR_RESET, nb_lines);
-      printf("%.*s", game->size_board, game->board[i]);
+      color_print_inner_board(game->board[i], game->size_board);
+      //printf("%.*s", 15, game->board[i]);
       printf(ANSI_COLOR_RED"%d\n"ANSI_COLOR_RESET, nb_lines);
       nb_lines++;
     }
   printf(ANSI_COLOR_RED"%s"ANSI_COLOR_RESET, alphabet_tmp);
+}
+
+void		color_print_inner_board(char *line, int nb_to_copy)
+{
+  for(int i = 0; i < nb_to_copy; i++)
+    {
+      if(is_num_char(line[i]))
+	printf(ANSI_COLOR_BLUE"%c"ANSI_COLOR_RESET, line[i]);
+
+      else
+	printf("%c", line[i]);
+    }
 }
 
 void		print_players_info(t_game *game)

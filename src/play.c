@@ -73,6 +73,7 @@ void		update_turn(t_game *game)
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
   game->is_side_word = false;
+  game->is_word_put = false;
   update_score(game, game->playing);
 }
 
@@ -134,8 +135,12 @@ void		transform_joker(t_game *game, char *letters)
       for(int i = 0; i < MAX_LETTERS_RACK; i++)
 	{
 	  if(game->racks[game->playing][i] == '?')
-	    game->racks[game->playing][i] = letters[0];
+	    {
+	      game->racks[game->playing][i] = letters[0];
+	      game->is_turn_done = true;
+	    }
+	  else
+	    game->is_turn_done = false;
 	}
     }
-  game->is_turn_done = true;
 }
