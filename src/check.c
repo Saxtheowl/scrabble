@@ -81,6 +81,8 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 #endif      
       return(true);
     }
+  if(game->is_word_put == true)
+    printf("is word put %d\n", game->is_word_put);
   printf("syntax wrong\n");
   return(false);
 }
@@ -390,17 +392,15 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
 
 bool		is_valid_new_words(t_game *game)
 {
-  if(game->is_left_to_right == true && is_new_connections_left_to_right_valid(game))
+  if((game->is_left_to_right == true && is_new_connections_left_to_right_valid(game)) ||
+     game->is_left_to_right == false && is_new_connections_top_to_bottom_valid(game))
     {
       printf("is valid new words true\n");
-      return(true);
-    }
-  else if (game->is_left_to_right == false && is_new_connections_top_to_bottom_valid(game))
-    {
-      printf("is valid new words true\n");
+      remove_word(game);
       return(true);
     }
   printf("is valid new words false\n");
+  remove_word(game);
   return(false);
 }
 
@@ -475,6 +475,7 @@ bool		is_first_turn_valid(t_game *game)
 	  return(true);
 	}
     }
+  printf("the char is=%c\n", game->board[(game->size_board / 2)][(game->size_board / 2)]);
   printf("first turn valid false\n");
   return(false);
 }
