@@ -68,6 +68,11 @@ void		make_play(t_game *game)
   game->is_turn_done = false;
 }
 
+void		reset_turn(t_game *game)
+{
+
+}
+
 void		update_turn(t_game *game)
 {
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
@@ -83,12 +88,12 @@ void		play_word(t_game *game, char *pos1, char *pos2)
   printf("Enter word:\n");
   word = put_prompt();
   strncpy(game->word_test, word, strlen(word) - 1);
+  game->word_test[strlen(word) -1] = '\0';
   printf("play_word word to test =%s\n", word);
   if(is_valid_syntax(game, pos1, pos2) &&
      //     is_valid_word(game, game->word_test) &&
      is_valid_position(game) &&
      is_valid_new_words(game) &&
-     is_letters_in_rack(game, game->word_test) &&
      (is_connected_to_a_letter(game) || game->is_side_word == true) &&
      is_first_turn_valid(game) &&
      is_letters_in_rack(game, game->word_test))

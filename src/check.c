@@ -153,7 +153,8 @@ bool		is_more_left_empty(t_game *game)
 bool		is_more_up_empty(t_game *game)
 {
   int		tmp_pos = game->y_wrd_p1 - 1;
-  
+
+  printf("ok111\n");
   if(game->x_wrd_p1 == 0)
     {
       printf("true is more up empty\n");
@@ -196,12 +197,13 @@ bool		is_connected_to_a_letter(t_game *game)
 bool		is_first_turn_valid(t_game *game)
 {
   int		middle = game->size_board / 2;
+  int		lenght = strlen(game->word_test) - 1;
 
   if(game->is_first_turn == true)
     {
       if(game->is_left_to_right == true &&
 	 game->y_wrd_p1 == middle &&
-	 game->y_wrd_p2 == middle)
+	 game->y_wrd_p2 == middle && game->x_wrd_p2 
 	{
 	  printf("is first turn true\n");
 	  game->is_first_turn = false;
@@ -215,9 +217,11 @@ bool		is_first_turn_valid(t_game *game)
 	  game->is_first_turn = false;
 	  return(true);
 	}
+      else
+	return(false);
     }
   printf("is first turn false\n");
-  return(false);
+  return(true);
     
 }
 
@@ -419,20 +423,22 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
       if((game->is_left_to_right == true))
 	{
 	  setup_connections_left_to_right(game);
-	  if(is_more_left_empty(game) == true) //&& is_connected_to_a_letter(game))
+	  printf("valid position true\n");
+	  if(is_first_turn_valid(game))
 	    {
-	      printf("valid position true\n");
-	      return(true);
+		  printf("valid position true\n");
+		  return(true);
 	    }
 	}
       else if (game->is_left_to_right == false)
 	{
 	  setup_connections_top_to_bottom(game);
-	  if(is_more_up_empty(game)) //&& is_connected_to_a_letter(game))
-	  {
-	    printf("valid position true\n");
-	    return(true);
-	  }
+	  if(is_first_turn_valid(game))
+	    {
+	      printf("valid position true\n");
+	      return(true);
+	    }
+
 	}
     }
   printf("valid position false\n");
