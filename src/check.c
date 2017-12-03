@@ -128,7 +128,7 @@ void		setup_connections_top_to_bottom(t_game *game)
       i++;
       tmp_pos++;
     }
-  printf("ok556\n");
+  printf("road word1=%s\n", game->road_word);
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
 }
@@ -232,8 +232,9 @@ bool		is_lenght_valid(t_game *game)
 
   printf("l =%d\n", game->x_wrd_p2 - game->x_wrd_p1);
   printf("t =%d\n", game->y_wrd_p2 - game->y_wrd_p1);
-  printf("word test=%d\n", strlen(game->word_test) - 1);
-  if(road_word_lenght == strlen(game->word_test))
+  printf("word test=%s\n", game->word_test);
+  printf("word test lenght=%d\n", strlen(game->word_test) - 1);
+  if(road_word_lenght == strlen(game->word_test) - 1)
     {
       printf("is word lenght true\n");
       return(true);
@@ -485,6 +486,7 @@ bool		is_letters_in_rack(t_game *game, char *word)
   int		i = 0;
   int		f = 0;
 
+  printf("road word=%s\n", game->road_word);
   tmp_retired_letters = xmalloc(sizeof(*tmp_retired_letters) * MAX_LETTERS_RACK);
   printf("is letter in rack start\n");
   while(game->road_word[i] != '\0')
