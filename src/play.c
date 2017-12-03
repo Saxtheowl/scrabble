@@ -73,7 +73,6 @@ void		update_turn(t_game *game)
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
   game->is_side_word = false;
-  game->is_word_put = false;
   update_score(game, game->playing);
 }
 
@@ -86,7 +85,7 @@ void		play_word(t_game *game, char *pos1, char *pos2)
   strncpy(game->word_test, word, strlen(word) - 1);
   printf("play_word word to test =%s\n", word);
   if(is_valid_syntax(game, pos1, pos2) &&
-     is_valid_word(game, game->word_test) &&
+     //     is_valid_word(game, game->word_test) &&
      is_letters_in_rack(game, game->word_test) &&
      //     is_first_turn_valid(game) &&
      is_valid_position(game) &&

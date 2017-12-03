@@ -81,8 +81,6 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 #endif      
       return(true);
     }
-  if(game->is_word_put == true)
-    printf("is word put %d\n", game->is_word_put);
   printf("syntax wrong\n");
   return(false);
 }
@@ -106,7 +104,6 @@ void		setup_connections_left_to_right(t_game *game)
       i++;
       tmp_pos++;
     }
-  game->is_word_put = true;
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
 }
@@ -115,10 +112,12 @@ void		setup_connections_top_to_bottom(t_game *game)
 {
   int		tmp_pos;
   int		i = 0;
-  
+
+  printf("start setup connections top to bottom\n");
   tmp_pos = game->y_wrd_p1;
   while(tmp_pos <= game->y_wrd_p2)
     {
+      printf("ok555\n");
       game->road_word[i] = game->board[tmp_pos][game->x_wrd_p1];
       if(is_upper_char(game->word_test[i]) && is_lower_char(game->road_word[i]))
 	{
@@ -129,7 +128,7 @@ void		setup_connections_top_to_bottom(t_game *game)
       i++;
       tmp_pos++;
     }
-  game->is_word_put = true;
+  printf("ok556\n");
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
 }
@@ -192,6 +191,55 @@ bool		is_connected_to_a_letter(t_game *game)
     }
   else
     return(true);
+}
+
+bool		is_first_turn_valid(t_game *game)
+{
+  int		middle = game->size_board / 2;
+
+  if(game->is_first_turn == true)
+    {
+      if(game->is_left_to_right == true &&
+	 game->y_wrd_p1 == middle &&
+	 game->y_wrd_p2 == middle)
+	{
+	  printf("is first turn true\n");
+	  game->is_first_turn = false;
+	  return(true);
+	}
+      else if (game->is_left_to_right == false &&
+	       game->x_wrd_p1 == middle &&
+	       game->x_wrd_p2 == middle)
+	{
+	  printf("is first turn true\n");
+	  game->is_first_turn = false;
+	  return(true);
+	}
+    }
+  printf("is first turn false\n");
+  return(false);
+    
+}
+
+bool		is_lenght_valid(t_game *game)
+{
+  int road_word_lenght = 0;
+
+  if(game->is_left_to_right == true)
+    road_word_lenght = game->x_wrd_p2 - game->x_wrd_p1;
+  else
+    road_word_lenght = game->y_wrd_p2 - game->y_wrd_p1;
+
+  printf("l =%d\n", game->x_wrd_p2 - game->x_wrd_p1);
+  printf("t =%d\n", game->y_wrd_p2 - game->y_wrd_p1);
+  printf("word test=%d\n", strlen(game->word_test) - 1);
+  if(road_word_lenght == strlen(game->word_test))
+    {
+      printf("is word lenght true\n");
+      return(true);
+    }
+  printf("is word lenght false\n");
+  return(false);
 }
 
 bool		is_direction_valid(t_game *game)
@@ -365,7 +413,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 
 bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGHT OF THE GIVEN POSITION ?
 {  
-  if(is_direction_valid(game))
+  if(is_direction_valid(game) && is_lenght_valid(game))
     {
       if((game->is_left_to_right == true))
 	{
@@ -460,7 +508,7 @@ bool		is_letters_in_rack(t_game *game, char *word)
   printf("letters in rack true\n");
   return(true);
 }
-
+/*
 bool		is_first_turn_valid(t_game *game)
 {
   printf("first turn valid start\n");
@@ -479,3 +527,4 @@ bool		is_first_turn_valid(t_game *game)
   printf("first turn valid false\n");
   return(false);
 }
+*/
