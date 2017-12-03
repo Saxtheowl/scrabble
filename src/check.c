@@ -203,7 +203,7 @@ bool		is_first_turn_valid(t_game *game)
     {
       if(game->is_left_to_right == true &&
 	 game->y_wrd_p1 == middle &&
-	 game->y_wrd_p2 == middle && game->x_wrd_p2 
+	 game->y_wrd_p2 == middle)
 	{
 	  printf("is first turn true\n");
 	  game->is_first_turn = false;
