@@ -225,6 +225,10 @@ bool		is_first_turn_valid(t_game *game)
     
 }
 
+void		test()
+{
+}
+
 bool		is_lenght_valid(t_game *game)
 {
   int road_word_lenght = 0;
