@@ -1,4 +1,11 @@
 ?
 
+- check overwrite on new words
 - remove enum for the info on each letters
-
+- add intern AI
+- add extern AI
+- proper readme.md with gif
+- add capability of config the game with argv ( number of players, type of game, mod, etc... )
+- add option of launching the game with multiple phrase that will appear in racks like "saultcvaa" (salutcava)
+- add option writing all info of the game on txt
+- add duplicate mod

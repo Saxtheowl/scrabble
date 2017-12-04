@@ -25,6 +25,7 @@ void		init_game(t_game *game)
   game->is_first_turn = true;
   game->is_turn_done = false;
   game->is_side_word = false;
+  game->is_letter_middle = false;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
   for(int i = 0; i < game->amount_players; i++)

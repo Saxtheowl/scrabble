@@ -194,33 +194,23 @@ bool		is_connected_to_a_letter(t_game *game)
     return(true);
 }
 
-bool		is_first_turn_valid(t_game *game)
+bool		is_valid_first_turn(t_game *game)
 {
-  int		middle = game->size_board / 2;
-  int		lenght = strlen(game->word_test) - 1;
-
   if(game->is_first_turn == true)
     {
-      if(game->is_left_to_right == true &&
-	 game->y_wrd_p1 == middle &&
-	 game->y_wrd_p2 == middle)
-	{
-	  printf("is first turn true\n");
-	  game->is_first_turn = false;
-	  return(true);
-	}
-      else if (game->is_left_to_right == false &&
-	       game->x_wrd_p1 == middle &&
-	       game->x_wrd_p2 == middle)
+      if(game->is_letter_middle == true) // UGLY
 	{
 	  printf("is first turn true\n");
 	  game->is_first_turn = false;
 	  return(true);
 	}
       else
-	return(false);
+	{
+	  printf("is first turn false\n");
+	  return(false);
+	}
     }
-  printf("is first turn false\n");
+  printf("is first turn not needed\n");
   return(true);
     
 }
@@ -428,21 +418,13 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
 	{
 	  setup_connections_left_to_right(game);
 	  printf("valid position true\n");
-	  if(is_first_turn_valid(game))
-	    {
-		  printf("valid position true\n");
-		  return(true);
-	    }
+	  return(true);
 	}
       else if (game->is_left_to_right == false)
 	{
 	  setup_connections_top_to_bottom(game);
-	  if(is_first_turn_valid(game))
-	    {
-	      printf("valid position true\n");
-	      return(true);
-	    }
-
+	  printf("valid position true\n");
+	  return(true);
 	}
     }
   printf("valid position false\n");
@@ -455,6 +437,8 @@ bool		is_valid_new_words(t_game *game)
      game->is_left_to_right == false && is_new_connections_top_to_bottom_valid(game))
     {
       printf("is valid new words true\n");
+      if(is_char(game->board[(game->size_board / 2)][(game->size_board / 2)]))
+	game->is_letter_middle = true;
       remove_word(game);
       return(true);
     }
