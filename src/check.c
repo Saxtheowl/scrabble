@@ -168,6 +168,24 @@ bool		is_more_up_empty(t_game *game)
   return(true);
 }
 
+bool		is_not_overwritting(t_game *game)
+{
+  for(int i = 0; i < strlen(game->word_test); i++)
+    {
+      if((is_char(game->road_word[i]) && is_char(game->word_test[i])) &&
+	 (game->road_word[i] != game->word_test[i]))
+	{
+	  printf("road word =%c\n",game->road_word[i]);
+	  printf("word test =%c\n",game->word_test[i]);
+	  printf("is not overwritting false\n");
+	  return(false);
+	}
+      i++;
+    }
+  printf("is not overwritting true\n");
+  return(true);
+}
+
 bool		is_connected_to_a_letter(t_game *game)
 {
   bool		one_char = false;
@@ -194,7 +212,7 @@ bool		is_connected_to_a_letter(t_game *game)
     return(true);
 }
 
-bool		is_valid_first_turn(t_game *game)
+bool		is_valid_first_turn(t_game *game, char *tmp_retired_letters)
 {
   if(game->is_first_turn == true)
     {
@@ -207,6 +225,7 @@ bool		is_valid_first_turn(t_game *game)
       else
 	{
 	  printf("is first turn false\n");
+	  put_letters_back_in_rack(game, tmp_retired_letters);
 	  return(false);
 	}
     }
@@ -412,7 +431,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 
 bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGHT OF THE GIVEN POSITION ?
 {  
-  if(is_direction_valid(game) && is_lenght_valid(game))
+  if(is_direction_valid(game) && is_lenght_valid(game) && is_not_overwritting(game))
     {
       if((game->is_left_to_right == true))
 	{
@@ -502,7 +521,8 @@ bool		is_letters_in_rack(t_game *game, char *word)
       i++;
     }
   printf("letters in rack true\n");
-  return(true);
+  if(is_valid_first_turn(game, tmp_retired_letters))
+    return(true);
 }
 /*
 bool		is_first_turn_valid(t_game *game)

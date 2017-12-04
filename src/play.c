@@ -95,7 +95,7 @@ void		play_word(t_game *game, char *pos1, char *pos2)
      //     is_valid_word(game, game->word_test) &&
      is_valid_new_words(game) &&
      (is_connected_to_a_letter(game) || game->is_side_word == true) &&
-     is_valid_first_turn(game) &&
+     //     is_valid_first_turn(game) &&
      is_letters_in_rack(game, game->word_test))
     {
       put_word(game);
