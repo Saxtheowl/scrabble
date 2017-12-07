@@ -89,12 +89,14 @@ void		play_word(t_game *game, char *pos1, char *pos2)
   word = put_prompt();
   strncpy(game->word_test, word, strlen(word) - 1);
   game->word_test[strlen(word) -1] = '\0';
-  printf("play_word word to test =%s\n", word);
+  printf("play_word =%s\n", word);
+  printf("play_word_test =%s\n", game->word_test);
+  printf("play_word =%d\n", strlen(word));
+  printf("play_word test len =%d\n", strlen(game->word_test));
   if(is_valid_syntax(game, pos1, pos2) &&
      is_valid_position(game) &&
      //     is_valid_word(game, game->word_test) &&
      is_valid_new_words(game) &&
-     (is_connected_to_a_letter(game) || game->is_side_word == true) &&
      //     is_valid_first_turn(game) &&
      is_letters_in_rack(game, game->word_test))
     {

@@ -94,18 +94,18 @@ void		setup_connections_left_to_right(t_game *game)
   while(tmp_pos <= game->x_wrd_p2)
     {
       game->road_word[i] = game->board[game->y_wrd_p1][tmp_pos];
-      if(is_upper_char(game->word_test[i]) && is_lower_char(game->road_word[i]))
-	{
-	  printf("ok3333\n");
-	  game->board[game->y_wrd_p1][tmp_pos] = to_lower_solo(game->word_test[i]);
-	}
-      else
-	game->board[game->y_wrd_p1][tmp_pos] = game->word_test[i];
+      game->board[game->y_wrd_p1][tmp_pos] = game->word_test[i];
       i++;
       tmp_pos++;
     }
+  printf("i =%d\n", i);
+  printf("road word setup connections left to right =%s\n", game->road_word);
+  printf("word test setup connections left to right =%s\n", game->word_test);
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
+  printf("road word setup connections left to right =%s\n", game->road_word);
+  printf("word test setup connections left to right =%s\n", game->word_test);
+  
 }
 
 void		setup_connections_top_to_bottom(t_game *game)
@@ -117,18 +117,11 @@ void		setup_connections_top_to_bottom(t_game *game)
   tmp_pos = game->y_wrd_p1;
   while(tmp_pos <= game->y_wrd_p2)
     {
-      printf("ok555\n");
       game->road_word[i] = game->board[tmp_pos][game->x_wrd_p1];
-      if(is_upper_char(game->word_test[i]) && is_lower_char(game->road_word[i]))
-	{
-	  printf("ok3334\n");
-	  game->board[tmp_pos][game->x_wrd_p1] = to_lower_solo(game->word_test[i]);
-	}
       game->board[tmp_pos][game->x_wrd_p1] = game->word_test[i];
       i++;
       tmp_pos++;
     }
-  printf("road word1=%s\n", game->road_word);
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
 }
@@ -154,7 +147,6 @@ bool		is_more_up_empty(t_game *game)
 {
   int		tmp_pos = game->y_wrd_p1 - 1;
 
-  printf("ok111\n");
   if(game->x_wrd_p1 == 0)
     {
       printf("true is more up empty\n");
@@ -170,17 +162,21 @@ bool		is_more_up_empty(t_game *game)
 
 bool		is_not_overwritting(t_game *game)
 {
+  printf("road word is_not_overwritting =%s\n", game->road_word);
+  printf("word test is_not_overwritting =%s\n", game->word_test);
+  
   for(int i = 0; i < strlen(game->word_test); i++)
     {
+      printf("1 road word =%c\n",game->road_word[i]);
+      printf("1 word test =%c\n",game->word_test[i]);
       if((is_char(game->road_word[i]) && is_char(game->word_test[i])) &&
 	 (game->road_word[i] != game->word_test[i]))
 	{
-	  printf("road word =%c\n",game->road_word[i]);
-	  printf("word test =%c\n",game->word_test[i]);
+	  printf("2 road word =%c\n",game->road_word[i]);
+	  printf("2 word test =%c\n",game->word_test[i]);
 	  printf("is not overwritting false\n");
 	  return(false);
 	}
-      i++;
     }
   printf("is not overwritting true\n");
   return(true);
@@ -431,7 +427,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 
 bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGHT OF THE GIVEN POSITION ?
 {  
-  if(is_direction_valid(game) && is_lenght_valid(game) && is_not_overwritting(game))
+  if(is_direction_valid(game) && is_lenght_valid(game))
     {
       if((game->is_left_to_right == true))
 	{
@@ -458,8 +454,11 @@ bool		is_valid_new_words(t_game *game)
       printf("is valid new words true\n");
       if(is_char(game->board[(game->size_board / 2)][(game->size_board / 2)]))
 	game->is_letter_middle = true;
-      remove_word(game);
-      return(true);
+      if(is_not_overwritting(game) && (is_connected_to_a_letter(game) || game->is_side_word == true))
+	{
+	  return(true);
+	  remove_word(game);
+	}
     }
   printf("is valid new words false\n");
   remove_word(game);
@@ -475,7 +474,7 @@ bool		is_valid_word(t_game *game, char *word)
     {
       if(strcmp_dictionnary(word, game->dictionnary[i]) == true)
 	{
-	  printf(" is valid word true\n");
+	  printf("is valid word true\n");
 	  return(true);
 	}
     }
