@@ -11,3 +11,7 @@ X remove enum for the info on each letters
 - add duplicate mod
 X fix road word string being too long in certain case
 - fix wrong number of letters replaced during first turn check
+- add scramble the racks options
+X fix new words formed sometime not valided
+- remove ugly flag commentary
+- check when words are put but its corner are not empty (.) (( done but ugly ))

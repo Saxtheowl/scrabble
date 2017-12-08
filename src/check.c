@@ -346,7 +346,7 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 	      if(!(search_new_connections_up_or_down(game, x_cp, 1)))
 		return(false);
 	    }	  
-	  if(is_char(game->board[y_cp_down][x_cp]))
+	  else if(is_char(game->board[y_cp_down][x_cp]))
 	    {
 #ifdef DEBUG_FLAG
 	      printf("ok down START is new connections up \n");
@@ -411,7 +411,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 	      if(!(search_new_connections_left_or_right(game, y_cp, 1)))	 
 		return(false);
 	    }	  
-	  if(is_char(game->board[y_cp][x_cp_right]))
+	  else if(is_char(game->board[y_cp][x_cp_right]))
 	    {
 #ifdef DEBUG_FLAG
 	      printf("ok right START is new connections right \n");

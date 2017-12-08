@@ -38,7 +38,7 @@ void		init_pre_board(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "files/standard_board";
+      game->board_path = "files/standard_board_t1";
       game->size_board = 15;
     }
   else
