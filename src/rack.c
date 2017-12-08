@@ -51,9 +51,12 @@ void		put_letter_in_rack(t_game *game, char letter)
     for(int i = 0; i < MAX_LETTERS_RACK; i++)
     {
       if(game->racks[game->playing][i] == ' ')
-	game->racks[game->playing][i] = letter;
+	{
+	  printf("put letter in rack letter for = %c\n", letter);
+	  game->racks[game->playing][i] = letter;
+	}
     }
-    printf("letter = %c\n", letter);
+    printf("put letter in rack letter = %c\n", letter);
 }
 
 void		fulfill_rack(t_game *game, int player, int amount)
@@ -95,5 +98,6 @@ void		put_letters_back_in_rack(t_game *game, char *retired_letters)
     {
       game->nb_letters[game->playing]++;
       put_letter_in_rack(game, retired_letters[i]);
+      printf("retired letters c =%c\n", retired_letters[i]);
     }
 }

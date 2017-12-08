@@ -210,6 +210,7 @@ bool		is_connected_to_a_letter(t_game *game)
 
 bool		is_valid_first_turn(t_game *game, char *tmp_retired_letters)
 {
+  printf("valid first turn retired letters =%s\n", tmp_retired_letters);
   if(game->is_first_turn == true)
     {
       if(game->is_letter_middle == true) // UGLY
@@ -492,7 +493,7 @@ bool		is_joker_in_rack(t_game *game)
   return(false);
 }
 
-bool		is_letters_in_rack(t_game *game, char *word)
+bool		is_letters_in_rack(t_game *game, char *word) // CODE HORROR
 {
   char		*tmp_retired_letters;
   int		i = 0;
@@ -514,32 +515,19 @@ bool		is_letters_in_rack(t_game *game, char *word)
 	    {
 	      put_letters_back_in_rack(game, tmp_retired_letters);
 	      printf("letters in rack false\n");
+	      remove_word(game);
 	      return(false);
 	    }
 	}
       i++;
     }
   printf("letters in rack true\n");
+  printf("valid first turn retired letters =%s\n", tmp_retired_letters);
   if(is_valid_first_turn(game, tmp_retired_letters))
     return(true);
-}
-/*
-bool		is_first_turn_valid(t_game *game)
-{
-  printf("first turn valid start\n");
-  if(game->is_first_turn == true)
+  else
     {
-      printf("middle =%d\n", (game->size_board / 2) );
-      if(is_char(game->board[(game->size_board / 2)][(game->size_board / 2)]) &&
-	 strlen(game->word_test) > 1)
-	{
-	  printf("the char is=%c\n", game->board[(game->size_board / 2)][(game->size_board / 2)]);
-	  game->is_first_turn = false;
-	  return(true);
-	}
+      remove_word(game);
+      return(false);
     }
-  printf("the char is=%c\n", game->board[(game->size_board / 2)][(game->size_board / 2)]);
-  printf("first turn valid false\n");
-  return(false);
 }
-*/
