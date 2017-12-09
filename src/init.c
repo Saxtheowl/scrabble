@@ -104,7 +104,7 @@ void		init_board(t_game *game)
   
   if (fp == NULL)
     super_exit("error no files board found\n");
-  while(getline(&game->board[i], &len, fp) != -1)
+  while(getline(&game->board[i], &len, fp) != -1) // not clear
   {
     strcpy(game->s_board[i], game->board[i]);
     i++;

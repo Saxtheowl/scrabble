@@ -101,3 +101,7 @@ void		put_letters_back_in_rack(t_game *game, char *retired_letters)
       printf("retired letters c =%c\n", retired_letters[i]);
     }
 }
+
+void		scramble_rack(t_game *game)
+{
+}

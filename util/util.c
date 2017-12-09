@@ -127,5 +127,10 @@ int		get_number_from_letter(char c)
       if(alphabet[i] == c)
 	return(i);
     }
-  printf("ok7\n");    
+}
+
+void		print_double_tab(char **dbtab)
+{
+  for(int i = 0; dbtab[i] != NULL; i++)
+    printf(dbtab[i]);
 }

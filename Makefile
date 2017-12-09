@@ -28,7 +28,7 @@ SRCS		=	$(DIR_SRC)main.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
-DEBUG		=	-DDEBUG_FLAG
+#DEBUG		=	-DDEBUG_FLAG
 
 CPPFLAGS	=	-Wall -Wextra -g3 -I include/ $(DEBUG) #-Werror
 
