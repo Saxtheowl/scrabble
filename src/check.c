@@ -515,7 +515,7 @@ bool		is_letters_in_rack(t_game *game, char *word) // CODE HORROR
 	    {
 	      put_letters_back_in_rack(game, tmp_retired_letters);
 	      printf("letters in rack false\n");
-	      remove_word(game);
+	      //	      remove_word(game);
 	      return(false);
 	    }
 	}
@@ -527,7 +527,7 @@ bool		is_letters_in_rack(t_game *game, char *word) // CODE HORROR
     return(true);
   else
     {
-      remove_word(game);
+      //      remove_word(game);
       return(false);
     }
 }
