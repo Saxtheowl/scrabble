@@ -377,6 +377,7 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up)
     }
   while(x_cp < game->size_board && is_char(game->board[y_cp][x_cp]))
     {
+      // HERE FOR GETTING SCORE
       tmp_new_word[i] = game->board[y_cp][x_cp];
       x_cp++;
       i++;
