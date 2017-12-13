@@ -43,7 +43,7 @@ void		init_pre_board(t_game *game)
     }
   else
     {
-      game->board_path = "files/super_board";
+      game->board_path = "files/super_board_t1";
       game->size_board = 21;
     }
 }
@@ -70,13 +70,21 @@ void		init_pre_letters(t_game *game)
     {
       game->max_letters = MAX_LETTERS_SUPER;
       game->letters_list_path = "files/letters_list_super";
+      game->symbol_max_letter = MAX_SYMBOL_MULTIPLY_LETTER_SUPER + '0';
+      game->symbol_max_word = MAX_SYMBOL_MULTIPLY_WORD_SUPER + '0';
     }
+  else
+    {
+      game->symbol_max_letter = MAX_SYMBOL_MULTIPLY_LETTER_STANDARD + '0';
+      game->symbol_max_word = MAX_SYMBOL_MULTIPLY_WORD_STANDARD + '0';
+    }
+  
 }
 
 void		init_game_memory(t_game *game) // fcking C language lul
 {
   game->board = xmalloc(sizeof(*game->board) * game->size_board);
-    game->s_board = xmalloc(sizeof(*game->s_board) * game->size_board);
+  game->s_board = xmalloc(sizeof(*game->s_board) * game->size_board);
   for(int i = 0; i < game->size_board; i++)
     {
       game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);

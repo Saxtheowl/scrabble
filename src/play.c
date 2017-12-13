@@ -78,7 +78,7 @@ void		update_turn(t_game *game)
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
   game->is_side_word = false;
-  update_score(game, game->word_test, game->y_wrd_p1, game->x_wrd_p2, game->is_left_to_right, false);
+  update_score(game, game->word_test, game->y_wrd_p1, game->x_wrd_p1, game->is_left_to_right, false);
 }
 
 void		play_word(t_game *game, char *pos1, char *pos2)

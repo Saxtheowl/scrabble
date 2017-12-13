@@ -17,3 +17,4 @@ X fix new words formed sometime not valided
 - check when words are put but its corner are not empty (.) (( done but ugly ))
 - refactoring of the big struct game
 - fix word put sometime destroy the board[][] variable when bad coordinate has been enter
+- refactorize all the init phase, maybe using the maccros in the code instead of using a new variable to again initiliaze in init

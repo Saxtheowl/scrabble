@@ -16,6 +16,11 @@
 #define MAX_LETTERS_FR 102
 #define MAX_LETTERS_SUPER 200
 
+#define MAX_SYMBOL_MULTIPLY_LETTER_STANDARD 2
+#define MAX_SYMBOL_MULTIPLY_LETTER_SUPER 3
+#define MAX_SYMBOL_MULTIPLY_WORD_STANDARD 4
+#define MAX_SYMBOL_MULTIPLY_WORD_SUPER 6
+
 #define MAX_LETTERS_RACK 7
 
 #define	MAX_WORDS_DICT_EN 172805
@@ -29,6 +34,8 @@
 #define ANSI_COLOR_CYAN "\x1b[36m"
 #define ANSI_COLOR_RESET "\x1b[0m"
 #define ANSI_COLOR_BLACK "\033[30m"  
+
+
 
 #define clear() system("clear")
 
@@ -70,6 +77,9 @@ typedef struct		s_game
 
   char			*letters_list;
   int			*letters_point;
+
+  int			symbol_max_letter;
+  int			symbol_max_word;
 
   int			letters_left;
 

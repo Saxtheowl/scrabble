@@ -5,28 +5,37 @@
 // standard 1, 2 = letter 3, 4 = word
 // super 1, 2, 3 = letter 4, 5,6 = word
 
-int		get_multiplier(char special)
+int		get_multiplier(t_game *game, char special)
 {
-  if(special > '3' && special < '7')
+  printf("special multiplier =%c\n", special);
+  if(special > game->symbol_max_letter && special < game->symbol_max_word)
     {
-      return(special - '0');
+      printf("to return get multiplier =%d\n", ((special - '0') - (game->symbol_max_letter - '0')));
+      return((special - '0') - (game->symbol_max_letter - '0'));
     }
   else
     return(0);
 }
 
-int		get_standard_score_from_letter(t_game *game, char c, char special, bool is_new_word)
+int		get_score_from_letter(t_game *game, char c, char special, bool is_new_word)
 {
   int		i = get_number_from_letter(c);
   int		point = game->letters_point[i];
   int		tmp;
 
-  if(is_new_word == true)
-    return(point);
-  else if(special > '0' && special < '4')
+  printf("i =%d\n", i);
+  printf("point =%d\n", point);
+  if(is_new_word == true)// wrong to fix
     {
-      return(point * ((special - '0') + 1));
+      printf("point2 =%d\n", point);
+      return(point);
     }
+  else if(special > '0' && special < game->symbol_max_letter)
+    {
+      printf("to return score from letter =%d\n", (point * ((special - '0') + 1)));
+      return(point * (special - '0'));
+    }
+  return(point);
 }
 
 int		get_score_top_to_bottom(t_game *game, char *word, int cp_y_wrd_p1, int cp_x_wrd_p1, bool is_new_word)
@@ -38,22 +47,27 @@ int		get_score_left_to_right(t_game *game, char *word, int cp_y_wrd_p1, int cp_x
 {
   int		score = 0;
   int		multiplier = 1;
+  int		cp_x_tmp = cp_x_wrd_p1;
   
   for(int i = 0; word[i] != '\0'; i++)
     {
-      score = get_standard_score_from_letter(game, word[i], game->s_board[cp_y_wrd_p1][cp_x_wrd_p1], is_new_word) + score;
+      score = get_score_from_letter(game, word[i], game->s_board[cp_y_wrd_p1][cp_x_tmp], is_new_word) + score;
+      printf("score before multiplier = %d\n", score);
       if(is_new_word == false)
-	multiplier = get_multiplier(game->s_board[cp_y_wrd_p1][cp_x_wrd_p1]) + multiplier;
+	multiplier = get_multiplier(game, game->s_board[cp_y_wrd_p1][cp_x_tmp]) + multiplier;
+      //      game->board[cp_y_wrd_p1][cp_x_wrd_p1] = 'X';
+      cp_x_tmp++;
     }
   return(score * multiplier);
 }
 
-void		update_score(t_game *game, char *word, int cp_y_wrd_p1, int cp_x_wrd_p2, bool is_left_to_right, bool is_new_word)
+void		update_score(t_game *game, char *word, int cp_y_wrd_p1, int cp_x_wrd_p1, bool is_left_to_right, bool is_new_word)
 {
+  //  game->board[cp_y_wrd_p1][cp_x_wrd_p1] = 'X';
   if(is_left_to_right == true)
-    game->score[game->playing] = get_score_left_to_right(game, word, cp_y_wrd_p1, cp_x_wrd_p2, is_new_word) + game->score[game->playing];
+    game->score[game->playing] = get_score_left_to_right(game, word, cp_y_wrd_p1, cp_x_wrd_p1, is_new_word) + game->score[game->playing];
   else
-    game->score[game->playing] = get_score_top_to_bottom(game, word, cp_y_wrd_p1, cp_x_wrd_p2, is_new_word);
+    game->score[game->playing] = get_score_top_to_bottom(game, word, cp_y_wrd_p1, cp_x_wrd_p1, is_new_word);
 }
 
 bool		is_bingo(char *word)
