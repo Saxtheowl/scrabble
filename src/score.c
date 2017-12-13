@@ -47,10 +47,10 @@ int		get_score_top_to_bottom(t_game *game, char *word, int cp_y_wrd_p1, int cp_x
   
   for(int i = 0; word[i] != '\0'; i++)
     {
-      score = get_score_from_letter(game, word[i], game->s_board[y_tmp][cp_x_wrd_p1], is_new_word) + score;
+      score = get_score_from_letter(game, word[i], game->road_word[i], is_new_word) + score;
       printf("score = %d\n", score);
       if(is_new_word == false)
-	multiplier = get_multiplier(game, game->s_board[y_tmp][cp_x_wrd_p1]) + multiplier;
+	multiplier = get_multiplier(game, game->road_word[i]) + multiplier;
       //      game->board[cp_y_wrd_p1][cp_x_wrd_p1] = 'X';
       y_tmp++;
     }
@@ -65,10 +65,10 @@ int		get_score_left_to_right(t_game *game, char *word, int cp_y_wrd_p1, int cp_x
   
   for(int i = 0; word[i] != '\0'; i++)
     {
-      score = get_score_from_letter(game, word[i], game->s_board[cp_y_wrd_p1][x_tmp], is_new_word) + score;
+      score = get_score_from_letter(game, word[i], game->road_word[i], is_new_word) + score;
       printf("score before multiplier = %d\n", score);
       if(is_new_word == false)
-	multiplier = get_multiplier(game, game->s_board[cp_y_wrd_p1][x_tmp]) + multiplier;
+	multiplier = get_multiplier(game, game->road_word[i]) + multiplier;
       //      game->board[cp_y_wrd_p1][cp_x_wrd_p1] = 'X';
       x_tmp++;
     }

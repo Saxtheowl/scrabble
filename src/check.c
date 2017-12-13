@@ -459,7 +459,7 @@ bool		is_valid_new_words(t_game *game)
       if(is_not_overwritting(game) && (is_connected_to_a_letter(game) || game->is_side_word == true))
 	{
 	  return(true);
-	  remove_word(game);
+	  remove_word(game); // WTF ?
 	}
     }
   printf("is valid new words false\n");
