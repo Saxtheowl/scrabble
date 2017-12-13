@@ -7,7 +7,7 @@ X remove enum for the info on each letters
 - proper readme.md with gif
 - add capability of config the game with argv ( number of players, type of game, mod, etc... )
 - add option of launching the game with multiple phrase that will appear in racks like "saultcvaa" (salutcava)
-- add option writing all info of the game on txt
+- add option writing all info of the game on an outside txt file
 - add duplicate mod
 X fix road word string being too long in certain case
 - fix wrong number of letters replaced during first turn check
@@ -18,3 +18,6 @@ X fix new words formed sometime not valided
 - refactoring of the big struct game
 - fix word put sometime destroy the board[][] variable when bad coordinate has been enter
 - refactorize all the init phase, maybe using the maccros in the code instead of using a new variable to again initiliaze in init
+X fix color on the output of the board
+- fix joker letters sometime not being recognized
+- replace s_board with road_word in score ? s_board useless ?
