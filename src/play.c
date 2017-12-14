@@ -79,6 +79,7 @@ void		update_turn(t_game *game)
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
   game->is_side_word = false;
+  game->is_word_put = false;
 }
 
 void		play_word(t_game *game, char *pos1, char *pos2)
@@ -104,7 +105,7 @@ void		play_word(t_game *game, char *pos1, char *pos2)
       printf("word is put\n");
 #endif
     }
-  else
+  else if(game->is_word_put == true)
     remove_word(game);
 }   
 

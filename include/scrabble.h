@@ -59,6 +59,7 @@ typedef struct		s_game
   bool			is_left_to_right;
   bool			is_side_word;
   bool			is_letter_middle;
+  bool			is_word_put;
   int			language;
   int			amount_players;
   int			*players_type;

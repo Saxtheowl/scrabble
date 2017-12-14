@@ -26,6 +26,7 @@ void		put_word(t_game *game)
 	  tmp_pos++;
 	}
     }
+  game->is_word_put = true;
 }
 
 void		remove_word(t_game *game)

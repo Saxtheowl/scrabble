@@ -10,7 +10,7 @@ X remove enum for the info on each letters
 - add option writing all info of the game on an outside txt file
 - add duplicate mod
 X fix road word string being too long in certain case
-- fix wrong number of letters replaced during first turn check
+X fix wrong number of letters replaced during first turn check
 - add scramble the racks options
 X fix new words formed sometime not valided
 - remove ugly flag commentary
@@ -22,3 +22,6 @@ X fix color on the output of the board
 - fix joker letters sometime not being recognized
 - replace s_board with road_word in score ? s_board useless ?
 X count the special case when a new new word is add with a special letter -- DONE BUT UGLY
+- add ncurses to pick coordinate of word with cursor
+X fix special case when previous word is removed after wrong coordinate has been enter
+X fix when a wrong word has been enter, the turn is passed

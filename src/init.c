@@ -26,6 +26,7 @@ void		init_game(t_game *game)
   game->is_turn_done = false;
   game->is_side_word = false;
   game->is_letter_middle = false;
+  game->is_word_put = false;
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
   for(int i = 0; i < game->amount_players; i++)
@@ -40,7 +41,7 @@ void		init_pre_board(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "files/standard_board";
+      game->board_path = "files/standard_board_t1";
       game->size_board = 15;
     }
   else
