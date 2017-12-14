@@ -39,29 +39,10 @@ int		get_score_from_letter(t_game *game, char c, char special, bool is_new_word)
   return(point);
 }
 
-int		get_score_top_to_bottom(t_game *game, char *word, int cp_y_wrd_p1, int cp_x_wrd_p1, bool is_new_word)
+int		get_score(t_game *game, char *word, bool is_new_word, char special_new_word)
 {
-  int		score = 0;
   int		multiplier = 1;
-  int		y_tmp = cp_y_wrd_p1;
-  
-  for(int i = 0; word[i] != '\0'; i++)
-    {
-      score = get_score_from_letter(game, word[i], game->road_word[i], is_new_word) + score;
-      printf("score = %d\n", score);
-      if(is_new_word == false)
-	multiplier = get_multiplier(game, game->road_word[i]) + multiplier;
-      //      game->board[cp_y_wrd_p1][cp_x_wrd_p1] = 'X';
-      y_tmp++;
-    }
-  return(score * multiplier);
-}
-
-int		get_score_left_to_right(t_game *game, char *word, int cp_y_wrd_p1, int cp_x_wrd_p1, bool is_new_word)
-{
-  int		score = 0;
-  int		multiplier = 1;
-  int		x_tmp = cp_x_wrd_p1;
+  int		score = 0 + get_bingo();
   
   for(int i = 0; word[i] != '\0'; i++)
     {
@@ -69,22 +50,19 @@ int		get_score_left_to_right(t_game *game, char *word, int cp_y_wrd_p1, int cp_x
       printf("score before multiplier = %d\n", score);
       if(is_new_word == false)
 	multiplier = get_multiplier(game, game->road_word[i]) + multiplier;
-      //      game->board[cp_y_wrd_p1][cp_x_wrd_p1] = 'X';
-      x_tmp++;
     }
-  return(score * multiplier);
-}
-
-void		update_score(t_game *game, char *word, int cp_y_wrd_p1, int cp_x_wrd_p1, bool is_left_to_right, bool is_new_word)
-{
-  //  game->board[cp_y_wrd_p1][cp_x_wrd_p1] = 'X';
-  if(is_left_to_right == true)
-    game->score[game->playing] = get_score_left_to_right(game, word, cp_y_wrd_p1, cp_x_wrd_p1, is_new_word) + game->score[game->playing];
+  if(special_new_word == 0)
+    return(score * multiplier);
   else
-    game->score[game->playing] = get_score_top_to_bottom(game, word, cp_y_wrd_p1, cp_x_wrd_p1, is_new_word) + game->score[game->playing];
+    return(score + get_special_char(special_new_word, score);
 }
 
-bool		is_bingo(char *word)
+int		get_special_char(char special_char, int score)
+{
+  
+}
+
+int		get_bingo(char *word)
 {
   
 }

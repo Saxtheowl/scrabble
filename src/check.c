@@ -285,6 +285,7 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up)
   char		*tmp_new_word;
   int		y_cp = game->y_wrd_p1;
   int		i = 0;
+  char		cp_special = game->board[y_cp][x_cp];
 
   tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
   if(flag_up == true)
@@ -302,6 +303,7 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up)
   tmp_new_word[i] = '\0'; // useless ?
   if(is_valid_word(game, tmp_new_word))
     {
+      game->score[game->playing] = game->score[game->playing] + get_score(game, tmp_new_word, 1, cp_special);
       game->is_side_word = true;
       return(true);
     }
@@ -366,7 +368,9 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up)
   char		*tmp_new_word;
   int		x_cp = game->x_wrd_p1;
   int		i = 0;
+  char		cp_special = game->board[y_cp][x_cp];
 
+  //  if(y_cp
   tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
   //  game->board[y_cp][x_cp] = 'X';
   if(flag_up == true)
@@ -385,6 +389,7 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up)
   tmp_new_word[i] = '\0';
   if(is_valid_word(game, tmp_new_word))
     {
+      game->score[game->playing] = game->score[game->playing] + get_score(game, tmp_new_word, 1, cp_special);
       game->is_side_word = true;
       return(true);
     }

@@ -29,16 +29,18 @@ void		init_game(t_game *game)
   for(int i = 0; game->nb_letters[i] < game->amount_players; i++)
     game->nb_letters[i] = 0;
   for(int i = 0; i < game->amount_players; i++)
-    memset(game->racks[i], ' ', MAX_LETTERS_RACK);
-  for(int i = 0; i < game->amount_players; i++)
-    game->score[i] = 0;
+    {
+      memset(game->racks[i], ' ', MAX_LETTERS_RACK);
+      game->score[i] = 0;
+      game->old_score[i] = 0;
+    }
 }
 
 void		init_pre_board(t_game *game)
 {
   if(game->is_super_mod == false)
     {
-      game->board_path = "files/standard_board_t1";
+      game->board_path = "files/standard_board";
       game->size_board = 15;
     }
   else
@@ -97,8 +99,9 @@ void		init_game_memory(t_game *game) // fcking C language lul
       game->racks[i] = xmalloc(sizeof(**game->racks) * MAX_LETTERS_RACK);
   game->nb_letters = xmalloc(sizeof(*game->nb_letters) * game->amount_players);
   game->dictionnary = xmalloc(sizeof(*game->dictionnary) * game->max_words_dict);
-    for(int i = 0; i < game->max_words_dict; i++)
-      game->dictionnary[i] = xmalloc(sizeof(**game->dictionnary) * 1); // WTF * 1 ?
+  for(int i = 0; i < game->max_words_dict; i++)
+    game->dictionnary[i] = xmalloc(sizeof(**game->dictionnary) * 1); // WTF * 1 ?
+  game->old_score = xmalloc(sizeof(*game->old_score) * game->amount_players);
   game->score = xmalloc(sizeof(*game->score) * game->amount_players);
   game->road_word = xmalloc(sizeof(*game->road_word) * game->size_board);
   game->word_test = xmalloc(sizeof(*game->word_test) * game->size_board);

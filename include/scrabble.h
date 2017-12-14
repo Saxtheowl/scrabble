@@ -85,7 +85,7 @@ typedef struct		s_game
 
   int			*nb_letters;
   char			**racks;
-  int			pre_score;
+  int			*old_score;
   int			*score;
 
   int			playing;
@@ -101,6 +101,8 @@ typedef struct		s_game
 
   char			*word_test;
   char			*road_word;
+
+  char			new_word_special_symbol;
 }			t_game;
 
 /* game_core.c */
