@@ -75,7 +75,7 @@ void		reset_turn(t_game *game)
 
 void		update_turn(t_game *game)
 {
-  game->score[game->playing] = game->score[game->playing] + get_score(game, game->word_test, 0, 0);
+  game->score[game->playing] = game->score[game->playing] + get_score(game, game->word_test, 0, 0, 0);
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
   game->is_side_word = false;

@@ -39,7 +39,18 @@ int		get_score_from_letter(t_game *game, char c, char special, bool is_new_word)
   return(point);
 }
 
-int		get_score(t_game *game, char *word, bool is_new_word, char special_new_word)
+int		get_special_char(t_game *game, int score, char special_new_letter, char special_new_symbol)
+{
+  int		multiplier = 1;
+  int		i = get_number_from_letter(special_new_letter);
+  int		letter = game->letters_point[i];
+  
+  if(special_new_symbol >= game->symbol_max_letter && special_new_symbol <= game->symbol_max_word)
+    multiplier = (special_new_symbol - '0') - (game->symbol_max_letter - '0');
+  return((letter * multiplier) - letter);
+}
+
+int		get_score(t_game *game, char *word, bool is_new_word, char special_new_letter, char special_new_symbol)
 {
   int		multiplier = 1;
   int		score = 0 + get_bingo();
@@ -51,15 +62,10 @@ int		get_score(t_game *game, char *word, bool is_new_word, char special_new_word
       if(is_new_word == false)
 	multiplier = get_multiplier(game, game->road_word[i]) + multiplier;
     }
-  if(special_new_word == 0)
+  if(is_new_word == 0)
     return(score * multiplier);
   else
-    return(score + get_special_char(special_new_word, score);
-}
-
-int		get_special_char(char special_char, int score)
-{
-  
+    return(score + get_special_char(game, score, special_new_letter, special_new_symbol));
 }
 
 int		get_bingo(char *word)

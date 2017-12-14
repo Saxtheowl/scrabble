@@ -21,3 +21,4 @@ X fix new words formed sometime not valided
 X fix color on the output of the board
 - fix joker letters sometime not being recognized
 - replace s_board with road_word in score ? s_board useless ?
+X count the special case when a new new word is add with a special letter -- DONE BUT UGLY
