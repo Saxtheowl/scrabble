@@ -77,6 +77,7 @@ void		put_letter_in_rack(t_game *game, char letter)
 	{
 	  printf("put letter in rack letter for = %c\n", letter);
 	  game->racks[game->playing][i] = letter;
+	  return;
 	}
     }
     printf("put letter in rack letter = %c\n", letter);

@@ -5,8 +5,8 @@ X remove enum for the info on each letters
 - add intern AI
 - add extern AI
 - proper readme.md with gif
-- add capability of config the game with argv ( number of players, type of game, mod, etc... )
-- add option of launching the game with multiple phrase that will appear in racks like "saultcvaa" (salutcava)
+X add capability of config the game with argv ( number of players, type of game, mod, etc... )
+X add option of launching the game with multiple phrase that will appear in racks like "saultcvaa" (salutcava)
 - add option writing all info of the game on an outside txt file
 - add duplicate mod
 X fix road word string being too long in certain case
@@ -16,11 +16,11 @@ X fix new words formed sometime not valided
 - remove ugly flag commentary
 X check when words are put but its corner are not empty (.) --  done but ugly
 - refactoring of the big struct game
-- fix word put sometime destroy the board[][] variable when bad coordinate has been enter, happens only on the first turn
+X fix word put sometime destroy the board[][] variable when bad coordinate has been enter, happens only on the first turn
 - refactorize all the init phase, maybe using the maccros in the code instead of using a new variable to again initiliaze in init
 X fix color on the output of the board
 - fix joker letters sometime not being recognized
-- replace s_board with road_word in score ? s_board useless ?
+X replace s_board with road_word in score ? s_board useless ?
 X count the special case when a new new word is add with a special letter -- DONE BUT UGLY
 - add ncurses to pick coordinate of word with cursor
 X fix special case when previous word is removed after wrong coordinate has been enter
@@ -28,5 +28,5 @@ X fix when a wrong word has been enter, the turn is passed
 - fix special character for scoring dont have proper coordinate
 - fulfill the display av help
 - put all booleans edit at the end of the function for better readability
-- add options to have the letters from board given one at a time in no a non random way
-- add option to scramble the letters from board
+X add options to have the letters from board given one at a time in no a non random way
+X add option to scramble the letters from board

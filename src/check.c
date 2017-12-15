@@ -102,11 +102,10 @@ void		setup_connections_left_to_right(t_game *game)
   printf("i =%d\n", i);
   printf("road word setup connections left to right =%s\n", game->road_word);
   printf("word test setup connections left to right =%s\n", game->word_test);
-  game->road_word[i] = '\0';
-  game->word_test[i] = '\0';
+  //  game->road_word[i] = '\0';
+  //  game->word_test[i] = '\0';
   printf("road word setup connections left to right =%s\n", game->road_word);
   printf("word test setup connections left to right =%s\n", game->word_test);
-  
 }
 
 void		setup_connections_top_to_bottom(t_game *game)
@@ -473,6 +472,7 @@ bool		is_valid_new_words(t_game *game)
 
 bool		is_valid_word(t_game *game, char *word)
 {
+  return(true);
   word = to_upper(word);
   printf("road word =%s\n", game->road_word);
   printf("is_valid_word word to test =%s\n", word);
