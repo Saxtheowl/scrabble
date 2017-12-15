@@ -98,6 +98,7 @@ void		setup_connections_left_to_right(t_game *game)
       i++;
       tmp_pos++;
     }
+  game->is_word_put = true;
   printf("i =%d\n", i);
   printf("road word setup connections left to right =%s\n", game->road_word);
   printf("word test setup connections left to right =%s\n", game->word_test);
@@ -124,6 +125,7 @@ void		setup_connections_top_to_bottom(t_game *game)
     }
   game->road_word[i] = '\0';
   game->word_test[i] = '\0';
+  game->is_word_put = true;
 }
 
 bool		is_more_left_empty(t_game *game)
@@ -280,7 +282,7 @@ bool		is_direction_valid(t_game *game)
   return(false);
 }
 
-bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, char special_letter, char special_symbol)
+bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, char special_symbol, char special_letter)
 {
   char		*tmp_new_word;
   int		y_cp = game->y_wrd_p1;

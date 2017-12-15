@@ -16,7 +16,7 @@ X fix new words formed sometime not valided
 - remove ugly flag commentary
 - check when words are put but its corner are not empty (.) (( done but ugly ))
 - refactoring of the big struct game
-- fix word put sometime destroy the board[][] variable when bad coordinate has been enter
+- fix word put sometime destroy the board[][] variable when bad coordinate has been enter, happens only on the first turn
 - refactorize all the init phase, maybe using the maccros in the code instead of using a new variable to again initiliaze in init
 X fix color on the output of the board
 - fix joker letters sometime not being recognized
@@ -25,3 +25,4 @@ X count the special case when a new new word is add with a special letter -- DON
 - add ncurses to pick coordinate of word with cursor
 X fix special case when previous word is removed after wrong coordinate has been enter
 X fix when a wrong word has been enter, the turn is passed
+- fix special character for scoring dont have proper coordinate

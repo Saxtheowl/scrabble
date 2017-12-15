@@ -27,9 +27,35 @@ bool		select_yes_or_no_question(t_game *game, char *question)
 
 void		config_with_av(t_game *game, char **cp_av)
 {
-  game->language = 0;
-  puts(cp_av[1]);
-  start_game(game);
+  config_skip_menu(game);
+  printf("ok1\n");
+  for(int i = 1; cp_av[i] != NULL && cp_av[i + 1] != NULL; i = i + 2)
+    {
+      printf("ok2\n");
+      if(strcmp(cp_av[i], "-l") == 0)
+	game->language = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-a") == 0)
+	game->amount_players = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-0") == 0)
+	game->players_type[0] = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-1") == 0)
+	game->players_type[1] = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-2") == 0)
+	game->players_type[2] = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-3") == 0)
+	game->players_type[3] = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-s") == 0)
+	game->is_super_mod = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-d") == 0)
+	game->is_duplicate_mod = atoi(cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "e") == 0)
+	{
+	  game->letters_list = xmalloc(sizeof(*game->letters_list) * strlen(cp_av[i + 1]));
+	  strcpy(game->letters_list, cp_av[i + 1]);
+	}
+
+    }
+  //  start_game(game);
 }
 
 void		config_skip_menu(t_game *game)

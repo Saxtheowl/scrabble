@@ -93,7 +93,8 @@ void		init_game_memory(t_game *game) // fcking C language lul
       game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
       game->s_board[i] = xmalloc(sizeof(**game->s_board) * game->size_board);
     }
-  game->letters_list = xmalloc(sizeof(*game->letters_list) * game->max_letters);
+  if(game->letters_list == NULL)
+    game->letters_list = xmalloc(sizeof(*game->letters_list) * game->max_letters);
   game->letters_point = xmalloc(sizeof(*game->letters_point) * NB_LETTERS_ALPHABET);
   game->racks = xmalloc(sizeof(*game->racks) * game->amount_players);
   for(int i = 0; i < game->amount_players; i++)

@@ -9,5 +9,6 @@ void		pre_init_game_data(t_game *);
 void		pre_init_game_data(t_game *game)
 {
   srand(time(NULL));
-  game->players_type = xmalloc(sizeof(*game->players_type) * MAX_PLAYERS);    
+  game->players_type = xmalloc(sizeof(*game->players_type) * MAX_PLAYERS);
+  game->letters_list = NULL;
 }

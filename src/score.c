@@ -46,13 +46,15 @@ int		get_special_char(t_game *game, int score, char special_new_letter, char spe
   int		letter = game->letters_point[i];
 
   printf("special char start\n");
+  printf("special new letter =%c\n", special_new_letter);
+  printf("special new symbol =%c\n", special_new_symbol);
   if(special_new_symbol >= game->symbol_max_letter && special_new_symbol <= game->symbol_max_word)
     multiplier = (special_new_symbol - '0') - (game->symbol_max_letter - '0');
   printf("special char point to return =%d\n", (letter * multiplier) - letter);
   return((letter * multiplier) - letter);
 }
 
-int		get_score(t_game *game, char *word, bool is_new_word, char symbol_new_letter, char symbol_new_symbol)
+int		get_score(t_game *game, char *word, bool is_new_word, char symbol_new_letter, char special_new_symbol)
 {
   int		multiplier = 1;
   int		score = 0 + get_bingo();
@@ -67,7 +69,7 @@ int		get_score(t_game *game, char *word, bool is_new_word, char symbol_new_lette
   if(is_new_word == 0)
     return(score * multiplier);
   else
-    return(score + get_special_char(game, score, symbol_new_letter, symbol_new_symbol));
+    return(score + get_special_char(game, score, symbol_new_letter, special_new_symbol));
 }
 
 int		get_bingo(char *word)
