@@ -18,7 +18,7 @@ void		init_game(t_game *game)
   init_pre_letters(game);
   init_game_memory(game);
   init_board(game);
-  if(game->is_letters_from_av == false);
+  if(game->is_letters_from_av == false)
     {
       printf("wut\n");
       init_letters_list(game);

@@ -52,6 +52,8 @@ typedef struct		s_game
   /* pre config */
 
   bool			is_letters_from_av;
+  bool			is_always_scramble_rack;
+  bool			is_list_letters_linear;
   
   bool			is_skip_menu;
   bool			is_super_mod;

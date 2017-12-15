@@ -33,6 +33,7 @@ void		print_av_help()
 
 void		letters_from_av(t_game *game, char *letters)
 {
+  printf("letters from av start\n");
   game->letters_list = xmalloc(sizeof(*game->letters_list) * strlen(letters));
   strcpy(game->letters_list, letters);
   game->max_letters = strlen(letters);
@@ -40,33 +41,55 @@ void		letters_from_av(t_game *game, char *letters)
   game->is_letters_from_av = true;
 }
 
+bool		single_av_flag(char c)
+{
+  char		*single_flag_list = "hdstc";
+
+  for(int i = 0; single_flag_list[i] != '\0'; i++)
+    {
+      if(single_flag_list[i] == c)
+	return(true);
+    }
+  return(false);
+}
+
 void		config_with_av(t_game *game, char **cp_av)
 {
+  int		i = 1;
+  
   config_skip_menu(game);
   printf("ok1\n");
-  for(int i = 1; cp_av[i] != NULL && cp_av[i + 1] != NULL; i = i + 2)
+  while(cp_av[i] != NULL) // LUL
     {
-      printf("ok2\n");
       if(strcmp(cp_av[i], "-h") == 0)
 	print_av_help();
       if(strcmp(cp_av[i], "-l") == 0)
 	game->language = atoi(cp_av[i + 1]);
       else if(strcmp(cp_av[i], "-a") == 0)
 	game->amount_players = atoi(cp_av[i + 1]);
-      else if(strcmp(cp_av[i], "-0") == 0)
+      else if(strcmp(cp_av[i], "-p1") == 0)
 	game->players_type[0] = atoi(cp_av[i + 1]);
-      else if(strcmp(cp_av[i], "-1") == 0)
+      else if(strcmp(cp_av[i], "-p2") == 0)
 	game->players_type[1] = atoi(cp_av[i + 1]);
-      else if(strcmp(cp_av[i], "-2") == 0)
+      else if(strcmp(cp_av[i], "-p3") == 0)
 	game->players_type[2] = atoi(cp_av[i + 1]);
-      else if(strcmp(cp_av[i], "-3") == 0)
+      else if(strcmp(cp_av[i], "-p4") == 0)
 	game->players_type[3] = atoi(cp_av[i + 1]);
       else if(strcmp(cp_av[i], "-s") == 0)
-	game->is_super_mod = atoi(cp_av[i + 1]);
+	game->is_super_mod = true;
       else if(strcmp(cp_av[i], "-d") == 0)
-	game->is_duplicate_mod = atoi(cp_av[i + 1]);
+	game->is_duplicate_mod = true;
       else if(strcmp(cp_av[i], "-e") == 0)
 	letters_from_av(game, cp_av[i + 1]);
+      else if(strcmp(cp_av[i], "-c") == 0)
+	game->is_always_scramble_rack = true;
+      else if(strcmp(cp_av[i], "-t") == 0)
+	game->is_list_letters_linear = true;
+      
+      if(single_av_flag(cp_av[i][1]))
+	i++;
+      else
+	i = i + 2;
     }
   //  start_game(game);
 }

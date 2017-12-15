@@ -20,6 +20,7 @@ void		start_game(t_game *game)
   
 #endif
   game->playing = who_play_first(game);
+   
   fulfill_all_racks(game);
   while(game->letters_left > 0 || test_cant_play(game) == false)
     {

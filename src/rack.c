@@ -1,5 +1,21 @@
 #include "../include/scrabble.h"
 
+char		*scramble_rack(char *rack) // easy one
+{
+  int		len = strlen(rack);
+  int		i = 0;
+  char		tmp;
+
+  while(i < len / 2)
+    {
+      tmp = rack[i];
+      rack[i] = rack[len - 1];
+      rack[len - 1] = tmp;
+      i++;
+    }
+  return(rack);
+}
+
 char		give_rdm_letter(t_game *game)
 {
   char		letter = ' ';
@@ -14,6 +30,13 @@ char		give_rdm_letter(t_game *game)
     }
   game->letters_list[rd] = ' ';
   return(letter);
+}
+
+char		give_linear_letter(t_game *game)
+{
+  printf("max letters =%d\n", game->max_letters);
+  printf("letters left =%d\n", game->letters_left);
+  return(game->letters_list[game->max_letters - game->letters_left]);
 }
 
 char		get_rdm_letter(t_game *game, int player)
@@ -67,12 +90,20 @@ void		fulfill_rack(t_game *game, int player, int amount)
     {
       if(game->racks[player][i] == ' ')
 	{
-	  game->racks[player][i] = give_rdm_letter(game);
+	  if(game->is_list_letters_linear == true)
+	    game->racks[player][i] = give_linear_letter(game);
+	  else
+	    game->racks[player][i] = give_rdm_letter(game);
 	  game->nb_letters[player]++;
 	  game->letters_left--;
 	  amount--;
 	}
       i++;
+    }
+  if(game->is_always_scramble_rack == true)
+    {
+      printf("scramble ok\n");
+      //      game->racks[player] = scramble_rack(game->racks[player]);
     }
 }
 
@@ -102,6 +133,3 @@ void		put_letters_back_in_rack(t_game *game, char *retired_letters)
     }
 }
 
-void		scramble_rack(t_game *game)
-{
-}
