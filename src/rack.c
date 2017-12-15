@@ -125,6 +125,7 @@ void		put_letter_back_in_list(t_game *game, char letter)
 
 void		put_letters_back_in_rack(t_game *game, char *retired_letters)
 {
+  printf("retired letters put letters back in rack =%s\n", retired_letters);
   for(int i = 0; retired_letters[i] != '\0'; i++)
     {
       game->nb_letters[game->playing]++;

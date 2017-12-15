@@ -54,11 +54,19 @@ int		get_special_char(t_game *game, int score, char special_new_letter, char spe
   return((letter * multiplier) - letter);
 }
 
+bool		get_bingo(char *word)
+{
+  if(strlen(word) == 7)
+    return(true);
+    return(false);
+}
+
 int		get_score(t_game *game, char *word, bool is_new_word, char symbol_new_letter, char special_new_symbol)
 {
   int		multiplier = 1;
-  int		score = 0 + get_bingo();
-  
+  int		score = 0;
+
+  printf("word size =%d\n", strlen(word));
   for(int i = 0; word[i] != '\0'; i++)
     {
       score = get_score_from_letter(game, word[i], game->road_word[i], is_new_word) + score;
@@ -67,12 +75,10 @@ int		get_score(t_game *game, char *word, bool is_new_word, char symbol_new_lette
 	multiplier = get_multiplier(game, game->road_word[i]) + multiplier;
     }
   if(is_new_word == 0)
-    return(score * multiplier);
+    score = score * multiplier;
   else
-    return(score + get_special_char(game, score, symbol_new_letter, special_new_symbol));
-}
-
-int		get_bingo(char *word)
-{
-  
+    score = score + get_special_char(game, score, symbol_new_letter, special_new_symbol);
+  if(get_bingo(word) == true)
+    return(score + 50);
+  return(score);
 }

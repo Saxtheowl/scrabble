@@ -69,7 +69,6 @@ typedef struct		s_game
   int			*players_type;
   /* fixed value */
   char			**board;
-  char			**s_board;
 
   char			*board_path;
   

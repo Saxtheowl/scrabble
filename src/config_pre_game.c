@@ -34,7 +34,7 @@ void		print_av_help()
 void		letters_from_av(t_game *game, char *letters)
 {
   printf("letters from av start\n");
-  game->letters_list = xmalloc(sizeof(*game->letters_list) * strlen(letters));
+  game->letters_list = xmalloc(sizeof(*game->letters_list) * strlen(letters) + 1);
   strcpy(game->letters_list, letters);
   game->max_letters = strlen(letters);
   game->letters_left = game->max_letters;

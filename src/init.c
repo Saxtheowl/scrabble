@@ -93,12 +93,8 @@ void		init_pre_letters(t_game *game)
 void		init_game_memory(t_game *game) // fcking C language lul
 {
   game->board = xmalloc(sizeof(*game->board) * game->size_board);
-  game->s_board = xmalloc(sizeof(*game->s_board) * game->size_board);
   for(int i = 0; i < game->size_board; i++)
-    {
-      game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
-      game->s_board[i] = xmalloc(sizeof(**game->s_board) * game->size_board);
-    }
+    game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
   if(game->is_letters_from_av == false) // TRICKY ?
     game->letters_list = xmalloc(sizeof(*game->letters_list) * game->max_letters);
   game->letters_point = xmalloc(sizeof(*game->letters_point) * NB_LETTERS_ALPHABET);
@@ -124,12 +120,8 @@ void		init_board(t_game *game)
   if (fp == NULL)
     super_exit("error no files board found\n");
   while(getline(&game->board[i], &len, fp) != -1) // not clear
-  {
-    strcpy(game->s_board[i], game->board[i]);
     i++;
-  }
-  game->board[game->size_board] = NULL;
-  game->s_board[game->size_board] = NULL;
+  game->board[i] = NULL;
 }
 
 void		init_letters_list(t_game *game) // not sexy
