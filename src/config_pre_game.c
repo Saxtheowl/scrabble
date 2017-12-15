@@ -25,6 +25,21 @@ bool		select_yes_or_no_question(t_game *game, char *question)
   return((nb == 1) ? 1 : 0);
 }
 
+void		print_av_help()
+{
+  printf("each flags consist of:\n");
+  printf("-h for this help\n");
+}
+
+void		letters_from_av(t_game *game, char *letters)
+{
+  game->letters_list = xmalloc(sizeof(*game->letters_list) * strlen(letters));
+  strcpy(game->letters_list, letters);
+  game->max_letters = strlen(letters);
+  game->letters_left = game->max_letters;
+  game->is_letters_from_av = true;
+}
+
 void		config_with_av(t_game *game, char **cp_av)
 {
   config_skip_menu(game);
@@ -32,6 +47,8 @@ void		config_with_av(t_game *game, char **cp_av)
   for(int i = 1; cp_av[i] != NULL && cp_av[i + 1] != NULL; i = i + 2)
     {
       printf("ok2\n");
+      if(strcmp(cp_av[i], "-h") == 0)
+	print_av_help();
       if(strcmp(cp_av[i], "-l") == 0)
 	game->language = atoi(cp_av[i + 1]);
       else if(strcmp(cp_av[i], "-a") == 0)
@@ -48,12 +65,8 @@ void		config_with_av(t_game *game, char **cp_av)
 	game->is_super_mod = atoi(cp_av[i + 1]);
       else if(strcmp(cp_av[i], "-d") == 0)
 	game->is_duplicate_mod = atoi(cp_av[i + 1]);
-      else if(strcmp(cp_av[i], "e") == 0)
-	{
-	  game->letters_list = xmalloc(sizeof(*game->letters_list) * strlen(cp_av[i + 1]));
-	  strcpy(game->letters_list, cp_av[i + 1]);
-	}
-
+      else if(strcmp(cp_av[i], "-e") == 0)
+	letters_from_av(game, cp_av[i + 1]);
     }
   //  start_game(game);
 }

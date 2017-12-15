@@ -18,10 +18,14 @@ void		init_game(t_game *game)
   init_pre_letters(game);
   init_game_memory(game);
   init_board(game);
-  init_letters_list(game);
+  if(game->is_letters_from_av == false);
+    {
+      printf("wut\n");
+      init_letters_list(game);
+      game->letters_left = game->max_letters;
+    }
   init_letters_point(game);
   init_dictionnary(game);
-  game->letters_left = game->max_letters;
   game->is_first_turn = true;
   game->is_turn_done = false;
   game->is_side_word = false;
@@ -55,7 +59,8 @@ void		init_pre_letters(t_game *game)
 {
   if(game->language == ENGLISH)
     {
-      game->max_letters = MAX_LETTERS_EN;
+      if(game->is_letters_from_av == false)
+	game->max_letters = MAX_LETTERS_EN;
       game->letters_list_path =  "files/letters_list_en";
       game->letters_points_path = "files/letters_points_en";
       game->dictionnary_path = "files/dictionnary_en_tmp";
@@ -63,7 +68,8 @@ void		init_pre_letters(t_game *game)
     }
   else if(game->language == FRENCH)
     {
-      game->max_letters = MAX_LETTERS_FR;
+      if(game->is_letters_from_av == false)
+	game->max_letters = MAX_LETTERS_FR;
       game->letters_list_path =  "files/letters_list_fr";
       game->letters_points_path = "files/letters_points_fr";
       game->dictionnary_path = "files/dictionnary_fr_tmp";
@@ -93,7 +99,7 @@ void		init_game_memory(t_game *game) // fcking C language lul
       game->board[i] = xmalloc(sizeof(**game->board) * game->size_board);
       game->s_board[i] = xmalloc(sizeof(**game->s_board) * game->size_board);
     }
-  if(game->letters_list == NULL)
+  if(game->is_letters_from_av == false) // TRICKY ?
     game->letters_list = xmalloc(sizeof(*game->letters_list) * game->max_letters);
   game->letters_point = xmalloc(sizeof(*game->letters_point) * NB_LETTERS_ALPHABET);
   game->racks = xmalloc(sizeof(*game->racks) * game->amount_players);
@@ -127,7 +133,7 @@ void		init_board(t_game *game)
 }
 
 void		init_letters_list(t_game *game) // not sexy
-{
+{  
   FILE		*fp = fopen(game->letters_list_path, "r");
   size_t	len = 0;
 

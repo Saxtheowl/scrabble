@@ -50,6 +50,8 @@ enum LANGUAGE
 typedef struct		s_game
 {
   /* pre config */
+
+  bool			is_letters_from_av;
   
   bool			is_skip_menu;
   bool			is_super_mod;

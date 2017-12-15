@@ -26,3 +26,5 @@ X count the special case when a new new word is add with a special letter -- DON
 X fix special case when previous word is removed after wrong coordinate has been enter
 X fix when a wrong word has been enter, the turn is passed
 - fix special character for scoring dont have proper coordinate
+- fulfill the display av help
+- put all booleans edit at the end of the function for better readability
