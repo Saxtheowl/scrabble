@@ -103,7 +103,7 @@ void		fulfill_rack(t_game *game, int player, int amount)
   if(game->is_always_scramble_rack == true)
     {
       printf("scramble ok\n");
-      //      game->racks[player] = scramble_rack(game->racks[player]);
+      game->racks[player] = scramble_rack(game->racks[player]);
     }
 }
 
