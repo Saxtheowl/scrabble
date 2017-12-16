@@ -122,8 +122,8 @@ void		setup_connections_top_to_bottom(t_game *game)
       i++;
       tmp_pos++;
     }
-  game->road_word[i] = '\0';
-  game->word_test[i] = '\0';
+  //  game->road_word[i] = '\0';
+  //  game->word_test[i] = '\0';
   game->is_word_put = true;
 }
 
@@ -244,7 +244,6 @@ bool		is_lenght_valid(t_game *game)
     road_word_lenght = game->x_wrd_p2 - game->x_wrd_p1;
   else
     road_word_lenght = game->y_wrd_p2 - game->y_wrd_p1;
-
   printf("l =%d\n", game->x_wrd_p2 - game->x_wrd_p1);
   printf("t =%d\n", game->y_wrd_p2 - game->y_wrd_p1);
   printf("word test=%s\n", game->word_test);
