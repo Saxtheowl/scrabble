@@ -39,19 +39,31 @@ int		get_score_from_letter(t_game *game, char c, char symbol, bool is_new_word)
   return(point);
 }
 
-int		get_special_char(t_game *game, int score, char special_new_letter, char special_new_symbol)
+int		get_special_point(t_game *game, int score, int special_pos)
 {
   int		multiplier = 1;
-  int		i = get_number_from_letter(special_new_letter);
-  int		letter = game->letters_point[i];
+  int		i = get_number_from_letter(game->word_test[special_pos]);
+  int		point = game->letters_point[i];
 
   printf("special char start\n");
-  printf("special new letter =%c\n", special_new_letter);
-  printf("special new symbol =%c\n", special_new_symbol);
-  if(special_new_symbol >= game->symbol_max_letter && special_new_symbol <= game->symbol_max_word)
-    multiplier = (special_new_symbol - '0') - (game->symbol_max_letter - '0');
-  printf("special char point to return =%d\n", (letter * multiplier) - letter);
-  return((letter * multiplier) - letter);
+  printf("special_pos =%d\n", special_pos);
+  printf("i =%d\n", i);
+  printf("special new letter =%c\n", game->word_test[special_pos]);
+  printf("special new symbol =%c\n", game->road_word[special_pos]);
+  printf("letter point =%d\n", point);
+  if(game->road_word[special_pos] > '0' && game->road_word[special_pos] <= game->symbol_max_letter)
+    {
+      
+      printf("special multiplier =%d\n", multiplier);
+      printf("special char char point to return =%d\n", (point * ((game->road_word[special_pos] - '0'))));
+      return((point * ((game->road_word[special_pos] - '0') + 1)));
+    }
+  else if(game->road_word[special_pos] >= game->symbol_max_letter && game->road_word[special_pos] <= game->symbol_max_word)
+      {
+	printf("special score multiply word to return=%d\n", score * ((game->road_word[special_pos] - '0') - (game->symbol_max_letter)));
+	return(score * ((game->road_word[special_pos] - '0') - (game->symbol_max_letter)));
+      }
+  printf("wut error special point\n");
 }
 
 bool		get_bingo(char *word)
@@ -61,7 +73,7 @@ bool		get_bingo(char *word)
     return(false);
 }
 
-int		get_score(t_game *game, char *word, bool is_new_word, char symbol_new_letter, char special_new_symbol)
+int		get_score(t_game *game, char *word, bool is_new_word, int special_pos)
 {
   int		multiplier = 1;
   int		score = 0;
@@ -77,7 +89,7 @@ int		get_score(t_game *game, char *word, bool is_new_word, char symbol_new_lette
   if(is_new_word == 0)
     score = score * multiplier;
   else
-    score = score + get_special_char(game, score, symbol_new_letter, special_new_symbol);
+    score = score + get_special_point(game, score, special_pos);
   if(get_bingo(word) == true)
     return(score + 50);
   return(score);

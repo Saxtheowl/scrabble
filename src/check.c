@@ -280,12 +280,12 @@ bool		is_direction_valid(t_game *game)
   return(false);
 }
 
-bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, char special_symbol, char special_letter)
+bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, int special_pos)
 {
   char		*tmp_new_word;
   int		y_cp = game->y_wrd_p1;
   int		i = 0;
-
+  
   tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
   if(flag_up == true)
     {
@@ -302,7 +302,7 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, ch
   tmp_new_word[i] = '\0'; // useless ?
   if(is_valid_word(game, tmp_new_word))
     {
-      game->score[game->playing] = game->score[game->playing] + get_score(game, tmp_new_word, 1, special_symbol, special_letter);
+      game->score[game->playing] = game->score[game->playing] + get_score(game, tmp_new_word, 1, special_pos);
       game->is_side_word = true;
       return(true);
     }
@@ -344,7 +344,10 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 #ifdef DEBUG_FLAG
 	      printf("ok up START is new connections up \n");
 #endif
-	      if(!(search_new_connections_up_or_down(game, x_cp, 1, game->board[y_cp_up][x_cp], game->road_word[i])))
+	      printf("BOARD IS NEW CONNECTIONS LEFT TO RIGHT VALID =%c\n", game->word_test[i]);
+
+	      printf("road word =%c\n", game->road_word[i]);
+	      if(!(search_new_connections_up_or_down(game, x_cp, 1, i)))
 		return(false);
 	    }	  
 	  else if(is_char(game->board[y_cp_down][x_cp]))
@@ -352,7 +355,7 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 #ifdef DEBUG_FLAG
 	      printf("ok down START is new connections up \n");
 #endif
-	      if(!(search_new_connections_up_or_down(game, x_cp, 0, game->board[y_cp_down][x_cp], game->road_word[i])))
+	      if(!(search_new_connections_up_or_down(game, x_cp, 0, i)))
 		return(false);
 	    } 
 	}
@@ -362,14 +365,14 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
   return(true);
 }
 
-bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up, char special_letter, char special_symbol)
+bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up, int special_pos)
 {
   char		*tmp_new_word;
   int		x_cp = game->x_wrd_p1;
   int		i = 0;
 
   //  if(y_cp
-  tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board);
+  tmp_new_word = xmalloc(sizeof(*tmp_new_word) * game->size_board); // LUL
   //  game->board[y_cp][x_cp] = 'X';
   if(flag_up == true)
     {
@@ -386,7 +389,7 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up,
   tmp_new_word[i] = '\0';
   if(is_valid_word(game, tmp_new_word))
     {
-      game->score[game->playing] = game->score[game->playing] + get_score(game, tmp_new_word, 1, special_letter, special_letter);
+      game->score[game->playing] = game->score[game->playing] + get_score(game, tmp_new_word, 1, special_pos);
       game->is_side_word = true;
       return(true);
     }
@@ -411,7 +414,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 #ifdef DEBUG_FLAG
 	      printf("ok left START is new connections left \n");
 #endif
-	      if(!(search_new_connections_left_or_right(game, y_cp, 1, game->board[y_cp][x_cp_left], game->road_word[i])))	 
+	      if(!(search_new_connections_left_or_right(game, y_cp, 1, i)))	 
 		return(false);
 	    }	  
 	  else if(is_char(game->board[y_cp][x_cp_right]))
@@ -419,7 +422,7 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 #ifdef DEBUG_FLAG
 	      printf("ok right START is new connections right \n");
 #endif
-	      if(!(search_new_connections_left_or_right(game, y_cp, 0, game->board[y_cp][x_cp_right], game->road_word[i])))
+	      if(!(search_new_connections_left_or_right(game, y_cp, 0, i)))
 		return(false);
 	    } 
 	}
