@@ -24,7 +24,7 @@ int		get_score_from_letter(t_game *game, char c, char symbol, bool is_new_word)
 
   if(is_new_word == true)// wrong to fix
     {
-      printf("1get score from letter to return =%d\n", point);
+      printf("1get score from letter to return, letter =%d %c\n", point, c);
       return(point);
     }
   else if(symbol > '0' && symbol <= game->symbol_max_letter)
