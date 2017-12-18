@@ -474,7 +474,7 @@ bool		is_valid_new_words(t_game *game)
 
 bool		is_valid_word(t_game *game, char *word)
 {
-  return(true);
+  //  return(true);
   word = to_upper(word);
   printf("road word =%s\n", game->road_word);
   printf("is_valid_word word to test =%s\n", word);
