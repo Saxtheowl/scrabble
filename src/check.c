@@ -102,8 +102,8 @@ void		setup_connections_left_to_right(t_game *game)
   printf("i =%d\n", i);
   printf("road word setup connections left to right =%s\n", game->road_word);
   printf("word test setup connections left to right =%s\n", game->word_test);
-  //  game->road_word[i] = '\0';
-  //  game->word_test[i] = '\0';
+  game->road_word[i] = '\0';
+  game->word_test[i] = '\0';
   printf("road word setup connections left to right =%s\n", game->road_word);
   printf("word test setup connections left to right =%s\n", game->word_test);
 }
@@ -122,8 +122,8 @@ void		setup_connections_top_to_bottom(t_game *game)
       i++;
       tmp_pos++;
     }
-  //  game->road_word[i] = '\0';
-  //  game->word_test[i] = '\0';
+  game->road_word[i] = '\0';
+  game->word_test[i] = '\0';
   game->is_word_put = true;
 }
 
@@ -228,8 +228,7 @@ bool		is_valid_first_turn(t_game *game, char *tmp_retired_letters)
 	}
     }
   printf("is first turn not needed\n");
-  return(true);
-    
+  return(true);    
 }
 
 void		test()

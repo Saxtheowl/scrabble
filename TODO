@@ -2,8 +2,8 @@
 
 X check overwrite on new words
 X remove enum for the info on each letters
-- add intern AI
-- add extern AI
+- add intern AI ( eg C AI coded inside the game, using intern ressources)
+- add extern AI ( eg python AI which take data from a txt file outputed by the scrabble, and then output his own txt file read by the scrabble, etc... )
 - proper readme.md with gif
 X add capability of config the game with argv ( number of players, type of game, mod, etc... )
 X add option of launching the game with multiple phrase that will appear in racks like "saultcvaa" (salutcava)
@@ -30,3 +30,5 @@ X fix when a wrong word has been enter, the turn is passed
 - put all booleans edit at the end of the function for better readability
 X add options to have the letters from board given one at a time in no a non random way
 X add option to scramble the letters from board
+- graphic display, with qt
+X fix rare case where words cant be put because road_word string is not properly cut

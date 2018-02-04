@@ -157,3 +157,17 @@ void		select_players_type(t_game *game)
       nb = 0;
     }
 }
+
+void		print_help()
+{
+  printf("\n all commands:\n");
+  printf("-h, display this text \n");
+  printf("-l, define language, 1 ENGLISH, 2 FRENCH \n");
+  printf("-a, define the amount of players \n");
+  printf("-p[x] specify for the x type of player his type, 1 HUMAN, 2 BOT\n");
+  printf("-s, select super mod \n");
+  printf("-d, select duplicated_mod \n");
+  printf("-e, will use the string entered after the flag as the letters that will be used for the bag \n");
+  printf("-c, scramble the order in which the letter appear in the racks \n");
+  printf("-t, select if the letters in the bag have to given in order ");
+}
