@@ -1,6 +1,7 @@
 #include "../include/scrabble.h"
 
 void		print_board(t_game *);
+void		color_print_inner_board(char *, int);
 void		print_players_info(t_game *);
 
 void		print_board(t_game *game)
@@ -10,14 +11,14 @@ void		print_board(t_game *game)
 
   //  if(game->is_first_turn == false)
     //    system("clear");
-  if(game->is_super_mod == true)
+  if (game->is_super_mod == true)
     alphabet_tmp = "  ABCDEFGHIJKLMNOPQRSTU \n";
   else
     alphabet_tmp = "  ABCDEFGHIJKLMNO \n";
   printf(ANSI_COLOR_RED"%s"ANSI_COLOR_RESET, alphabet_tmp);
-  for(int i = 0; i < game->size_board; i++)
+  for (int i = 0; i < game->size_board; i++)
     {
-      if(nb_lines < 10)
+      if (nb_lines < 10)
 	printf(" ");
       printf(ANSI_COLOR_RED"%d"ANSI_COLOR_RESET, nb_lines);
       color_print_inner_board(game->board[i], game->size_board);
@@ -30,9 +31,9 @@ void		print_board(t_game *game)
 
 void		color_print_inner_board(char *line, int nb_to_copy)
 {
-  for(int i = 0; i < nb_to_copy; i++)
+  for (int i = 0; i < nb_to_copy; i++)
     {
-      if(is_num_char(line[i]))
+      if (is_num_char(line[i]))
 	printf(ANSI_COLOR_BLUE"%c"ANSI_COLOR_RESET, line[i]);
       else
 	printf("%c", line[i]);
@@ -41,16 +42,16 @@ void		color_print_inner_board(char *line, int nb_to_copy)
 
 void		print_players_info(t_game *game)
 {
-  for(int i = 0; i < game->amount_players; i++)
+  for (int i = 0; i < game->amount_players; i++)
     {
       printf("PLAYER %d score:%d rack:", i, game->score[i]);
-      if(i == game->playing)
+      if (i == game->playing)
 	printf("%s\n", game->racks[i]);
       else
 	{
-	  for(int y = 0; game->racks[i][y] != '\0'; y++)
+	  for (int y = 0; game->racks[i][y] != '\0'; y++)
 	    {
-	      if(game->racks[i][y] != ' ')
+	      if (game->racks[i][y] != ' ')
 		printf("@");
 	      else
 		printf(" ");
@@ -59,9 +60,4 @@ void		print_players_info(t_game *game)
 	}
     }
   printf("letters left: %d\n", game->letters_left);
-}
-
-void		print_score(t_game *game)
-{
-  
 }

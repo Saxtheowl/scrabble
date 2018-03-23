@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define HUMAN 0
 #define BOT 1
@@ -91,6 +92,7 @@ typedef struct		s_game
   char			**racks;
   int			*old_score;
   int			*score;
+  int			new_word_pot;
 
   int			playing;
 
@@ -109,81 +111,138 @@ typedef struct		s_game
   char			new_word_special_symbol;
 }			t_game;
 
+/* util/ */
+
+/* util.c */
+
+char		*read_entry();
+char		*put_prompt();
+void		super_exit();
+int		rack_strlen(char *);
+bool		is_char(char);
+bool		is_num_char(char);
+bool		is_lower_char(char);
+bool		is_upper_char(char);
+char		to_lower_solo(char);
+char		to_upper_solo(char);
+char		*to_upper(char *);
+int		strcmp_dictionnary(char *, char *);
+int		get_number_from_letter(char);
+void		print_double_tab(char **);
+
+/* xfunc.c */
+
+void		*xmalloc(int);
+void		xgetline(char **, FILE *, int);
+
+/* src/ */
+
+/* board.c */
+
+void		put_word(t_game *);
+void		remove_word(t_game *);
+
+/* check.c */
+
+bool		is_syntax_letter_valid(t_game *, char *pos);
+void		get_proper_coord_word(t_game *, char *, bool, int);
+bool		is_syntax_number_valid(t_game *, char *, bool);
+bool		is_valid_syntax(t_game *, char *, char *);
+void		setup_connections_left_to_right(t_game *);
+void		setup_connections_top_to_bottom(t_game *);
+bool		is_more_left_empty(t_game *);
+bool		is_more_up_empty(t_game *);
+bool		is_not_overwritting(t_game *);
+bool		is_connected_to_a_letter(t_game *);
+bool		is_valid_first_turn(t_game *, char *);
+bool		is_lenght_valid(t_game *);
+bool		is_direction_valid(t_game *);
+bool		search_new_connections_up_or_down(t_game *, int, bool, int);
+bool		is_new_connections_down_valid(t_game *, int);
+bool		is_new_connections_left_to_right_valid(t_game *);
+bool		search_new_connections_left_or_right(t_game *, int, bool, int);
+bool		is_new_connections_top_to_bottom_valid(t_game *);
+bool		is_valid_position(t_game *);
+bool		is_valid_new_words(t_game *);
+bool		is_valid_word(t_game *, char *);
+bool		is_joker_in_rack(t_game *);
+bool		is_letters_in_rack(t_game *);
+
+/* config_pre_game.c */
+
+bool		select_yes_or_no_question(char *);
+void		letters_from_av(t_game *, char *);
+bool		single_av_flag(char);
+void		config_with_av(t_game *game, char **);
+void		config_skip_menu(t_game *);
+void		config_with_file(t_game *);
+void		select_language_to_play(t_game *);
+void		select_number_of_players(t_game *);
+void		select_players_type(t_game *);
+void		print_help();
+
 /* game_core.c */
 
 void		start_game(t_game *);
-
-/* pre_init.c */
-
-void		pre_init_game_data(t_game *);
 
 /* init.c */
 
 void		init_game(t_game *);
 void		init_pre_board(t_game *);
 void		init_pre_letters(t_game *);
+void		init_board(t_game *);
 void		init_game_memory(t_game *);
 void		init_letters_list(t_game *);
 void		init_letters_point(t_game *);
 void		init_dictionnary(t_game *);
 
-/* menu.c */
-
-void		menu_pre_game(t_game *);
-void		menu_play(t_game *);
-
-/* config_pre_game.c */
-
-void		config_with_av(t_game *, char **);
-void		config_skip_menu(t_game *);
-bool		select_yes_or_no_question(t_game *, char *);
-void		select_language_to_play(t_game *);
-void		select_number_of_players(t_game *);
-void		select_players_type(t_game *);
-
-/* letters.c */
-
-char		get_letter(t_game *);
-char		get_rdm_letter(t_game *, int);
-void		fulfill_rack(t_game *, int, int);
-
-/*output.c */
-
-void		print_board(t_game *);
-void		print_players_info(t_game *);
-
-/* play.c */
-
-void		fulfill_all_racks(t_game *);
-int		who_play_first(t_game *);
-void		make_play(t_game *);
-
-/* check.c */
-
-bool		test_cant_play(t_game *);
-bool		is_valid_word(t_game *, char *);
-
-/* end_of_the_game.c */
-
-void		end_of_the_game(t_game *);
-
 /* main.c */
 
 int		main(int, char **);
 
-/* ../util/util.c */
+/* menu. */
 
-char		*read_entry();
-char		*put_prompt();
-void		super_exit(char *);
-int		rack_strlen(char *);
-bool		is_char(char);
-int		strcmp_dictionnary(char *, char *);
+void		menu_pre_game(t_game *);
+void		menu_play(t_game *);
 
+/* output.c */
 
-/* xfunc.c */
+void		print_board(t_game *);
+void		color_print_inner_board(char *, int);
+void		print_players_info(t_game *);
 
-void		*xmalloc(int);
-void		xgetline(char **, FILE *, int);
+/* play.c */
+
+int		who_play_first(t_game *);
+void		make_play(t_game *);
+void		update_turn(t_game *);
+void		play_word(t_game *, char *, char *);
+void		play_exchange_letters(t_game *, char *);
+void		play_pass(t_game *);
+void		transform_joker(t_game *, char *);
+
+/* pre_init.c */
+
+void		pre_init_game_data(t_game *);
+
+/* rack.c */
+
+char		*scramble_rack(char *);
+char		give_rdm_letter(t_game *);
+char		get_rdm_letter(t_game *);
+bool		remove_letter_in_rack(t_game *, char);
+void		put_letter_in_rack(t_game *, char);
+void		fulfill_rack(t_game *, int, int);
+void		fulfill_all_racks(t_game *);
+void		put_letter_back_in_list(t_game *, char);
+void		put_letters_back_in_rack(t_game *, char *);
+
+/* score.c */
+
+int		get_multiplier(t_game *, char);
+int		get_score_from_letter(t_game *, char, char, bool);
+int		get_special_point(t_game *, int, int);
+bool		get_bingo(char *);
+int		get_score(t_game *, char *, bool, int);
 
 #endif /*__SCRABBLE_H__ */

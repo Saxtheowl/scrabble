@@ -1,4 +1,9 @@
+
+#define _GNU_SOURCE
 #include "../include/scrabble.h"
+
+void		*xmalloc(int);
+void		xgetline(char **, FILE *, int);
 
 void		*xmalloc(int size)
 {

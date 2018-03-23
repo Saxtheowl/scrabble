@@ -1,9 +1,9 @@
 #include "../../include/scrabble.h"
 
-void		word_finder(char *letters)
+void		word_finder()
 {
-  char		*tmp_word;
+  //  char		*tmp_word;
   
-  letters = to_upper(letters);
+  //  letters = to_upper(letters);
 
 }

@@ -2,6 +2,12 @@
 
 int		who_play_first(t_game *);
 void		make_play(t_game *);
+void		update_turn(t_game *);
+void		play_word(t_game *, char *, char *);
+void		play_exchange_letters(t_game *, char *);
+void		play_pass(t_game *);
+void		transform_joker(t_game *, char *);
+
 /*
 int		who_play_first(t_game *game)
 {
@@ -53,12 +59,12 @@ int		who_play_first(t_game *game)
 
 int		who_play_first(t_game *game) // fuck this lets do a standard random, it is the same
 {
-  return(rand() % (game->amount_players));
+  return (rand() % (game->amount_players));
 }
 
 void		make_play(t_game *game)
 {
-  while(game->is_turn_done == false)
+  while (game->is_turn_done == false)
     {
       print_board(game);
       print_players_info(game);
@@ -68,14 +74,12 @@ void		make_play(t_game *game)
   game->is_turn_done = false;
 }
 
-void		reset_turn(t_game *game)
-{
-
-}
-
 void		update_turn(t_game *game)
 {
-  game->score[game->playing] = game->score[game->playing] + get_score(game, game->word_test, 0, 0);
+  printf("new word pot pre =%d\n", game->new_word_pot);
+  game->score[game->playing] = game->score[game->playing] + get_score(game, game->word_test, 0, 0) + game->new_word_pot;
+  printf("score to add=%d\n", get_score(game, game->word_test, 0, 0) + game->new_word_pot);
+  printf("new word pot =%d\n", game->new_word_pot);
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
   game->is_side_word = false;
@@ -90,33 +94,31 @@ void		play_word(t_game *game, char *pos1, char *pos2)
   word = put_prompt();
   strncpy(game->word_test, word, strlen(word) - 1);
   game->word_test[strlen(word) -1] = '\0';
-  printf("play_word =%s\n", word);
-  printf("play_word_test =%s\n", game->word_test);
-  printf("play_word =%d\n", strlen(word));
-  printf("play_word test len =%d\n", strlen(game->word_test));
-  if(is_valid_syntax(game, pos1, pos2) &&
-     is_valid_position(game) &&
-     //     is_valid_word(game, game->word_test) &&
-          is_valid_new_words(game) &&
-     is_letters_in_rack(game, game->word_test))
+  if(game->new_word_pot > 0)
+    game->new_word_pot = 0;
+  if (is_valid_syntax(game, pos1, pos2) &&
+      is_valid_position(game) &&
+      //      is_valid_word(game, game->word_test) &&
+      is_valid_new_words(game))
+      //      is_letters_in_rack(game))
     {
-      put_word(game);      
+      put_word(game);
       update_turn(game);
 #ifdef DEBUG_FLAG
       printf("word is put\n");
 #endif
     }
-  else if(game->is_word_put == true)
+  else if (game->is_word_put == true)
     remove_word(game);
 }   
 
 void		play_exchange_letters(t_game *game, char *letters)
 {
-  for(int i = 0; letters[i] != '\0'; i++)
+  for (int i = 0; letters[i] != '\0'; i++)
     {
-      if(is_lower_char(letters[i]))
+      if (is_lower_char(letters[i]))
 	 letters[i] = '?';
-      if(remove_letter_in_rack(game, letters[i]))
+      if (remove_letter_in_rack(game, letters[i]))
 	{
 	  put_letter_back_in_list(game, letters[i]);
 	  fulfill_rack(game, game->playing, 1);
@@ -132,11 +134,11 @@ void		play_pass(t_game *game)
 
 void		transform_joker(t_game *game, char *letters)
 {
-  if(letters[0] >= 'a' && letters[0] <= 'z')
+  if (letters[0] >= 'a' && letters[0] <= 'z')
     {
-      for(int i = 0; i < MAX_LETTERS_RACK; i++)
+      for (int i = 0; i < MAX_LETTERS_RACK; i++)
 	{
-	  if(game->racks[game->playing][i] == '?')
+	  if (game->racks[game->playing][i] == '?')
 	    {
 	      game->racks[game->playing][i] = letters[0];
 	      game->is_turn_done = true;
