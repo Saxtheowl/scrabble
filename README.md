@@ -13,5 +13,5 @@ make && ./scrabble
 #### Tech Used to Make This:
  * C
 
-#### Gameplay Gif
+#### Gameplay
 ![screenshot](/screenshoot.jpg)
