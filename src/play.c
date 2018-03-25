@@ -8,55 +8,6 @@ void		play_exchange_letters(t_game *, char *);
 void		play_pass(t_game *);
 void		transform_joker(t_game *, char *);
 
-/*
-int		who_play_first(t_game *game)
-{
-  char		lowest = 'Z';
-  char		tmp;
-  int		to_return;
-  int		i = 0;
-  int		blank_flag = false;
-  int		blank_owner = 0;
-
-  while(i < game->amount_players)
-    {
-      tmp = get_rdm_letter(game, i);
-      printf("Player %d pick a %c\n", i, tmp);
-      if(tmp == '?')
-	{
-	  if(blank_flag == true) // in the rare case of double blank :-O
-	    {
-	      i = 0;
-	      blank_owner = 0;
-	      tmp = 'Z';
-	      lowest = 'Z';
-	      blank_flag = false;
-	    }
-	  else
-	    {
-	      blank_owner = i;
-	      blank_flag = true;
-	    }
-	  //	  printf("Player %d has a %c (blank tile) and begin\n", i, tmp);
-	}
-      if(tmp < lowest)
-	{
-	  to_return = i;
-	  lowest = tmp;
-	}
-      i++;
-    }
-  printf("Player %d has a %c and so is first\n", to_return, lowest);
-  if(blank_flag == true)
-    {
-      printf("Player %d has a '?' (blank tile) and so is first\n", blank_owner);
-      return(blank_owner);
-    }
-  else
-    return(to_return);
-}
-*/
-
 int		who_play_first(t_game *game) // fuck this lets do a standard random, it is the same
 {
   return (rand() % (game->amount_players));
@@ -76,10 +27,7 @@ void		make_play(t_game *game)
 
 void		update_turn(t_game *game)
 {
-  printf("new word pot pre =%d\n", game->new_word_pot);
   game->score[game->playing] = game->score[game->playing] + get_score(game, game->word_test, 0, 0) + game->new_word_pot;
-  printf("score to add=%d\n", get_score(game, game->word_test, 0, 0) + game->new_word_pot);
-  printf("new word pot =%d\n", game->new_word_pot);
   fulfill_rack(game, game->playing, MAX_LETTERS_RACK - game->nb_letters[game->playing]);
   game->is_turn_done = true;
   game->is_side_word = false;
@@ -98,9 +46,9 @@ void		play_word(t_game *game, char *pos1, char *pos2)
     game->new_word_pot = 0;
   if (is_valid_syntax(game, pos1, pos2) &&
       is_valid_position(game) &&
-      //      is_valid_word(game, game->word_test) &&
-      is_valid_new_words(game))
-      //      is_letters_in_rack(game))
+      is_valid_word(game, game->word_test) &&
+      is_valid_new_words(game) &&
+      is_letters_in_rack(game))
     {
       put_word(game);
       update_turn(game);

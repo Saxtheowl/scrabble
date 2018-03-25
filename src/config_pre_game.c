@@ -29,7 +29,6 @@ bool		select_yes_or_no_question(char *question)
 
 void		letters_from_av(t_game *game, char *letters)
 {
-  printf("letters from av start\n");
   game->letters_list = xmalloc(sizeof(*game->letters_list) * strlen(letters) + 1);
   strcpy(game->letters_list, letters);
   game->max_letters = strlen(letters);
@@ -54,7 +53,6 @@ void		config_with_av(t_game *game, char **cp_av)
   int		i = 1;
   
   config_skip_menu(game);
-  printf("ok1\n");
   while (cp_av[i] != NULL) // LUL
     {
       if (strcmp(cp_av[i], "-h") == 0)

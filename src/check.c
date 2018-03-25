@@ -1,7 +1,7 @@
 #include "../include/scrabble.h"
 #include <string.h>
 
-bool		is_syntax_letter_valid(t_game *, char *pos);
+bool		is_syntax_letter_valid(t_game *, char *);
 void		get_proper_coord_word(t_game *, char *, bool, int);
 bool		is_syntax_number_valid(t_game *, char *, bool);
 bool		is_valid_syntax(t_game *, char *, char *);
@@ -81,12 +81,10 @@ bool		is_syntax_number_valid(t_game *game, char *pos, bool is_pos1)
 
 bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
 {
-  if (//strlen(pos1) > 2 &&
-     //     strlen(pos2) > 2 &&
-     is_syntax_letter_valid(game, pos1) &&
-     is_syntax_number_valid(game, pos1, 1) &&
-     is_syntax_letter_valid(game, pos2) &&
-     is_syntax_number_valid(game, pos2, 0))
+  if (is_syntax_letter_valid(game, pos1) &&
+      is_syntax_number_valid(game, pos1, 1) &&
+      is_syntax_letter_valid(game, pos2) &&
+      is_syntax_number_valid(game, pos2, 0))
     {
 #ifdef DEBUG_FLAG
       printf("y word pos1:%d\n", game->y_wrd_p1);
@@ -94,10 +92,12 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
       printf("x word pos1:%d\n", game->x_wrd_p1);
       printf("x word pos2:%d\n", game->x_wrd_p2);     
       printf("syntax valid\n");
-#endif      
+#endif
       return (true);
     }
+#ifdef DEBUG_FLAG
   printf("syntax wrong\n");
+#endif
   return (false);
 }
 
@@ -137,7 +137,7 @@ void		setup_connections_top_to_bottom(t_game *game)
   game->is_word_put = true;
 }
 
-bool		is_more_left_empty(t_game *game)
+bool		is_more_left_empty(t_game *game) // useless ?
 {
   int		tmp_pos = game->x_wrd_p1 - 1;
 
@@ -148,7 +148,7 @@ bool		is_more_left_empty(t_game *game)
   return (true);
 }
 
-bool		is_more_up_empty(t_game *game)
+bool		is_more_up_empty(t_game *game) // useless ?
 {
   int		tmp_pos = game->y_wrd_p1 - 1;
 
@@ -268,8 +268,7 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, in
   tmp_new_word[i] = '\0'; // useless ?
   if (is_valid_word(game, tmp_new_word))
     {
-      game->new_word_pot = game->new_word_pot + game->score[game->playing] + get_score(game, tmp_new_word, 1, special_pos);
-      //      printf("new conections score =%d\n",       game->score[game->playing] = game->score[game->playing] + get_score(game, tmp_new_word, 1, special_pos));
+      game->new_word_pot = game->new_word_pot + get_score(game, tmp_new_word, 1, special_pos);
       game->is_side_word = true;
       return (true);
     }
@@ -351,7 +350,7 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up,
   tmp_new_word[i] = '\0';
   if (is_valid_word(game, tmp_new_word))
     {
-      game->new_word_pot = game->new_word_pot + game->score[game->playing] + get_score(game, tmp_new_word, 1, special_pos);
+      game->new_word_pot = game->new_word_pot + get_score(game, tmp_new_word, 1, special_pos);
       game->is_side_word = true;
       return (true);
     }

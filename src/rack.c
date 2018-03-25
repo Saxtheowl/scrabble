@@ -34,9 +34,7 @@ char		give_rdm_letter(t_game *game)
   while (letter == ' ')
     {
       rd = rand() % (game->max_letters);
-      //      printf("rd = %d\n", rd);
       letter = game->letters_list[rd];
-      //      printf("new char = %c\n", letter);
     }
   game->letters_list[rd] = ' ';
   return (letter);

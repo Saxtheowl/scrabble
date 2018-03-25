@@ -8,7 +8,7 @@ X remove enum for the info on each letters
 X add capability of config the game with argv ( number of players, type of game, mod, etc... )
 X add option of launching the game with multiple phrase that will appear in racks like "saultcvaa" (salutcava)
 - add option writing all info of the game on an outside txt file
-- add duplicate mod
+- add official duplicate mod
 X fix road word string being too long in certain case
 X fix wrong number of letters replaced during first turn check
 X add scramble the racks options
@@ -17,7 +17,8 @@ X fix new words formed sometime not valided
 X check when words are put but its corner are not empty (.) --  done but ugly
 - refactoring of the big struct game
 X fix word put sometime destroy the board[][] variable when bad coordinate has been enter, happens only on the first turn
-- refactorize all the init phase, maybe using the maccros in the code instead of using a new variable to again initiliaze in init
+- refactoring all the game
+- add commentary for core element of the game
 X fix color on the output of the board
 X fix joker letters sometime not being recognized
 X replace s_board with road_word in score ? s_board useless ?
@@ -34,5 +35,6 @@ X add option to scramble the letters from board
 X fix rare case where words cant be put because road_word string is not properly cut
 X refactoring of the code, warning etc...
 X fix bug when a word is put on the last line of the board and check new possible words fail
-- fix speial case when points are added when a wrong words has been put
+X fix speial case when points are added when a wrong words has been put
 - fix bug where sometime when you have a transformed joker and try to use it, the common letter is used, (it make no sense gameplaywise but it is still a bug)
+- check how many lines the game need depending on tty and output accordingly for clarity

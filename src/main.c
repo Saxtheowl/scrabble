@@ -8,11 +8,13 @@ int		main(int, char **);
 
 int		main(int ac, char **av)
 {
+  /*
 #ifdef DEBUG_FLAG
   printf("YES DEBUG_FLAG\n\n\n");
 #else
   printf("NO DEBUG_FLAG\n\n\n");
-#endif
+  #endif
+*/
 
   t_game		game;
 
@@ -35,8 +37,6 @@ int		main(int ac, char **av)
   printf("return at int main() OK\n");
   printf("size of struct game: %zu\n", sizeof(game));
 #endif
-  //  end_of_the_game(&game);
-  //  free(&game);
   printf("%s\n", game.letters_list);
   return(0);
 }

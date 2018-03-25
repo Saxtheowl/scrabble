@@ -34,7 +34,6 @@ int		get_score(t_game *, char *, bool, int);
 
 int		get_multiplier(t_game *game, char symbol)
 {
-  printf("symbol = %c\n", symbol);
   if (symbol > game->symbol_max_letter && symbol <= game->symbol_max_word)
     return ((symbol - '0') - (game->symbol_max_letter - '0') +1);
   return (0);
@@ -102,7 +101,6 @@ int		get_score(t_game *game, char *word, bool is_new_word, int special_pos)
 	{
 	  multiplier = get_multiplier(game, game->road_word[i]) + multiplier;
 	}
-      printf("multiplier =%d\n", multiplier);
     }
   if(multiplier > 1)
     score = score * multiplier;
@@ -110,9 +108,13 @@ int		get_score(t_game *game, char *word, bool is_new_word, int special_pos)
     score = score + get_special_point(game, score, special_pos);
   if (is_new_word == false && get_bingo(game->road_word) == true)
     {
+#ifdef DEBUG_FLAG
       printf(" for word=%s, point to return =%d\n", word, score);
+#endif
       return (score + 50);
     }
+#ifdef DEBUG_FLAG
   printf(" for word=%s, point to return =%d\n", word, score);
+#endif
   return (score);
 }
