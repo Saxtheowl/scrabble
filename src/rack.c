@@ -63,8 +63,8 @@ bool		remove_letter_in_rack(t_game *game, char letter)
   
   for (int i = 0; i < MAX_LETTERS_RACK; i++)
     {
-      if (game->racks[game->playing][i] == letter ||
-	 game->racks[game->playing][i] == to_lower_solo(letter))
+      if (game->racks[game->playing][i] == letter) /*||
+						     game->racks[game->playing][i] == to_lower_solo(letter))*/
 	{
 	  game->racks[game->playing][i] = ' ';
 	  game->nb_letters[game->playing]--;

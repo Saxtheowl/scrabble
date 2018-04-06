@@ -1,20 +1,24 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
 #include "../include/scrabble.h"
+#include <signal.h>
+
+void		interrupt_handler()
+{
+  printf("lul\n");
+  exit(0);
+}
 
 int		main(int, char **);
 
 int		main(int ac, char **av)
 {
+  signal(SIGINT, interrupt_handler);
   /*
 #ifdef DEBUG_FLAG
   printf("YES DEBUG_FLAG\n\n\n");
 #else
   printf("NO DEBUG_FLAG\n\n\n");
   #endif
-*/
+  */
 
   t_game		game;
 

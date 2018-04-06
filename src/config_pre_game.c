@@ -78,8 +78,7 @@ void		config_with_av(t_game *game, char **cp_av)
       else if (strcmp(cp_av[i], "-c") == 0)
 	game->is_always_scramble_rack = true;
       else if (strcmp(cp_av[i], "-t") == 0)
-	game->is_list_letters_linear = true;
-      
+	game->is_list_letters_linear = true;      
       if (single_av_flag(cp_av[i][1]))
 	i++;
       else
@@ -163,5 +162,6 @@ void		print_help()
   printf("-d, select duplicated_mod \n");
   printf("-e, will use the string entered after the flag as the letters that will be used for the bag \n");
   printf("-c, scramble the order in which the letter appear in the racks \n");
-  printf("-t, select if the letters in the bag have to given in order ");
+  printf("-t, select if the letters in the bag have to given in order \n");
+  exit(0);
 }

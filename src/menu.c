@@ -8,7 +8,8 @@ void		menu_play(t_game *);
 
 void		menu_pre_game(t_game *game)
 {
-  printf("Welcome to the game of scrabble\n");
+  clear();
+  printf("\nWelcome to the game of scrabble:\n\n");
   game->is_skip_menu = select_yes_or_no_question("Skip menu ?\n");
   if (game->is_skip_menu == true)
     {

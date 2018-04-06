@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <signal.h>
 
 #define HUMAN 0
 #define BOT 1
@@ -164,7 +165,7 @@ bool		search_new_connections_left_or_right(t_game *, int, bool, int);
 bool		is_new_connections_top_to_bottom_valid(t_game *);
 bool		is_valid_position(t_game *);
 bool		is_valid_new_words(t_game *);
-bool		is_valid_word(t_game *, char *);
+bool		is_valid_word(t_game *);
 bool		is_joker_in_rack(t_game *);
 bool		is_letters_in_rack(t_game *);
 

@@ -9,8 +9,6 @@ void		print_board(t_game *game)
   int		nb_lines = 1;
   char		*alphabet_tmp;
 
-  //  if(game->is_first_turn == false)
-    //    system("clear");
   if (game->is_super_mod == true)
     alphabet_tmp = "  ABCDEFGHIJKLMNOPQRSTU \n";
   else

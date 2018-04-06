@@ -21,7 +21,7 @@ bool		search_new_connections_left_or_right(t_game *, int, bool, int);
 bool		is_new_connections_top_to_bottom_valid(t_game *);
 bool		is_valid_position(t_game *);
 bool		is_valid_new_words(t_game *);
-bool		is_valid_word(t_game *, char *);
+bool		is_valid_word(t_game *);
 bool		is_joker_in_rack(t_game *);
 bool		is_letters_in_rack(t_game *);
 
@@ -266,7 +266,7 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, in
       i++;
     }
   tmp_new_word[i] = '\0'; // useless ?
-  if (is_valid_word(game, tmp_new_word))
+  if (is_valid_word(game))
     {
       game->new_word_pot = game->new_word_pot + get_score(game, tmp_new_word, 1, special_pos);
       game->is_side_word = true;
@@ -288,7 +288,7 @@ bool		is_new_connections_down_valid(t_game *game, int x_cp)
       y_cp++;
       i++;
     }
-  if (is_valid_word(game, tmp_new_word))
+  if (is_valid_word(game))
     return (true);
   else
     return (false);
@@ -348,7 +348,7 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up,
       i++;
     }
   tmp_new_word[i] = '\0';
-  if (is_valid_word(game, tmp_new_word))
+  if (is_valid_word(game))
     {
       game->new_word_pot = game->new_word_pot + get_score(game, tmp_new_word, 1, special_pos);
       game->is_side_word = true;
@@ -425,14 +425,20 @@ bool		is_valid_new_words(t_game *game)
   return (false);
 }
 
-bool		is_valid_word(t_game *game, char *word)
+bool		is_valid_word(t_game *game)
 {
-  word = to_upper(word);
+  char		*tmp_word = strdup(game->word_test);
+
+  printf("word test pre=%s\n", game->word_test);
+  tmp_word = to_upper(tmp_word);
+  printf("word test pre=%s\n", game->word_test);
   for (int i = 0; i < game->max_words_dict; i++)
     {
-      if (strcmp_dictionnary(word, game->dictionnary[i]) == true)
+      if (strcmp_dictionnary(tmp_word, game->dictionnary[i]) == true)
+	free(tmp_word);
 	return (true);
     }
+  free(tmp_word);
   return (false);
 }
 
