@@ -175,13 +175,17 @@ bool		is_letters_in_rack(t_game *);
 bool		select_yes_or_no_question(char *);
 void		letters_from_av(t_game *, char *);
 bool		single_av_flag(char);
-void		config_with_av(t_game *game, char **);
+void		config_with_av(t_game *, char **);
 void		config_skip_menu(t_game *);
 void		config_with_file(t_game *);
 void		select_language_to_play(t_game *);
 void		select_number_of_players(t_game *);
 void		select_players_type(t_game *);
 void		print_help();
+
+/* free.c */
+
+void		free_all(t_game *);
 
 /* game_core.c */
 
@@ -200,6 +204,7 @@ void		init_dictionnary(t_game *);
 
 /* main.c */
 
+void		test_free(t_game *);
 int		main(int, char **);
 
 /* menu. */

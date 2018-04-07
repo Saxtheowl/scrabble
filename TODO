@@ -39,6 +39,8 @@ X fix speial case when points are added when a wrong words has been put
 X fix bug where sometime when you have a transformed joker and try to use it, the common letter is used, (it make no sense gameplaywise but it is still a bug)
 - check how many lines the game need depending on tty and output accordingly for clarity
 - allow the players to choose how to enter word position, enter the coordinate or directly choose vertical or horizontal
-- check that the word side is properly empty depending on his position
+X check that the word side is properly empty depending on his position
 - change boolean is left to right true and false to two booleans for each
-- debug flag for each check
+X debug flag for each check
+- end the game automaticaly when 0 letters in the game
+- allow player to leave the game when 0 letters in his bag

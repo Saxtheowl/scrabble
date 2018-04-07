@@ -40,6 +40,8 @@ int		main(int ac, char **av)
   printf("return at int main() OK\n");
   printf("size of struct game: %zu\n", sizeof(game));
 #endif
-  printf("%s\n", game.letters_list);
+  //  printf("%s\n", game.letters_list);
+  free_all(&game);
+  printf("Bye\n");
   return(0);
 }
