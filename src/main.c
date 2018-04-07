@@ -1,5 +1,4 @@
 #include "../include/scrabble.h"
-#include <signal.h>
 
 void		interrupt_handler()
 {
@@ -32,7 +31,7 @@ int		main(int ac, char **av)
   else
     menu_pre_game(&game);
 #ifndef DEBUG_FLAG
-  system("clear");
+  clear();
 #endif
   init_game(&game);
   start_game(&game);

@@ -1,0 +1,495 @@
+desc: (none)
+cmd: ./scrabble
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=268292
+mem_heap_B=1387623
+mem_heap_extra_B=55777
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=534824
+mem_heap_B=1392299
+mem_heap_extra_B=163325
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=877736
+mem_heap_B=1398315
+mem_heap_extra_B=301693
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=1220648
+mem_heap_B=1404331
+mem_heap_extra_B=440061
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=1457768
+mem_heap_B=1408491
+mem_heap_extra_B=535741
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=1716776
+mem_heap_B=1413035
+mem_heap_extra_B=640253
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=1975784
+mem_heap_B=1417579
+mem_heap_extra_B=744765
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=2125694
+mem_heap_B=1420209
+mem_heap_extra_B=805255
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=2336822
+mem_heap_B=1423913
+mem_heap_extra_B=890447
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1423913 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1421745 0x40491B: xmalloc (xfunc.c:12)
+  n1: 1382440 0x40109A: init_game_memory (init.c:106)
+   n1: 1382440 0x400CBA: init_game (init.c:20)
+    n0: 1382440 0x400BE7: main (main.c:36)
+  n1: 38702 0x4010D4: init_game_memory (init.c:108)
+   n1: 38702 0x400CBA: init_game (init.c:20)
+    n0: 38702 0x400BE7: main (main.c:36)
+  n0: 603 in 8 places, all below massif's threshold (1.00%)
+ n0: 2168 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=2547950
+mem_heap_B=1427617
+mem_heap_extra_B=975639
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=2759078
+mem_heap_B=1431321
+mem_heap_extra_B=1060831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=2970206
+mem_heap_B=1435025
+mem_heap_extra_B=1146023
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=3181334
+mem_heap_B=1438729
+mem_heap_extra_B=1231215
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=3392462
+mem_heap_B=1442433
+mem_heap_extra_B=1316407
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1442433 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1440265 0x40491B: xmalloc (xfunc.c:12)
+  n1: 1382440 0x40109A: init_game_memory (init.c:106)
+   n1: 1382440 0x400CBA: init_game (init.c:20)
+    n0: 1382440 0x400BE7: main (main.c:36)
+  n1: 57222 0x4010D4: init_game_memory (init.c:108)
+   n1: 57222 0x400CBA: init_game (init.c:20)
+    n0: 57222 0x400BE7: main (main.c:36)
+  n0: 603 in 8 places, all below massif's threshold (1.00%)
+ n0: 2168 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=3735374
+mem_heap_B=1448449
+mem_heap_extra_B=1454791
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=4078286
+mem_heap_B=1454465
+mem_heap_extra_B=1593159
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=4249742
+mem_heap_B=1457473
+mem_heap_extra_B=1662343
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1457473 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1455305 0x40491B: xmalloc (xfunc.c:12)
+  n1: 1382440 0x40109A: init_game_memory (init.c:106)
+   n1: 1382440 0x400CBA: init_game (init.c:20)
+    n0: 1382440 0x400BE7: main (main.c:36)
+  n1: 72262 0x4010D4: init_game_memory (init.c:108)
+   n1: 72262 0x400CBA: init_game (init.c:20)
+    n0: 72262 0x400BE7: main (main.c:36)
+  n0: 603 in 8 places, all below massif's threshold (1.00%)
+ n0: 2168 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=18
+#-----------
+time=4421198
+mem_heap_B=1460481
+mem_heap_extra_B=1731527
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=4592654
+mem_heap_B=1463489
+mem_heap_extra_B=1800711
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=4764110
+mem_heap_B=1466497
+mem_heap_extra_B=1869895
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=4935566
+mem_heap_B=1469505
+mem_heap_extra_B=1939079
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=5107022
+mem_heap_B=1472513
+mem_heap_extra_B=2008263
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1472513 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1470345 0x40491B: xmalloc (xfunc.c:12)
+  n1: 1382440 0x40109A: init_game_memory (init.c:106)
+   n1: 1382440 0x400CBA: init_game (init.c:20)
+    n0: 1382440 0x400BE7: main (main.c:36)
+  n1: 87302 0x4010D4: init_game_memory (init.c:108)
+   n1: 87302 0x400CBA: init_game (init.c:20)
+    n0: 87302 0x400BE7: main (main.c:36)
+  n0: 603 in 8 places, all below massif's threshold (1.00%)
+ n0: 2168 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=23
+#-----------
+time=5278478
+mem_heap_B=1475521
+mem_heap_extra_B=2077447
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=5449934
+mem_heap_B=1478529
+mem_heap_extra_B=2146631
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=5621390
+mem_heap_B=1481537
+mem_heap_extra_B=2215815
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=5792846
+mem_heap_B=1484545
+mem_heap_extra_B=2284999
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=5964302
+mem_heap_B=1487553
+mem_heap_extra_B=2354183
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=6135758
+mem_heap_B=1490561
+mem_heap_extra_B=2423367
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=6307214
+mem_heap_B=1493569
+mem_heap_extra_B=2492551
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=6478670
+mem_heap_B=1496577
+mem_heap_extra_B=2561735
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=6650126
+mem_heap_B=1499585
+mem_heap_extra_B=2630919
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=6821582
+mem_heap_B=1502593
+mem_heap_extra_B=2700103
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=6993038
+mem_heap_B=1505601
+mem_heap_extra_B=2769287
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=7164494
+mem_heap_B=1508609
+mem_heap_extra_B=2838471
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=7335950
+mem_heap_B=1511617
+mem_heap_extra_B=2907655
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=7507406
+mem_heap_B=1514625
+mem_heap_extra_B=2976839
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=7678862
+mem_heap_B=1517633
+mem_heap_extra_B=3046023
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=7850318
+mem_heap_B=1520641
+mem_heap_extra_B=3115207
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=8021774
+mem_heap_B=1523649
+mem_heap_extra_B=3184391
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=8193230
+mem_heap_B=1526657
+mem_heap_extra_B=3253575
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=8364686
+mem_heap_B=1529665
+mem_heap_extra_B=3322759
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=8536142
+mem_heap_B=1532673
+mem_heap_extra_B=3391943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=8707598
+mem_heap_B=1535681
+mem_heap_extra_B=3461127
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=8879054
+mem_heap_B=1538689
+mem_heap_extra_B=3530311
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=9050510
+mem_heap_B=1541697
+mem_heap_extra_B=3599495
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=9221966
+mem_heap_B=1544705
+mem_heap_extra_B=3668679
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=9393422
+mem_heap_B=1547713
+mem_heap_extra_B=3737863
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=9564878
+mem_heap_B=1550721
+mem_heap_extra_B=3807047
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=9822062
+mem_heap_B=1555233
+mem_heap_extra_B=3910823
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1555233 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1553065 0x40491B: xmalloc (xfunc.c:12)
+  n1: 1382440 0x40109A: init_game_memory (init.c:106)
+   n1: 1382440 0x400CBA: init_game (init.c:20)
+    n0: 1382440 0x400BE7: main (main.c:36)
+  n1: 170022 0x4010D4: init_game_memory (init.c:108)
+   n1: 170022 0x400CBA: init_game (init.c:20)
+    n0: 170022 0x400BE7: main (main.c:36)
+  n0: 603 in 8 places, all below massif's threshold (1.00%)
+ n0: 2168 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=50
+#-----------
+time=9971972
+mem_heap_B=1557863
+mem_heap_extra_B=3971313
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=39056180
+mem_heap_B=1577374
+mem_heap_extra_B=3975074
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=39257016
+mem_heap_B=1578570
+mem_heap_extra_B=3975358
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=39359884
+mem_heap_B=1579109
+mem_heap_extra_B=3975491
+mem_stacks_B=0
+heap_tree=peak
+n2: 1579109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1555915 0x40491B: xmalloc (xfunc.c:12)
+  n1: 1382440 0x40109A: init_game_memory (init.c:106)
+   n1: 1382440 0x400CBA: init_game (init.c:20)
+    n0: 1382440 0x400BE7: main (main.c:36)
+  n1: 172805 0x4010D4: init_game_memory (init.c:108)
+   n1: 172805 0x400CBA: init_game (init.c:20)
+    n0: 172805 0x400BE7: main (main.c:36)
+  n0: 670 in 13 places, all below massif's threshold (1.00%)
+ n0: 23194 in 5 places, all below massif's threshold (1.00%)

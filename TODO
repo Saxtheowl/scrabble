@@ -36,5 +36,9 @@ X fix rare case where words cant be put because road_word string is not properly
 X refactoring of the code, warning etc...
 X fix bug when a word is put on the last line of the board and check new possible words fail
 X fix speial case when points are added when a wrong words has been put
-- fix bug where sometime when you have a transformed joker and try to use it, the common letter is used, (it make no sense gameplaywise but it is still a bug)
+X fix bug where sometime when you have a transformed joker and try to use it, the common letter is used, (it make no sense gameplaywise but it is still a bug)
 - check how many lines the game need depending on tty and output accordingly for clarity
+- allow the players to choose how to enter word position, enter the coordinate or directly choose vertical or horizontal
+- check that the word side is properly empty depending on his position
+- change boolean is left to right true and false to two booleans for each
+- debug flag for each check

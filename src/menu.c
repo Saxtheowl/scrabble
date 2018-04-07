@@ -8,7 +8,6 @@ void		menu_play(t_game *);
 
 void		menu_pre_game(t_game *game)
 {
-  clear();
   printf("\nWelcome to the game of scrabble:\n\n");
   game->is_skip_menu = select_yes_or_no_question("Skip menu ?\n");
   if (game->is_skip_menu == true)
@@ -68,10 +67,11 @@ void		menu_play(t_game *game)
     play_pass(game);
   else if (is_joker_in_rack(game) && nb == 4)
     {
-      char		*letter;
+      char		*letter; // wut ?
 
       printf("Enter the letter you want\n"); 
       letter = put_prompt();
       transform_joker(game, letter);
     }
+  clear();
 }

@@ -111,11 +111,12 @@ int		strcmp_dictionnary(char *wrd, char *dict)
   int		i;
 
   i = 0;
-  /*  printf("s1=%s\n", wrd);
-      printf("s2=%s\n", dict);*/
+  //  printf("s1=%s\n", wrd);
+  //  printf("s2=%s\n", dict);
   
   while ((wrd[i] == dict[i]) && (wrd[i] != '\0') && (dict[i] != '\0'))
     i++;
+  //  printf("i = %d\n", i);
   if (wrd[i] == '\0' && dict[i] == '\n') //s2[i] == '\n')
     return (true);
   return (false);

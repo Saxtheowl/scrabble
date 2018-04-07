@@ -64,9 +64,9 @@ void		play_exchange_letters(t_game *game, char *letters)
 {
   for (int i = 0; letters[i] != '\0'; i++)
     {
-      if (is_lower_char(letters[i]))
+      if (is_lower_char(letters[i]) == true)
 	 letters[i] = '?';
-      if (remove_letter_in_rack(game, letters[i]))
+      if (remove_letter_in_rack(game, letters[i]) == true)
 	{
 	  put_letter_back_in_list(game, letters[i]);
 	  fulfill_rack(game, game->playing, 1);

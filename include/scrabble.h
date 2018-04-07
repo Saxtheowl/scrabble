@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#define _SVID_SOURCE
 #include <string.h>
 #include <signal.h>
 
@@ -151,8 +152,8 @@ bool		is_syntax_number_valid(t_game *, char *, bool);
 bool		is_valid_syntax(t_game *, char *, char *);
 void		setup_connections_left_to_right(t_game *);
 void		setup_connections_top_to_bottom(t_game *);
-bool		is_more_left_empty(t_game *);
-bool		is_more_up_empty(t_game *);
+bool		is_side_left_and_right_empty(t_game *);
+bool		is_side_top_and_bottom_empty(t_game *);
 bool		is_not_overwritting(t_game *);
 bool		is_connected_to_a_letter(t_game *);
 bool		is_valid_first_turn(t_game *, char *);

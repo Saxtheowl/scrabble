@@ -1,5 +1,7 @@
+#define _GNU_SOURCE
+
 #include "../include/scrabble.h"
-#include <string.h>
+
 
 bool		is_syntax_letter_valid(t_game *, char *);
 void		get_proper_coord_word(t_game *, char *, bool, int);
@@ -7,8 +9,8 @@ bool		is_syntax_number_valid(t_game *, char *, bool);
 bool		is_valid_syntax(t_game *, char *, char *);
 void		setup_connections_left_to_right(t_game *);
 void		setup_connections_top_to_bottom(t_game *);
-bool		is_more_left_empty(t_game *);
-bool		is_more_up_empty(t_game *);
+bool		is_side_left_and_right_empty(t_game *);
+bool		is_side_top_and_bottom_empty(t_game *);
 bool		is_not_overwritting(t_game *);
 bool		is_connected_to_a_letter(t_game *);
 bool		is_valid_first_turn(t_game *, char *);
@@ -35,6 +37,9 @@ bool		is_syntax_letter_valid(t_game *game, char *pos)
     max_letter = 'O';
   if (pos[0] >= 'A' && pos[0] <= max_letter)
     return (true);
+#ifdef DEBUG_FLAG
+  printf("is_syntax_letter_valid false\n");
+#endif
   return (false);
 }
 
@@ -76,6 +81,9 @@ bool		is_syntax_number_valid(t_game *game, char *pos, bool is_pos1)
       if (pos[1] >= '1') // last test but there is still more
 	return (true);
     }
+#ifdef DEBUG_FLAG
+  printf("is_syntax_number_valid false\n");
+#endif
   return (false);
 }
 
@@ -86,17 +94,10 @@ bool		is_valid_syntax(t_game *game, char *pos1, char *pos2)
       is_syntax_letter_valid(game, pos2) &&
       is_syntax_number_valid(game, pos2, 0))
     {
-#ifdef DEBUG_FLAG
-      printf("y word pos1:%d\n", game->y_wrd_p1);
-      printf("y word pos2:%d\n", game->y_wrd_p2);
-      printf("x word pos1:%d\n", game->x_wrd_p1);
-      printf("x word pos2:%d\n", game->x_wrd_p2);     
-      printf("syntax valid\n");
-#endif
       return (true);
     }
 #ifdef DEBUG_FLAG
-  printf("syntax wrong\n");
+  printf("is_valid_syntax false\n");
 #endif
   return (false);
 }
@@ -137,26 +138,34 @@ void		setup_connections_top_to_bottom(t_game *game)
   game->is_word_put = true;
 }
 
-bool		is_more_left_empty(t_game *game) // useless ?
+bool		is_side_left_and_right_empty(t_game *game)
 {
-  int		tmp_pos = game->x_wrd_p1 - 1;
-
-  if (game->y_wrd_p1 == 0)
-    return (true);
-  if (is_char(game->board[game->y_wrd_p1][tmp_pos]))
-    return (false);
-  return (true);
+  char tmp_x_wrd_p1 = game->board[game->y_wrd_p1][game->x_wrd_p1 - 1];
+  char tmp_x_wrd_p2 = game->board[game->y_wrd_p1][game->x_wrd_p2 + 1];
+  
+  if((game->x_wrd_p1 == 0 && is_char(tmp_x_wrd_p2) == false) ||
+     (game->x_wrd_p2 == game->size_board && is_char(tmp_x_wrd_p1) == false) ||
+     ((game->x_wrd_p1 > 0 && game->x_wrd_p2 < game->size_board) && is_char(tmp_x_wrd_p1) == false && is_char(tmp_x_wrd_p2) == false))
+    return(true);
+#ifdef DEBUG_FLAG
+  printf("is_side_left_and_right_empty false\n");
+#endif
+  return(false);
 }
 
-bool		is_more_up_empty(t_game *game) // useless ?
+bool		is_side_top_and_bottom_empty(t_game *game)
 {
-  int		tmp_pos = game->y_wrd_p1 - 1;
+  char tmp_y_wrd_p1 = game->board[game->y_wrd_p1 - 1][game->x_wrd_p1];
+  char tmp_y_wrd_p2 = game->board[game->y_wrd_p2 + 1][game->x_wrd_p1];
 
-  if (game->x_wrd_p1 == 0)
-    return (true);
-  if (is_char(game->board[tmp_pos][game->x_wrd_p1]))
-    return (false);
-  return (true);
+    if((game->y_wrd_p1 == 0 && is_char(tmp_y_wrd_p2) == false) ||
+     (game->y_wrd_p2 == game->size_board && is_char(tmp_y_wrd_p1) == false) ||
+     ((game->y_wrd_p1 > 0 && game->y_wrd_p2 < game->size_board) && is_char(tmp_y_wrd_p1) == false && is_char(tmp_y_wrd_p2) == false))
+      return(true);
+#ifdef DEBUG_FLAG
+  printf("is_side_top_and_bottom_empty false\n");
+#endif
+  return(false);
 }
 
 bool		is_not_overwritting(t_game *game)
@@ -165,7 +174,12 @@ bool		is_not_overwritting(t_game *game)
     {
       if ((is_char(game->road_word[i]) && is_char(game->word_test[i])) &&
 	 (game->road_word[i] != game->word_test[i]))
-	return (false);
+	{
+#ifdef DEBUG_FLAG
+	  printf("is_not_overwritting false\n");
+#endif
+	  return (false);
+	}
     }
   return (true);
 }
@@ -186,6 +200,11 @@ bool		is_connected_to_a_letter(t_game *game)
 	}
       if (one_char == true && one_empty == true)
 	return (true);
+      {
+#ifdef DEBUG_FLAG
+	printf("is_connected_to_a_letter false\n");
+#endif
+      }
       return (false);
     }
   else
@@ -204,6 +223,9 @@ bool		is_valid_first_turn(t_game *game, char *tmp_retired_letters)
       else
 	{
 	  put_letters_back_in_rack(game, tmp_retired_letters);
+#ifdef DEBUG_FLAG
+	  printf("is_valid_first_turn false\n");
+#endif
 	  return (false);
 	}
     }
@@ -220,6 +242,9 @@ bool		is_lenght_valid(t_game *game)
     road_word_lenght = game->y_wrd_p2 - game->y_wrd_p1;
   if (road_word_lenght == strlen(game->word_test) - 1)
     return (true);
+#ifdef DEBUG_FLAG
+  printf("is_lenght_valid false\n");
+#endif
   return (false);
 }
 
@@ -229,20 +254,18 @@ bool		is_direction_valid(t_game *game)
      && (game->x_wrd_p1 < game->x_wrd_p2))
     {
       game->is_left_to_right = true;
-#ifdef DEBUG_FLAG
-      printf("YES LEFT TO RIGHT\n");
-#endif
       return (true);
     }
   else if ((game->x_wrd_p1 == game->x_wrd_p2 )
      && (game->y_wrd_p1 < game->y_wrd_p2))
     {
       game->is_left_to_right = false; // this one or the other, ugly ?
-#ifdef DEBUG_FLAG
-      printf("NO LEFT TO RIGHT\n");
-#endif
       return (true);
     }
+  
+#ifdef DEBUG_FLAG
+  printf("is_direction_valid false\n");
+#endif
   return (false);
 }
 
@@ -273,6 +296,9 @@ bool		search_new_connections_up_or_down(t_game *game, int x_cp, bool flag_up, in
       return (true);
     }
   else
+#ifdef DEBUG_FLAG
+  printf("search_new_connections_up_or_down false\n");
+#endif
     return (false);
 }
 
@@ -291,7 +317,12 @@ bool		is_new_connections_down_valid(t_game *game, int x_cp)
   if (is_valid_word(game))
     return (true);
   else
-    return (false);
+    {
+#ifdef DEBUG_FLAG
+      printf("is_new_connections_down_valid false\n");
+#endif
+      return (false);
+    }
 }
 
 bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCORE ?
@@ -307,18 +338,18 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 	{
 	  if ((y_cp_up >= 0 && y_cp_down <= game->size_board - 1) && is_char(game->board[y_cp_up][x_cp]))
 	    {
-#ifdef DEBUG_FLAG
-	      printf("ok up START is new connections up \n");
-#endif
 	      if (!(search_new_connections_up_or_down(game, x_cp, 1, i)))
+#ifdef DEBUG_FLAG
+  printf("is_new_connections_left_to_right false\n");
+#endif
 		return(false);
 	    }	  
 	  else if (y_cp_down <= game->size_board - 1&& is_char(game->board[y_cp_down][x_cp]))
 	    {
-#ifdef DEBUG_FLAG
-	      printf("ok down START is new connections up \n");
-#endif
 	      if (!(search_new_connections_up_or_down(game, x_cp, 0, i)))
+#ifdef DEBUG_FLAG
+  printf("is_new_connections_left_to_right false\n");
+#endif
 		return (false);
 	    } 
 	}
@@ -355,6 +386,11 @@ bool		search_new_connections_left_or_right(t_game *game, int y_cp, bool flag_up,
       return (true);
     }
   else
+    {
+#ifdef DEBUG_FLAG
+      printf("search_new_connections_left_or_right false\n");
+#endif
+    }
     return (false);
 }
 
@@ -372,19 +408,24 @@ bool		is_new_connections_top_to_bottom_valid(t_game *game)
 	{
 	  if (x_cp_left >= 0 && is_char(game->board[y_cp][x_cp_left]))
 	    {
+	      if (!(search_new_connections_left_or_right(game, y_cp, 1, i)))
+		{
 #ifdef DEBUG_FLAG
-	      printf("ok left START is new connections left \n");
+		  printf("is_new_connections_top_to_bottom false\n");
 #endif
-	      if (!(search_new_connections_left_or_right(game, y_cp, 1, i)))	 
-		return (false);
+		  
+		  return (false);
+		}
 	    }	  
 	  else if (is_char(game->board[y_cp][x_cp_right]))
 	    {
-#ifdef DEBUG_FLAG
-	      printf("ok right START is new connections right \n");
-#endif
 	      if (!(search_new_connections_left_or_right(game, y_cp, 0, i)))
-		return (false);
+		{
+#ifdef DEBUG_FLAG
+		  printf("is_new_connections_top_to_bottom false\n");
+#endif
+		  return (false);
+		}
 	    } 
 	}
       i++;
@@ -397,17 +438,20 @@ bool		is_valid_position(t_game *game) // CHECK NUMBER CHAR INPUT EQUAL THE LENGH
 {  
   if (is_direction_valid(game) && is_lenght_valid(game))
     {
-      if ((game->is_left_to_right == true))
+      if (game->is_left_to_right == true && is_side_left_and_right_empty(game) == true)
 	{
 	  setup_connections_left_to_right(game);
 	  return (true);
 	}
-      else if (game->is_left_to_right == false)
+      else if (game->is_left_to_right == false && is_side_top_and_bottom_empty(game) == true)
 	{
 	  setup_connections_top_to_bottom(game);
 	  return (true);
 	}
     }
+#ifdef DEBUG_FLAG
+  printf("is_valid_position false\n");
+#endif
   return (false);
 }
 
@@ -422,6 +466,9 @@ bool		is_valid_new_words(t_game *game)
 	return (true);
     }
   remove_word(game);
+#ifdef DEBUG_FLAG
+  printf("is_valid_new_words false\n");
+#endif
   return (false);
 }
 
@@ -429,16 +476,15 @@ bool		is_valid_word(t_game *game)
 {
   char		*tmp_word = strdup(game->word_test);
 
-  printf("word test pre=%s\n", game->word_test);
   tmp_word = to_upper(tmp_word);
-  printf("word test pre=%s\n", game->word_test);
   for (int i = 0; i < game->max_words_dict; i++)
     {
       if (strcmp_dictionnary(tmp_word, game->dictionnary[i]) == true)
-	free(tmp_word);
-	return (true);
+      return (true);
     }
-  free(tmp_word);
+#ifdef DEBUG_FLAG
+  printf("is_valid_words false\n");
+#endif
   return (false);
 }
 
@@ -449,6 +495,9 @@ bool		is_joker_in_rack(t_game *game)
       if (game->racks[game->playing][i] == '?')
 	return (true);
     }
+#ifdef DEBUG_FLAG
+  printf("is_joker_in_rack false\n");
+#endif
   return (false);
 }
 
@@ -471,7 +520,10 @@ bool		is_letters_in_rack(t_game *game) // CODE HORROR
 	  else
 	    {
 	      put_letters_back_in_rack(game, tmp_retired_letters);
-	      return(false);
+#ifdef DEBUG_FLAG
+  printf("is_letters_in_rack false\n");
+#endif
+  return(false);
 	    }
 	}
       i++;
