@@ -140,13 +140,18 @@ void		setup_connections_top_to_bottom(t_game *game)
 
 bool		is_side_left_and_right_empty(t_game *game)
 {
+  printf("start empty module\n");
   char tmp_x_wrd_p1 = game->board[game->y_wrd_p1][game->x_wrd_p1 - 1];
   char tmp_x_wrd_p2 = game->board[game->y_wrd_p1][game->x_wrd_p2 + 1];
-  
+  printf(" tmp1 =%d\n", tmp_x_wrd_p1);
+  printf(" tmp2 =%d\n", tmp_x_wrd_p2);
   if((game->x_wrd_p1 == 0 && is_char(tmp_x_wrd_p2) == false) ||
      (game->x_wrd_p2 == game->size_board && is_char(tmp_x_wrd_p1) == false) ||
      ((game->x_wrd_p1 > 0 && game->x_wrd_p2 < game->size_board) && is_char(tmp_x_wrd_p1) == false && is_char(tmp_x_wrd_p2) == false))
-    return(true);
+    {
+      printf("end empty module\n");
+      return(true);
+    }
 #ifdef DEBUG_FLAG
   printf("is_side_left_and_right_empty false\n");
 #endif
@@ -155,13 +160,19 @@ bool		is_side_left_and_right_empty(t_game *game)
 
 bool		is_side_top_and_bottom_empty(t_game *game)
 {
-  char tmp_y_wrd_p1 = game->board[game->y_wrd_p1 - 1][game->x_wrd_p1];
-  char tmp_y_wrd_p2 = game->board[game->y_wrd_p2 + 1][game->x_wrd_p1];
+  printf("start empty module\n");
+  char tmp_y_wrd_p1 = game->board[game->y_wrd_p1 + 1][game->x_wrd_p1];
+  char tmp_y_wrd_p2 = game->board[game->y_wrd_p2 - 1][game->x_wrd_p1];
 
-    if((game->y_wrd_p1 == 0 && is_char(tmp_y_wrd_p2) == false) ||
-     (game->y_wrd_p2 == game->size_board && is_char(tmp_y_wrd_p1) == false) ||
+  printf(" tmp1 =%d\n", tmp_y_wrd_p1);
+  printf(" tmp2 =%d\n", tmp_y_wrd_p2);
+    if((game->y_wrd_p1 == 0 && is_char(tmp_y_wrd_p1) == false) ||
+     (game->y_wrd_p2 == game->size_board && is_char(tmp_y_wrd_p2) == false) ||
      ((game->y_wrd_p1 > 0 && game->y_wrd_p2 < game->size_board) && is_char(tmp_y_wrd_p1) == false && is_char(tmp_y_wrd_p2) == false))
-      return(true);
+      {
+	printf("end empty module\n");
+	return(true);
+      }
 #ifdef DEBUG_FLAG
   printf("is_side_top_and_bottom_empty false\n");
 #endif
@@ -204,8 +215,8 @@ bool		is_connected_to_a_letter(t_game *game)
 #ifdef DEBUG_FLAG
 	printf("is_connected_to_a_letter false\n");
 #endif
+	return (false);
       }
-      return (false);
     }
   else
     return (true);
@@ -339,10 +350,12 @@ bool		is_new_connections_left_to_right_valid(t_game *game) // UPDATE TMP PRE SCO
 	  if ((y_cp_up >= 0 && y_cp_down <= game->size_board - 1) && is_char(game->board[y_cp_up][x_cp]))
 	    {
 	      if (!(search_new_connections_up_or_down(game, x_cp, 1, i)))
+		{
 #ifdef DEBUG_FLAG
-  printf("is_new_connections_left_to_right false\n");
+		  printf("is_new_connections_left_to_right false\n");
 #endif
-		return(false);
+		  return(false);
+		}
 	    }	  
 	  else if (y_cp_down <= game->size_board - 1&& is_char(game->board[y_cp_down][x_cp]))
 	    {
@@ -474,6 +487,7 @@ bool		is_valid_new_words(t_game *game)
 
 bool		is_valid_word(t_game *game)
 {
+  return(true);
   char		*tmp_word = strdup(game->word_test);
 
   tmp_word = to_upper(tmp_word);

@@ -89,7 +89,7 @@ void		transform_joker(t_game *game, char *letters)
 	  if (game->racks[game->playing][i] == '?')
 	    {
 	      game->racks[game->playing][i] = letters[0];
-	      game->is_turn_done = true;
+	      //	      game->is_turn_done = true;
 	      return;
 	    }
 	  else
