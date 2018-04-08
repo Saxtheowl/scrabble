@@ -1,3 +1,4 @@
+//test
 #include "../include/scrabble.h"
 
 void		interrupt_handler();
