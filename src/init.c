@@ -110,6 +110,7 @@ void		init_game_memory(t_game *game) // fcking C language lul
   game->score = xmalloc(sizeof(*game->score) * game->amount_players);
   game->road_word = xmalloc(sizeof(*game->road_word) * game->size_board);
   game->word_test = xmalloc(sizeof(*game->word_test) * game->size_board);
+  game->is_playing = xmalloc(sizeof(*game->word_test) * game->amount_players);
 }
 
 void		init_board(t_game *game)

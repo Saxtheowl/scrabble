@@ -502,6 +502,19 @@ bool		is_valid_word(t_game *game)
   return (false);
 }
 
+bool		is_there_players(t_game *game)
+{
+  return(true);
+#ifdef DEBUG_FLAG
+  printf("is_there_players false\n");
+#endif
+  return(false);
+}
+
+bool		is_new_word_still_possible(t_game *game)
+{
+}
+
 bool		is_joker_in_rack(t_game *game)
 {
   for (int i = 0; i < MAX_LETTERS_RACK; i++)

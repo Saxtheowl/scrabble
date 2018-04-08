@@ -4,7 +4,7 @@ X check overwrite on new words
 X remove enum for the info on each letters
 - add intern AI ( eg C AI coded inside the game, using intern ressources)
 - add extern AI ( eg python AI which take data from a txt file outputed by the scrabble, and then output his own txt file read by the scrabble, etc... )
-- proper readme.md with gif
+X proper readme.md file with gif
 X add capability of config the game with argv ( number of players, type of game, mod, etc... )
 X add option of launching the game with multiple phrase that will appear in racks like "saultcvaa" (salutcava)
 - add option writing all info of the game on an outside txt file
@@ -42,5 +42,7 @@ X fix bug where sometime when you have a transformed joker and try to use it, th
 X check that the word side is properly empty depending on his position
 - change boolean is left to right true and false to two booleans for each
 X debug flag for each check
-- end the game automaticaly when 0 letters in the game
-- allow player to leave the game when 0 letters in his bag
+- end the game automaticaly when 0 letters is in the game
+- allow player to leave the game when 0 letters is in his bag
+- optimize memory and fix leak
+- allow restart of the game when the game is over

@@ -21,7 +21,7 @@ void		start_game(t_game *game)
 #endif
   game->playing = who_play_first(game);   
   fulfill_all_racks(game);
-  while (game->letters_left > 0)
+  while (is_there_players() == true)
     {
       make_play(game); // like he play a 2 letter word
       game->playing++;

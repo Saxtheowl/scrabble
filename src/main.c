@@ -1,12 +1,13 @@
 #include "../include/scrabble.h"
 
+void		interrupt_handler();
+int		main(int, char **);
+
 void		interrupt_handler()
 {
-  printf("lul\n");
+  printf("exit with ctrl c\n");
   exit(0);
 }
-
-int		main(int, char **);
 
 int		main(int ac, char **av)
 {

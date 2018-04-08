@@ -38,8 +38,6 @@
 #define ANSI_COLOR_RESET "\x1b[0m"
 #define ANSI_COLOR_BLACK "\033[30m"  
 
-
-
 #define clear() system("clear")
 
 enum LANGUAGE
@@ -67,6 +65,7 @@ typedef struct		s_game
   bool			is_side_word;
   bool			is_letter_middle;
   bool			is_word_put;
+  bool			*is_playing;
   int			language;
   int			amount_players;
   int			*players_type;
@@ -204,7 +203,7 @@ void		init_dictionnary(t_game *);
 
 /* main.c */
 
-void		test_free(t_game *);
+void		interrupt_handler();
 int		main(int, char **);
 
 /* menu. */
