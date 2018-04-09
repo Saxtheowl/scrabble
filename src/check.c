@@ -141,13 +141,19 @@ void		setup_connections_top_to_bottom(t_game *game)
 bool		is_side_left_and_right_empty(t_game *game)
 {
   printf("start empty module\n");
-  char tmp_x_wrd_p1 = game->board[game->y_wrd_p1][game->x_wrd_p1 - 1];
-  char tmp_x_wrd_p2 = game->board[game->y_wrd_p1][game->x_wrd_p2 + 1];
-  printf(" tmp1 =%d\n", tmp_x_wrd_p1);
-  printf(" tmp2 =%d\n", tmp_x_wrd_p2);
-  if((game->x_wrd_p1 == 0 && is_char(tmp_x_wrd_p2) == false) ||
-     (game->x_wrd_p2 == game->size_board && is_char(tmp_x_wrd_p1) == false) ||
-     ((game->x_wrd_p1 > 0 && game->x_wrd_p2 < game->size_board) && is_char(tmp_x_wrd_p1) == false && is_char(tmp_x_wrd_p2) == false))
+  char tmp_pos1 = 0; //= game->board[game->y_wrd_p1][game->x_wrd_p1 - 1];
+  char tmp_pos2 = 0; //= game->board[game->y_wrd_p1][game->x_wrd_p2 + 1];
+  printf(" tmp1 =%c\n", tmp_pos1);
+  printf(" tmp2 =%c\n", tmp_pos2);
+  if(game->x_wrd_p1 < game->size_board)
+    tmp_pos2 = game->board[game->y_wrd_p1][game->x_wrd_p2 + 1];
+  if(game->x_wrd_p2 > 0)
+    tmp_pos1 = game->board[game->y_wrd_p1][game->x_wrd_p1 - 1];
+  printf(" tmp1 =%c\n", tmp_pos1);
+  printf(" tmp2 =%c\n", tmp_pos2);
+  if((game->x_wrd_p1 == 0 && is_char(tmp_pos2) == false) ||
+     (game->x_wrd_p2 == game->size_board && is_char(tmp_pos1) == false) ||
+     ((game->x_wrd_p1 > 0 && game->x_wrd_p2 < game->size_board) && is_char(tmp_pos1) == false && is_char(tmp_pos2) == false))
     {
       printf("end empty module\n");
       return(true);
@@ -160,23 +166,28 @@ bool		is_side_left_and_right_empty(t_game *game)
 
 bool		is_side_top_and_bottom_empty(t_game *game)
 {
-  printf("start empty module\n");
-  char tmp_y_wrd_p1 = game->board[game->y_wrd_p1 + 1][game->x_wrd_p1];
-  char tmp_y_wrd_p2 = game->board[game->y_wrd_p2 - 1][game->x_wrd_p1];
-
-  printf(" tmp1 =%d\n", tmp_y_wrd_p1);
-  printf(" tmp2 =%d\n", tmp_y_wrd_p2);
-    if((game->y_wrd_p1 == 0 && is_char(tmp_y_wrd_p1) == false) ||
-     (game->y_wrd_p2 == game->size_board && is_char(tmp_y_wrd_p2) == false) ||
-     ((game->y_wrd_p1 > 0 && game->y_wrd_p2 < game->size_board) && is_char(tmp_y_wrd_p1) == false && is_char(tmp_y_wrd_p2) == false))
-      {
-	printf("end empty module\n");
-	return(true);
-      }
+printf("start empty module\n");
+  char tmp_pos1 = 0; //= game->board[game->y_wrd_p1][game->y_wrd_p1 - 1];
+  char tmp_pos2 = 0; //= game->board[game->y_wrd_p1][game->y_wrd_p2 + 1];
+  printf(" tmp1 =%c\n", tmp_pos1);
+  printf(" tmp2 =%c\n", tmp_pos2);
+  if(game->y_wrd_p1 < game->size_board)
+    tmp_pos2 = game->board[game->y_wrd_p1 + 1][game->x_wrd_p1];
+  if(game->y_wrd_p2 > 0)
+    tmp_pos1 = game->board[game->y_wrd_p2 - 1][game->x_wrd_p1];
+  printf(" tmp1 =%c\n", tmp_pos1);
+  printf(" tmp2 =%c\n", tmp_pos2);
+  if((game->y_wrd_p1 == 0 && is_char(tmp_pos2) == false) ||
+     (game->y_wrd_p2 == game->size_board && is_char(tmp_pos1) == false) ||
+     ((game->y_wrd_p1 > 0 && game->y_wrd_p2 < game->size_board) && is_char(tmp_pos1) == false && is_char(tmp_pos2) == false))
+    {
+      printf("end empty module\n");
+      return(true);
+    }
 #ifdef DEBUG_FLAG
-  printf("is_side_top_and_bottom_empty false\n");
+  printf("is_side_left_and_right_empty false\n");
 #endif
-  return(false);
+  return(false);  
 }
 
 bool		is_not_overwritting(t_game *game)
